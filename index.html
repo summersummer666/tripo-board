@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tripo 素材看板（每日更新）</title>
+<style>
+  :root{--bg:#0e0f13;--card:#171922;--card2:#1d2030;--txt:#e8eaf2;--sub:#9aa0b4;--acc:#7c5cff;--green:#2ecc71;--red:#e74c3c;--border:#262a3a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;padding:24px;}
+  header{max-width:1400px;margin:0 auto 20px;}
+  h1{font-size:22px;font-weight:700;letter-spacing:.3px;}
+  .meta{color:var(--sub);font-size:13px;margin-top:6px;line-height:1.6;}
+  .meta b{color:var(--txt);}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center;}
+  .seg{display:inline-flex;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .seg button{background:none;border:none;color:var(--sub);padding:8px 16px;font-size:13px;cursor:pointer;transition:.15s;}
+  .seg button.on{background:var(--acc);color:#fff;}
+  .count{color:var(--sub);font-size:13px;margin-left:auto;}
+  .grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;position:relative;}
+  .media{position:relative;background:#000;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .media video,.media img{width:100%;height:100%;object-fit:contain;display:block;cursor:pointer;}
+  .vbadge{position:absolute;top:10px;right:10px;background:rgba(124,92,255,.92);color:#fff;font-size:15px;font-weight:800;padding:4px 12px;border-radius:999px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .vbadge span{font-size:10px;font-weight:500;opacity:.85;display:block;margin-top:-2px;text-align:center;}
+  .imgtag{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.6);color:#cfd3e4;font-size:11px;padding:2px 8px;border-radius:6px;z-index:2;}
+  .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .row1{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .brand{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;}
+  .brand.tripoai{background:#3a2f14;color:#f4c542;}
+  .brand.tripo3d{background:#14293a;color:#4aa8f0;}
+  .pub{font-size:13px;font-weight:600;}
+  .row2{display:flex;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--sub);}
+  .chip{background:var(--card2);border:1px solid var(--border);padding:2px 8px;border-radius:6px;}
+  .chip.live{color:var(--green);border-color:rgba(46,204,113,.4);}
+  .chip.dead{color:var(--sub);}
+  .hook{font-size:13px;line-height:1.55;color:#cfd3e4;flex:1;}
+  .links{display:flex;gap:12px;font-size:11.5px;border-top:1px solid var(--border);padding-top:9px;}
+  .links a{color:var(--sub);text-decoration:none;}
+  .links a:hover{color:var(--acc);}
+  .note{max-width:1400px;margin:14px auto 0;color:#6c7288;font-size:12px;line-height:1.6;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Tripo 广告素材看板 <span style="color:var(--sub);font-weight:400;font-size:15px;">Tripoai + Tripo 3D · Foreplay 抓取 · 每日自动更新</span></h1>
+  <div class="meta">数据更新时间：<b id="updated"><!--UPDATED_START-->2026-08-11 18:30（北京时间）<!--UPDATED_END--></b> ｜ <span id="stats"><!--STATS_START-->共 <b>36</b> 组去重创意（Tripoai 16 / Tripo 3D 20），覆盖近 14 天<!--STATS_END--></span> ｜ 默认按<b>变体数</b>（素材复用次数）从高到低 ｜ 点视频区域即可播放/暂停。<br>⚠️ 素材源为 Foreplay 公开直链（分享给他人无需 Foreplay 账号），但可能有时效——视频无法播放时用卡片底部链接看原素材。变体数 = 同一创意在 Meta 被复制投放的广告条数，代表放量程度。</div>
+  <div class="controls">
+    <div class="seg" id="fBrand">
+      <button data-v="all" class="on">全部</button>
+      <button data-v="Tripoai">Tripoai</button>
+      <button data-v="Tripo 3D">Tripo 3D</button>
+    </div>
+    <div class="seg" id="fSort">
+      <button data-v="variants" class="on">变体数</button>
+      <button data-v="days">投放天数</button>
+      <button data-v="newest">最新</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+</header>
+<div class="grid" id="grid"></div>
+<div class="note" id="footnote"><!--NOTE_START-->数据说明：变体数 = Foreplay 的同创意计数（Meta 端同素材不同投放组合的数量），代表放量程度；投放天数 = 起投日至停投日（仍在投则计至数据更新日）。Tripo 3D 官方页 8/4–8/11 实际上新 ≥400 条，此处已按创意去重后收录代表性素材。<!--NOTE_END--></div>
+<script>
+const R2 = 'https://r2.foreplay.co/';
+const FP = {
+  'Tripoai': 'https://app.foreplay.co/discovery/brands/j36CDWGTnin1cO9WCouE',
+  'Tripo 3D': 'https://app.foreplay.co/discovery/brands/VcPyFobqOqSrd6V4KRQG'
+};
+// 每日任务只需替换 ADS_START 与 ADS_END 之间的数组内容，以及上方 UPDATED/STATS 注释标记之间的文字
+/*ADS_START*/
+const ADS = [
+ {brand:'Tripoai',pub:'Tripoai',v:45,days:12,live:false,started:'2026-07-04',video:null,thumb:'9556a5261a569e89f7d031c91ac4dbb3b04f75fdc1c9ecc65a89c3e49ff1c398.png',hook:'Revolutionize 3D with Up to 2M Polygons — Tripo HD Model (H3.1) 高模主打，highvalue_purchase campaign',fb:'3924565247839361'},
+ {brand:'Tripoai',pub:'Tripoai',v:34,days:6,live:false,started:'2026-07-05',video:null,thumb:'75d115f78465d200bb6d86638bdadafd880557ffaae121d167d10ce7706818e7.jpg',hook:'Turn Ideas Into 3D Instantly — 🎉 Biggest Sale Ever，Up to 75% OFF（史上最大折扣）',fb:'998389419665163'},
+ {brand:'Tripoai',pub:'Tripoai',v:29,days:14,live:false,started:'2026-07-04',video:'ac438cebee8ff0c96afcd8fbed922615245b955dcaa3266d8a3e479a096b11d0.mp4',thumb:'783b05eb1e85658816288542a3232d5e5febb3070695e5f2d46a4c58e0d18316.jpg',hook:'白模 3D 打印精度实拍分屏对比，ASMR 家居摆件向（22s）',fb:'1757255795720939'},
+ {brand:'Tripoai',pub:'Tripoai',v:25,days:11,live:false,started:'2026-07-06',video:null,thumb:'68f782701edf226f97cf90dbc73eedd1bf4efc90765340b05fb456e84ef6f323.jpg',hook:'Create Epic Football Worlds 🏆 — 足球游戏/MOD：球场、道具、载具、环境',fb:'1714974259767812'},
+ {brand:'Tripoai',pub:'Tripoai',v:24,days:20,live:false,started:'2026-07-11',video:null,thumb:'355f9683bfff0cf80bedbc76af4bcfcb5e9e77dc23a68fe0278b18924c23566d.jpg',hook:'Transform 3D Modeling with AI Power — 高模秒转低模，一键导入 Unity/UE/3ds Max',fb:'1024399993635063'},
+ {brand:'Tripoai',pub:'re4ee',v:13,days:19,live:false,started:'2026-07-04',video:'1cc613324ef545472f6ada4be5812a9f2a4734dffe64f0bc2177e4d9cfd521f8.mp4',thumb:'5c1dd6ba842715693217c422060b40446634a51b38544b8eb59e0d20557b8f3d.jpg',hook:'单图→多个独立 mesh，无需在 3D 软件里手动拆分；前 300 名注册送 500 credits（13s）',fb:'1499846614681262'},
+ {brand:'Tripoai',pub:'iamthenic',v:11,days:19,live:false,started:'2026-07-04',video:'900a8f482cf06c53fa91550eff93e95700a4c2c54e4dbeb6d0f686d4d7c500f6.mp4',thumb:'3cf62c29e3040b74e0c47aa1d2da1d2a9e76495bfbeec06a5ad8d2bffaf84e6e.jpg',hook:'What if this place actually existed? 👀 1 周年特辑：Pro 首月 $9.9（36s 场景向）',fb:'1008511871788721'},
+ {brand:'Tripoai',pub:'Tripoai',v:10,days:21,live:false,started:'2026-07-11',video:'ca63789d3cf5a7578f31518b302ec00dbca4c8b81d82bfc86b1ddcfd4201fd08.mp4',thumb:'c636269a40585b3b74735806d5c994fcd2fbe246f74a70151d2afb0825e8e730.jpg',hook:'"I thought this would take one weekend." 蜘蛛侠角色提速 + Comment «PDF» 评论引流（43s）',fb:'1721105988952875'},
+ {brand:'Tripoai',pub:'Tripoai',v:10,days:6,live:false,started:'2026-07-10',video:'f5c38eac3d42c98df946656accb51e0ce646a1f3e531537627e1fb2f974b42e9.mp4',thumb:'f2c3795b8e441c72c805279768b24972e1065b1fe3835e114be3f3c2e8286244.jpg',hook:'1 周年特辑：注册送 500 credits + Pro 首月 $9.90（KOL 测评体，85s）',fb:'1060004733034723'},
+ {brand:'Tripoai',pub:'SiefsHome',v:10,days:23,live:false,started:'2026-07-08',video:'df73f5864ef938b756d704b1c0830cd0dc702484525d64525c8531716849dea3.mp4',thumb:'9c89d4ebfa473a69934140d81b445b1ed303f56cfc8b0a25b2b7cc21a9dabedd.jpg',hook:'from photo to vase ✨ 照片→花瓶→3D 打印，家居装饰/女性向（17s）',fb:'1936337643721019'},
+ {brand:'Tripoai',pub:'PAL X ASH',v:10,days:23,live:false,started:'2026-07-08',video:'aa7d8d4eeeb5736f43885b33cf1b549a451e3a3b7d3fef1efdecc5d8dd4394b5.mp4',thumb:'e0f4835af8713595a81dee93e014097c2fd529293975d68880b84c06625cb0d3.jpg',hook:'邀请码 PjJuEy 送 500 credits + 专属码 TRIPOCREW 首月 Pro 40% off（47s）',fb:'1523899548799233'},
+ {brand:'Tripoai',pub:'Tripoai',v:10,days:8,live:false,started:'2026-07-08',video:'0f58513d33abaef8ab9a5dd9da31dc88fdd8d8022f464a921c7f3365c49f57c7.mp4',thumb:'e8d5de45403f93fce10a38e947e738f1cf6f3d44c4c5772f98d3bada278e28b6.jpg',hook:'Smart Mesh + H3.1 + 8K Texture 实测：干净拓扑、导出即用（测评体，60s）',fb:'2092146131369924'},
+ {brand:'Tripoai',pub:'Tripoai',v:10,days:10,live:false,started:'2026-07-04',video:'2e409cfd4d2afbce2791dbf0c55043d3f78dda89cdb094e2ab198b1f3cac7c04.mp4',thumb:'91db3f5e892ee3d371269d5b34843666bb90f79d76a4ec4c64cec75300b5a55b.jpg',hook:'🎂 1 周年全家桶：500 credits + Pro 首月 $9.9 + Max 5 折双倍 credits（19s，3D 打印向）',fb:'1924734501536427'},
+ {brand:'Tripoai',pub:'Anastasha Art',v:10,days:12,live:false,started:'2026-07-04',video:'b5f1b9f952ff4e865d9bd2b1fe192e40d5dfc20926f1888a205837f12f3efb5a.mp4',thumb:'d303ee2c989ed0b2dc17423ed258eb74c8e6c45e79a407a0011ad351e358ecc2.jpg',hook:'旧物改造：淘来的托盘→蛇形家居摆件 🐍 TRIPOCREW 60% off（59s）',fb:'1346955636845635'},
+ {brand:'Tripoai',pub:'taka_company',v:1,days:31,live:true,started:'2026-07-11',video:'6f901d26f5595a10051253cc68bc96010b9e7daf2e09e77b11c1175bf03b6653.mp4',thumb:'35b133c71767937f0bad352a49ccbc18d9e281fd33f7c39c3dbaa91050cd68cb.jpg',hook:'【日语·长跑王】理想のキャラを3D立体化✨ 美杜莎手办：AI 生图→Tripo→打印上色，拆件/补洞一键全自动（50s）',fb:'28363806069886790'},
+ {brand:'Tripoai',pub:'sweebk',v:1,days:34,live:true,started:'2026-07-08',video:'b0a43557b7dbd5ac2a8451e12ae5d2c03dc33878465864641f537a9b5ce0ce8e.mp4',thumb:'db9867618aaf5e556b4951af69d8c73569111d3860c5236122cb9152ea087495.jpg',hook:'【韩语·长跑】프레디 컬러 미니토이 제작，1주년: Pro 50% / 旗舰 75% 할인（58s）',fb:'27430793769906764'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:60,days:5,live:true,started:'2026-08-06',video:null,thumb:'2cb861be489a61ae7b4946acfd9ac6f18782eba86c51c6cbba13fcbd59517707.png',hook:'【本周最大创意】3D printing just got a lot easier — 孩子的画→当天打印成玩具，零建模门槛（家长人群）',fb:'2069766363907684'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:39,days:3,live:true,started:'2026-08-08',video:null,thumb:'20d20a823479ebba41ee2c83bd5344bd1397e4f237d488726234db1e6c2f87bf.jpg',hook:'Up to 50% OFF AI 3D Design Tools — 家具概念图→3D 模型，缩短设计流程（设计师人群，Max 5 折）',fb:'1031529049774581'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:29,days:1,live:true,started:'2026-08-10',video:null,thumb:'024e40d57d8489fb3df1ded3dfd8db3cbe097efbee508eb14eb6fc571371099f.jpg',hook:'Make Game Mods in Minutes — MOD 资产秒生成，专属落地页 tripo3d.ai/mod',fb:'1353478396897796'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:25,days:5,live:false,started:'2026-08-06',video:null,thumb:'834172287c38b84f6b1e6e3b7cba5228ab1ec0ada83851d03b8989e68b41a548.png',hook:'Ultra Detailed 3D AI — 超高面数资产（落地页 /discover/3dprinting）',fb:'1510728090625678'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:23,days:5,live:false,started:'2026-08-06',video:null,thumb:'f51a2d274d5634c7d9ea1ea4cf78f6a4f407db1dc3825e4ea65ba34fbde24ddc.jpg',hook:'Ultra Detailed 3D AI（另一视觉版本）',fb:'2471891793316518'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:21,days:5,live:true,started:'2026-08-06',video:null,thumb:'bf7d8ab70eb36fb7dc3ceab6543eb70a6386e555999b2548807274dc653df99f.jpg',hook:'Build MODs from Photos — 照片直出 MOD 资产，免费试用',fb:'1498858121997016'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:21,days:5,live:false,started:'2026-08-06',video:'c2931ecead910c4553010cc8d8f0ac495f6f0381c2a0a6aef53a57010bf51da0.mp4',thumb:'bb045b1384ea61bc8d630cb5fccbaae088eafa62047dfc97826440f3b2e8b949.jpg',hook:'Clean Topology Automatically — 自动生成干净拓扑，秒出游戏可用（视频 A 版）',fb:'1011529838387977'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:20,days:4,live:false,started:'2026-08-07',video:'d52db3c069534b71c3113ba1640ca237acd0de0d43fee2bbc84f68a16b5aca0d.mp4',thumb:'9612f38c3858c987c8d7ff1a54bbb5f14d5330a287c6dee4f3c84d469c4da828.jpg',hook:'Make Game Mods in Minutes（视频版，campaign=mod）',fb:'1715588076366132'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:20,days:5,live:false,started:'2026-08-06',video:'4bf2cfc6f4e19d2e07bde330706ce10e7fdfe737a2044afdb20a97afeb1f98c1.mp4',thumb:'3b2424edf168ba0baa8358c73f5df9fca24ed3d3d5cbb679980e874135a6bdfd.jpg',hook:'Clean Topology Automatically（视频 B 版）',fb:'1323825656199554'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:18,days:5,live:false,started:'2026-08-06',video:'e7b98926f84dac29c154593bab2b4d56b874058f4aa2a90fb626a9d41bd8b020.mp4',thumb:'ce64a80a1297000e8a8edab38307521ed7a29c44438070ccfcd49ac05933c2c3.jpg',hook:'Ultra Detailed 3D AI（视频版，高面数演示）',fb:'1574117847845530'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:14,days:5,live:false,started:'2026-08-06',video:'88fa238a6e414f9864e89f90397625c80ffdeb2f68338a1e69725138ad72df8b.mp4',thumb:'0fb19828e0f12ce053b8510bc9b4bc997263b47d7a35d5a0b05ac4c2175cce76.jpg',hook:'Build MODs from Photos（视频版）',fb:'1421190493249783'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:12,days:1,live:true,started:'2026-08-10',video:'fc15eb4de2b2d4087b066b1b83eb0290bd8de9495f3054fe5ad779a2138d5cb5.mp4',thumb:'0d35ec43519c57febf1d141007bb86752994076c38b86bcb22c223eed085eeed.jpg',hook:'Clean Topology Automatically（8/10 新上，仍在投的存活版）',fb:'905810818755474'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:6,days:0,live:true,started:'2026-08-11',video:'7a4829d315f42701d476f98390c32aee099fb2c7818f5cb2810997a15be34571.mp4',thumb:'686795a532a948010131a6938ab3804d782d50ececf32039bec36be322e4b9e6.jpg',hook:'AI Creates Your Game Models — Smart Mesh 游戏资产（8/11 新上 A 版）',fb:'1579479950196162'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:5,days:0,live:true,started:'2026-08-11',video:'f319be9b6761e3cb74cfad9581e44cbddb8445cfd428882f2f67009cc05a5ec3.mp4',thumb:'07ef478dd24f929fcf593b5831613309cf74d55590dfdfbbe718b43a5226c670.jpg',hook:'AI Creates Your Game Models（8/11 新上 B 版）',fb:'1782848826178639'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:5,days:0,live:true,started:'2026-08-11',video:'0c07b3b4b2533bc374bf6818c922fec2c5db65cf958a223ea4c99036d163ca89.mp4',thumb:'ea357f3e6e14761c4dc0258a85058db457579769e096e591ad229a1f7467d4b5.jpg',hook:'Simplify 3D Product Creation — 产品建模提速（8/11 新上 A 版）',fb:'1759387481761595'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:5,days:0,live:true,started:'2026-08-11',video:'0e93c29bf946f4d4322544336480fb3e59ff29b5a1909417fbf36b05fae816df.mp4',thumb:'2d9ca7edac8fca94425903f9080bbbcefd537a3ee49f2cfa6af2ff1283986eb3.jpg',hook:'Simplify 3D Product Creation（8/11 新上 B 版）',fb:'27704722589155236'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:3,days:0,live:true,started:'2026-08-11',video:'369005f56fa54d3c22053034bf6b38afa00ddbefa330014527bb8a53a134420e.mp4',thumb:'f25234720fb9afbf1506a6317cd9ea0ced29ee2963080e31946e2354aa7007ba.jpg',hook:'Restore Every Detail with AI — 高分辨率 3D 修复（8/11 新上）',fb:'1979468182701913'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:2,days:0,live:true,started:'2026-08-11',video:'b4967a04b40c6feb1f6c9a39b1aa42380311ef22f4d0bd8c59990f6e6a03fa4f.mp4',thumb:'f374686efc0891273b6e473644374adc3112bb31b133c070f626ba0f0be46367.jpg',hook:'AI Makes 3D Creation Easy — 可打印模型提速（8/11 新上）',fb:'27983248808042424'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:1,days:0,live:true,started:'2026-08-11',video:'cb4a164bad54dde98836aa33129ac854d485654bd6d338ecb1fe0a46d7c3fc33.mp4',thumb:'729597ca436a7ba83bb7c0488b3ef5937af7de7ff3564e62d9d5dad89c46faf0.jpg',hook:'Simplify 3D Product Creation（8/11 最新上）',fb:'1035654782534145'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:1,days:1,live:false,started:'2026-08-10',video:'b01fdc5b5cba15d7ff4f430be14a65e94c4dae8d37594fc9cc2944e702c4f682.mp4',thumb:'4013a707a1da01297455b16a55df89f5a4579e8c28f8a1404052530f6df9c580.jpg',hook:'AI Splits 3D Models Automatically — 自动拆件，便于定制与优化',fb:'1401421558533091'}
+];
+/*ADS_END*/
+
+let brandFilter = 'all', sortBy = 'variants';
+function render(){
+  const grid = document.getElementById('grid');
+  let list = ADS.filter(a => brandFilter==='all' || a.brand===brandFilter);
+  if(sortBy==='variants') list.sort((a,b)=>b.v-a.v);
+  else if(sortBy==='days') list.sort((a,b)=>b.days-a.days);
+  else list.sort((a,b)=>b.started.localeCompare(a.started));
+  document.getElementById('count').textContent = list.length + ' 组创意';
+  grid.innerHTML = '';
+  list.forEach(a=>{
+    const card = document.createElement('div'); card.className='card';
+    const bc = a.brand==='Tripoai' ? 'tripoai' : 'tripo3d';
+    const media = a.video
+      ? `<video src="${R2+a.video}" poster="${R2+a.thumb}" controls muted loop playsinline preload="metadata"></video>`
+      : `<img src="${R2+a.thumb}" loading="lazy" alt=""><div class="imgtag">图片素材</div>`;
+    card.innerHTML = `
+      <div class="media">
+        <div class="vbadge">${a.v}<span>变体</span></div>
+        ${media}
+      </div>
+      <div class="body">
+        <div class="row1"><span class="brand ${bc}">${a.brand}</span><span class="pub">${a.pub}</span></div>
+        <div class="row2">
+          <span class="chip ${a.live?'live':'dead'}">${a.live?'● Still Running':'已停投'}</span>
+          <span class="chip">投放 ${a.days} 天</span>
+          <span class="chip">起投 ${a.started.slice(5)}</span>
+          <span class="chip">FB·IG·Threads</span>
+        </div>
+        <div class="hook">${a.hook}</div>
+        <div class="links">
+          <a href="${FP[a.brand]}" target="_blank" rel="noopener">在 Foreplay 中打开 ↗</a>
+          <a href="https://www.facebook.com/ads/library/?id=${a.fb}" target="_blank" rel="noopener">Meta 广告库 ↗</a>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+document.getElementById('fBrand').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  brandFilter = e.target.dataset.v;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));
+  render();
+});
+document.getElementById('fSort').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  sortBy = e.target.dataset.v;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));
+  render();
+});
+render();
+</script>
+</body>
+</html>
