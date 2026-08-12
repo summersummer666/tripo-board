@@ -287,7 +287,7 @@ function render(){
     const card = document.createElement('div'); card.className='card';
     const bc = a.brand==='Tripoai' ? 'tripoai' : 'tripo3d';
     const media = a.video
-      ? `<video src="${R2+a.video}" poster="${R2+a.thumb}" controls muted loop playsinline preload="metadata"></video>`
+      ? `<video src="${R2+a.video}" poster="${R2+a.thumb}" controls muted loop playsinline preload="none"></video>`
       : `<img src="${R2+a.thumb}" loading="lazy" alt=""><div class="imgtag">图片素材</div>`;
     card.innerHTML = `
       <div class="media">
@@ -333,6 +333,11 @@ document.getElementById('fSort').addEventListener('click',e=>{
   render();
 });
 render();
+// 同一时间只播一个视频，避免对素材域名的并发连接耗尽导致全部加载卡死
+document.addEventListener('play', e => {
+  if(e.target.tagName !== 'VIDEO') return;
+  document.querySelectorAll('video').forEach(v => { if(v !== e.target && !v.paused) v.pause(); });
+}, true);
 </script>
 </body>
 </html>
