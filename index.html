@@ -39,12 +39,44 @@
   .links a{color:var(--sub);text-decoration:none;}
   .links a:hover{color:var(--acc);}
   .note{max-width:1400px;margin:14px auto 0;color:#6c7288;font-size:12px;line-height:1.6;}
+  /* ===== 主 tab ===== */
+  .tabs{max-width:1400px;margin:18px auto 0;display:flex;gap:8px;border-bottom:1px solid var(--border);}
+  .tabs button{background:none;border:none;color:var(--sub);font-size:15px;font-weight:600;padding:10px 18px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s;}
+  .tabs button.on{color:var(--txt);border-bottom-color:var(--acc);}
+  .tabs button:hover{color:var(--txt);}
+  .view{display:none;}
+  .view.on{display:block;}
+  #view-board .controls{max-width:1400px;margin:16px auto;}
+  /* ===== 分析文章 ===== */
+  .article{max-width:920px;margin:20px auto 40px;font-size:14.5px;line-height:1.85;color:#cfd3e4;}
+  .article h2{font-size:19px;color:var(--txt);margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .article h2:first-child{margin-top:8px;}
+  .article h3{font-size:15.5px;color:var(--txt);margin:20px 0 8px;}
+  .article p{margin:10px 0;}
+  .article b,.article strong{color:var(--txt);}
+  .article ul,.article ol{margin:10px 0 10px 22px;}
+  .article li{margin:7px 0;}
+  .article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  .article th,.article td{border:1px solid var(--border);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6;}
+  .article th{background:var(--card2);color:var(--txt);white-space:nowrap;}
+  .article tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+  .article .tag{display:inline-block;background:var(--card2);border:1px solid var(--border);color:var(--sub);font-size:11px;padding:1px 8px;border-radius:6px;margin-right:4px;}
+  .article .live-tag{color:var(--green);border-color:rgba(46,204,113,.4);}
+  .article .callout{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--acc);border-radius:8px;padding:12px 16px;margin:14px 0;}
+  .article .src{color:#6c7288;font-size:12px;margin-top:28px;border-top:1px solid var(--border);padding-top:12px;}
 </style>
 </head>
 <body>
 <header>
   <h1>Tripo 广告素材看板 <span style="color:var(--sub);font-weight:400;font-size:15px;">Tripoai + Tripo 3D · Foreplay 抓取 · 每日自动更新</span></h1>
   <div class="meta">数据更新时间：<b id="updated"><!--UPDATED_START-->2026-08-11 18:30（北京时间）<!--UPDATED_END--></b> ｜ <span id="stats"><!--STATS_START-->共 <b>36</b> 组去重创意（Tripoai 16 / Tripo 3D 20），覆盖近 14 天<!--STATS_END--></span> ｜ 默认按<b>变体数</b>（素材复用次数）从高到低 ｜ 点视频区域即可播放/暂停。<br>⚠️ 素材源为 Foreplay 公开直链（分享给他人无需 Foreplay 账号），但可能有时效——视频无法播放时用卡片底部链接看原素材。变体数 = 同一创意在 Meta 被复制投放的广告条数，代表放量程度。</div>
+  <div class="tabs" id="mainTabs">
+    <button data-view="board" class="on">📊 素材看板</button>
+    <button data-view="analysis">📝 竞对分析</button>
+  </div>
+</header>
+
+<div class="view on" id="view-board">
   <div class="controls">
     <div class="seg" id="fBrand">
       <button data-v="all" class="on">全部</button>
@@ -58,9 +90,70 @@
     </div>
     <div class="count" id="count"></div>
   </div>
-</header>
-<div class="grid" id="grid"></div>
-<div class="note" id="footnote"><!--NOTE_START-->数据说明：变体数 = Foreplay 的同创意计数（Meta 端同素材不同投放组合的数量），代表放量程度；投放天数 = 起投日至停投日（仍在投则计至数据更新日）。Tripo 3D 官方页 8/4–8/11 实际上新 ≥400 条，此处已按创意去重后收录代表性素材。<!--NOTE_END--></div>
+  <div class="grid" id="grid"></div>
+  <div class="note" id="footnote"><!--NOTE_START-->数据说明：变体数 = Foreplay 的同创意计数（Meta 端同素材不同投放组合的数量），代表放量程度；投放天数 = 起投日至停投日（仍在投则计至数据更新日）。Tripo 3D 官方页 8/4–8/11 实际上新 ≥400 条，此处已按创意去重后收录代表性素材。<!--NOTE_END--></div>
+</div>
+
+<div class="view" id="view-analysis">
+<div class="article">
+<!--ANALYSIS_START-->
+<p style="color:var(--sub);font-size:13px;">分析周期：2026-08-04 – 08-11 ｜ 基于 Foreplay 抓取的两品牌页各 200–400 条广告完整元数据（文案、起止时间、变体数、落地页 UTM、素材源）</p>
+
+<h2>1. 本周概览：投放重心大切换</h2>
+<p><b>Tripo 3D（官方主页）：本周新增 ≥400 条广告，历史最大单周放量。</b>8/4–8/11 抓到的 400 条广告（已达接口翻页上限）全部落在本周，其中 <b>8/6 单日上新约 250 条、8/10 约 78 条</b>，8/11 早间又有 7 条新上，目前约 171 条仍在投。全部由官方 Tripo3D 主页投放，Meta 全端覆盖（约 8 成勾选 Audience Network）。格式构成：视频 280 / 图片 118。文案为短句功能直给型（1–2 句 + CTA），典型的单创意多变体 DR 放量测试。</p>
+<p><b>Tripoai（KOL 白名单页）：本周新增 0 条。</b>该页最后一批上新停在 7/11（当时一周内曾密集上新 200+ 条、覆盖 101 个投放者账号，英/日/韩/西/葡/土多语言），绝大多数素材已在 7 月中下旬陆续停投。目前仅剩 2 条 KOL 素材仍在跑：日语 taka_company、韩语 sweebk，均已连投 31 天以上。</p>
+<div class="callout"><b>解读（对照上期基线）</b>：上期是"50+ 多语言 KOL 白名单投流 + Tripo Turns 1 周年庆 + H3.1 造势"。本周发生明显切换——周年庆 campaign 与白名单矩阵基本收尾，重心转向<b>官方主页大规模短素材轰炸</b>，用高变体数快速测试新人群、新场景。节奏上更像一次"新一轮人群/卖点海选"，值得追踪哪些素材存活。</div>
+
+<h2>2. 长跑胜出素材 Top 5</h2>
+<table>
+<tr><th>#</th><th>素材</th><th>账号</th><th>状态</th><th>为什么可能有效</th></tr>
+<tr><td>1</td><td>美杜莎手办全流程（视频 50s，日语）</td><td>taka_company</td><td><span class="tag live-tag">Still Running 31 天+</span></td><td>钩子"理想のキャラを3D立体化"：AI 生图→Tripo 建模→打印上色成手办；主打"拆件/补洞一键全自动"，精准戳中日本手办人群的工序痛点；邀请注册送 500 credits</td></tr>
+<tr><td>2</td><td>Freddy 迷你玩具上色（视频 58s，韩语）</td><td>sweebk</td><td><span class="tag live-tag">Still Running 34 天+</span></td><td>IP 向迷你玩具 + 手工上色过程，配 1 周年权益（Pro 5 折 / 旗舰 75% off）；KR 市场唯一长跑素材</td></tr>
+<tr><td>3</td><td>"I thought this would take one weekend."（43s）</td><td>Tripoai 官方</td><td><span class="tag">跑 21 天后停 · 10 变体</span></td><td>反差钩子 + 蜘蛛侠角色制作过程；结尾"Comment «PDF»"评论关键词引流，兼做私域沉淀</td></tr>
+<tr><td>4</td><td>"from photo to vase ✨"（17s）</td><td>SiefsHome</td><td><span class="tag">跑 24 天后停 · 10 变体</span></td><td>照片→花瓶→3D 打印的极短爽点流程，家居装饰人群，女性向</td></tr>
+<tr><td>5</td><td>H3.1 高模主打图（图片）</td><td>Tripoai 官方</td><td><span class="tag">跑 12 天 · 45 变体（全库最高）</span></td><td>"Up to 2M Polygons"高模卖点，配 highvalue_purchase campaign，说明高模卖点在拉付费上 ROI 达标</td></tr>
+</table>
+<p>另值得一提：官方复用 KOL 口吻的"3D assets used to mean big budgets…"（60s，Smart Mesh + H3.1 + 8K Texture 实测向）跑 10 变体，说明"测评体"官方素材可行。</p>
+
+<h2>3. 新素材趋势：本周的人群试探线</h2>
+<ul>
+<li><b>家长人群（本周最大单一创意）</b>："孩子的画→当天打印成玩具"，图片素材，<b>60 个变体</b>，Still Running。把 3D 打印从极客工具讲成亲子场景。</li>
+<li><b>游戏 MOD 玩家（新垂直+专属落地页）</b>："Make Game Mods in Minutes" / "Build MODs from Photos"，单独开了 <b>tripo3d.ai/mod</b> 落地页（UTM campaign=mod），图+视频多套，21–29 变体。</li>
+<li><b>家具/室内设计师（新 B 端人群）</b>："Up to 50% OFF AI 3D Design Tools"，家具概念图→3D 模型、缩短设计流程，39 变体，Still Running。</li>
+<li><b>3D 打印垂直</b>：落地页 /discover/3dprinting，配"Ultra Detailed 3D AI"（高模）与"Clean Topology Automatically"（自动拓扑）两组卖点，18–25 变体。</li>
+<li><b>产品设计/电商</b>："Simplify 3D Product Creation"（8/11 新上，多套并行测试）。</li>
+<li><b>单功能直给素材</b>：自动拆件、高清修复、Smart Mesh 游戏资产等——一个功能一条素材，短平快。</li>
+</ul>
+<p>落地页策略变化：从统一 studio.tripo3d.ai 分化出垂直落地页（/mod、/discover/3dprinting、官网页面），按人群分流。</p>
+
+<h2>4. 促销与转化链路变化</h2>
+<ul>
+<li><b>促销力度升级后回落</b>：7 月中曾打出"🎉 Biggest Sale Ever / Up to 75% OFF"（超过基线的 60% off）；本周官方新素材促销主要是"Up to 50% OFF"（家具向）与 Max Plan 5 折，<b>周年庆专属话术（Turns 1、$9.9 首月、TRIPOCREW）在新素材中基本消失</b>。</li>
+<li><b>邀请注册送 500 credits</b>（前 300 名/邀请码）仍是 KOL 素材标准钩子；个别 KOL 用专属码（TRIPOCREW 40–60% off，按创作者分层）。</li>
+<li><b>评论关键词引流</b>（"Comment «PDF»"）继续沿用，无新玩法。</li>
+<li><b>UTM 链路</b>：官方 DR 素材 utm_source=meta，KOL 素材 utm_source=kol_meta；本周新增 campaign 标签 <span class="tag">mod</span><span class="tag">highvalue_purchase</span><span class="tag">HD_head_2.5_subscribe</span>，可作为对方内部人群分层的旁证。</li>
+</ul>
+
+<h2>5. KOL 白名单动向</h2>
+<ul>
+<li>白名单矩阵<b>大规模停投</b>：101 个投放者账号 7 月中下旬起全部停止上新，本周 0 条新 KOL 素材，未发现新增创作者。</li>
+<li>存活的两条均为<b>日语、韩语</b>素材（手办/玩具题材），再次验证 JP/KR 的 KOL 内容是其 ROI 最好的市场。</li>
+<li>待观察：这是"周年庆自然收尾、下一波 KOL 批次未启动"，还是策略性转向官方 DR。建议下周重点看 Tripoai 页是否恢复上新。</li>
+</ul>
+
+<h2>6. 对 Meshy 的可执行启示</h2>
+<ol>
+<li><b>抢跑"游戏 MOD"垂直</b>：Tripo 已为 MOD 单开落地页和 campaign，但素材还是泛泛的"generate MOD assets in seconds"。Meshy 可以做更具体的 UGC：'从一张截图给你的 Minecraft / Roblox / Skyrim 做专属 MOD 资产'，配游戏画面实录，抢在对方素材成熟前占位。</li>
+<li><b>复制"孩子的画→玩具"亲子素材</b>：对方本周变体数最高（60）且仍在投的创意，验证了家长人群的付费意愿。Meshy 可拍"娃的涂鸦→打印成玩具的全过程"UGC（美/日市场各一版），并考虑与打印机品牌（Bambu/Creality）联动送耗材。</li>
+<li><b>日韩手办内容长期化</b>：taka_company 式全流程视频连投 31 天+，建议在 JP 签 2–3 个手办/桌游 KOL 做同结构内容，韩国做 IP 迷你玩具上色向。</li>
+<li><b>模板化单卖点短素材铺量</b>：对方一天能上 250 条变体（1–2 句文案 + 单功能演示）。Meshy 可建一套"单卖点短视频模板"（拓扑/拆件/PBR 材质/动画绑定各一条），低成本批量产出做赛马测试。</li>
+<li><b>家具/室内设计 B 端素材</b>：对方开始用 50% off 试探设计师人群。Meshy 可做"概念图→可编辑 3D 家具模型→渲染提案"的工作流演示素材，主打"缩短提案周期"，投 LinkedIn/Meta 双端对比测试。</li>
+</ol>
+
+<p class="src">数据源：Foreplay Discovery（Tripoai + Tripo 3D 品牌页），采集于 2026-08-11。Tripo 3D 页本周数据抓至接口上限 400 条，实际或更多；"变体数"为 Foreplay 的 same-creative 计数，代表素材复用/放量程度。分析每周一更新，看板数据每日更新。</p>
+<!--ANALYSIS_END-->
+</div>
+</div>
 <script>
 const R2 = 'https://r2.foreplay.co/';
 const FP = {
@@ -146,6 +239,15 @@ function render(){
     grid.appendChild(card);
   });
 }
+document.getElementById('mainTabs').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  const v = e.target.dataset.view;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));
+  document.getElementById('view-board').classList.toggle('on', v==='board');
+  document.getElementById('view-analysis').classList.toggle('on', v==='analysis');
+  // 切走时暂停所有视频
+  if(v!=='board') document.querySelectorAll('#grid video').forEach(vd=>vd.pause());
+});
 document.getElementById('fBrand').addEventListener('click',e=>{
   if(e.target.tagName!=='BUTTON')return;
   brandFilter = e.target.dataset.v;
