@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D打印 & 游戏 素材灵感报告 · 2026-08-11</title>
+<style>
+  :root{
+    --bg:#f7f6f3; --card:#ffffff; --ink:#1a1a1a; --ink2:#555; --ink3:#8a8a8a;
+    --accent:#4f46e5; --accent-soft:#eef2ff; --line:#e8e6e1;
+    --tag-us:#0e7490; --tag-jp:#be123c; --tag-eu:#7c3aed; --tag-game:#b45309;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.7; font-size:15px;}
+  .wrap{max-width:960px; margin:0 auto; padding:40px 24px 80px;}
+  header.hero{margin-bottom:36px;}
+  .hero .kicker{color:var(--accent); font-weight:700; letter-spacing:.12em; font-size:12px; text-transform:uppercase;}
+  .hero h1{font-size:30px; line-height:1.3; margin:8px 0 10px; font-weight:800;}
+  .hero .meta{color:var(--ink2); font-size:13.5px;}
+  .hero .positioning{margin-top:14px; background:var(--accent-soft); border-left:4px solid var(--accent); padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#333;}
+  h2.sec{font-size:20px; font-weight:800; margin:48px 0 6px; display:flex; align-items:center; gap:10px;}
+  h2.sec .num{background:var(--ink); color:#fff; width:28px; height:28px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-size:14px; flex:none;}
+  p.secsub{color:var(--ink2); font-size:13.5px; margin-bottom:18px;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:720px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  .card img{width:100%; height:200px; object-fit:cover; display:block; background:#eee;}
+  .card .body{padding:14px 16px 16px;}
+  .card .title{font-weight:700; font-size:15px; line-height:1.5; margin-bottom:6px;}
+  .card .desc{color:var(--ink2); font-size:13.5px; margin-bottom:10px;}
+  .card a.src{color:var(--accent); font-size:13px; text-decoration:none; font-weight:600;}
+  .card a.src:hover{text-decoration:underline;}
+  .tag{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:99px; color:#fff; margin-bottom:8px; margin-right:4px;}
+  .t-us{background:var(--tag-us);} .t-jp{background:var(--tag-jp);} .t-eu{background:var(--tag-eu);} .t-game{background:var(--tag-game);} .t-comp{background:#111;}
+  table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; font-size:13.5px;}
+  th{background:#111; color:#fff; text-align:left; padding:10px 12px; font-size:12.5px; font-weight:700; white-space:nowrap;}
+  td{padding:11px 12px; border-top:1px solid var(--line); vertical-align:top;}
+  tr:nth-child(even) td{background:#fafaf8;}
+  td a{color:var(--accent); text-decoration:none;}
+  td a:hover{text-decoration:underline;}
+  .idea{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-bottom:14px;}
+  .idea .head{display:flex; align-items:baseline; gap:10px; margin-bottom:6px; flex-wrap:wrap;}
+  .idea .idx{color:var(--accent); font-weight:800; font-size:16px;}
+  .idea .name{font-weight:700; font-size:15.5px;}
+  .idea .hook{background:#111; color:#fff; padding:10px 14px; border-radius:8px; font-size:14px; margin:8px 0 10px; font-style:italic;}
+  .idea .row{font-size:13.5px; color:var(--ink2); margin-top:3px;}
+  .idea .row b{color:var(--ink);}
+  .idea a{color:var(--accent); text-decoration:none;}
+  .insight{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin-bottom:12px;}
+  .insight .mkt{font-weight:800; margin-bottom:4px;}
+  .callout{background:#fff8eb; border:1px solid #f3ddb0; border-radius:12px; padding:14px 18px; margin-bottom:12px; font-size:14px;}
+  .callout b{color:#92400e;}
+  .vids{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;}
+  @media(max-width:720px){.vids{grid-template-columns:1fr;}}
+  .vid iframe{width:100%; aspect-ratio:16/9; border:0; border-radius:10px; display:block; background:#000;}
+  .vid .cap{font-size:12px; color:var(--ink3); margin-top:5px; line-height:1.5;}
+  .vid .cap b{color:var(--ink2);}
+  .vidlabel{font-size:12.5px; font-weight:700; color:var(--accent); margin-top:12px;}
+  .ytfacade{position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; cursor:pointer; background:#000;}
+  .ytfacade img{width:100%; height:100%; object-fit:cover; display:block; opacity:.92;}
+  .ytfacade .playbtn{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:58px; height:40px; background:rgba(20,20,20,.82); border-radius:10px; display:flex; align-items:center; justify-content:center; transition:background .15s;}
+  .ytfacade .playbtn::after{content:''; border-left:16px solid #fff; border-top:9px solid transparent; border-bottom:9px solid transparent; margin-left:3px;}
+  .ytfacade:hover .playbtn{background:#f00;}
+  .ytlink{color:var(--accent); text-decoration:none; font-weight:600; white-space:nowrap;}
+  .tiktok-links{font-size:13px; margin-top:8px; color:var(--ink2);}
+  .tiktok-links a{color:var(--accent); text-decoration:none;}
+  footer{margin-top:56px; color:var(--ink3); font-size:12.5px; border-top:1px solid var(--line); padding-top:16px;}
+  footer a{color:var(--ink2);}
+  .srclist{font-size:13px; line-height:2; color:var(--ink2);}
+  .srclist a{color:var(--accent); text-decoration:none;}
+  .srclist a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Meshy Growth · 竞品追踪输入</div>
+  <h1>3D打印 & 游戏 信息流素材灵感报告</h1>
+  <div class="meta">2026-08-11 ｜ 覆盖市场：美国 / 日本 / 欧洲 ｜ 数据窗口：8/8–8/11（持续发酵事件标注原始日期）</div>
+  <div class="positioning">每条情报都回答两个问题：<b>用户现在痛什么？什么风格的素材他们会想看？</b> 直接服务信息流广告的选题与 brief。所有条目附原文链接，重点条目配图。</div>
+</header>
+
+<h2 class="sec"><span class="num">1</span>本期热点大图</h2>
+<p class="secsub">影响素材方向的大事，先看图 → 点原文</p>
+<div class="grid">
+  <div class="card">
+    <img src="https://i.all3dp.com/workers/images/fit=scale-down,w=1200,h=675,quality=79,gravity=0.5x0.5,format=auto/wp-content/uploads/2026/08/10120151/BL-segmentation-hero.jpg" alt="Bambu SegviGen">
+    <div class="body">
+      <span class="tag t-us">美国 · 8/10</span>
+      <div class="title">Bambu Lab 发布 AI 自动拆件研究 SegviGen</div>
+      <div class="desc">最大打印机厂商亲自下场验证"大模型拆件"是刚需，且基于开源3D生成模型 → 拆件素材的时效窗就在本周。</div>
+      <a class="src" href="https://all3dp.com/4/bambu-lab-researchers-are-teaching-ai-to-split-models-into-3d-printable-parts/" target="_blank">原文 · All3DP →</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://cdn.80.lv/api/upload/meta/49673/images/6a7a598d7e65c/contain_1200x630.webp" alt="KitBash acquires ArtStation and Sketchfab">
+    <div class="body">
+      <span class="tag t-game">游戏 · 8/10</span>
+      <div class="title">KitBash 收购 ArtStation 和 Sketchfab</div>
+      <div class="desc">3D 资产分发格局重组，依赖 Sketchfab 的创作者正在找新展示渠道——高时效话题，可借势发声。</div>
+      <a class="src" href="https://80.lv/articles/artstation-and-sketchfab-have-been-acquired-by-kitbash" target="_blank">原文 · 80.lv →</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://cdn.80.lv/api/upload/meta/49679/images/6a7ae4451d1a1/contain_1200x630.jpg" alt="Autodesk discontinues Mudbox">
+    <div class="body">
+      <span class="tag t-game">游戏 · 8/11</span>
+      <div class="title">Autodesk 停售 Mudbox</div>
+      <div class="desc">传统雕刻/绘制环节出现工具真空，老用户流离——"你的雕刻管线没死"借势素材窗口。</div>
+      <a class="src" href="https://80.lv/articles/autodesk-discontinues-sales-of-its-digital-painting-software-mudbox" target="_blank">原文 · 80.lv →</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://d1lss44hh2trtw.cloudfront.net/assets/article/2026/07/31/nexus-mods-gen-ai-tagging-moderation_feature.jpg" alt="Nexus Mods AI tagging policy">
+    <div class="body">
+      <span class="tag t-game">MOD · 7/31 持续发酵</span>
+      <div class="title">Nexus Mods 收紧 AI 内容标签政策（三分类+处罚）</div>
+      <div class="desc">AI MOD 已成规模到需要平台治理——正面验证 MOD 垂直方向，"合规向"素材是空位。</div>
+      <a class="src" href="https://www.shacknews.com/article/150216/nexus-mods-gen-ai-tagging-moderation" target="_blank">原文 · Shacknews →</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://static.zenn.studio/user-upload/a3a630ddb3b1-20250924.jpg" alt="写真→フィギュア 3Dプリント">
+    <div class="body">
+      <span class="tag t-jp">日本 · 高热教程</span>
+      <div class="title">日本社区爆款结构："1 张照片 → 手办 → 3D 打印"</div>
+      <div class="desc">Zenn/note 持续产出此类教程，是日语市场被验证的内容格式；痛点集中在分件、断面、补洞。</div>
+      <a class="src" href="https://zenn.dev/karaage0703/articles/3d6bb2170f42bd" target="_blank">原文 · Zenn →</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://www.gamesmarket.global/content/images/size/w1200/2026/07/Coverbilder-Sammeldokument--13-.jpg" alt="Gamescom Indie Arena Booth">
+    <div class="body">
+      <span class="tag t-eu">欧洲 · 8/24 开幕</span>
+      <div class="title">Gamescom 2026：Indie Arena 公布 182 团队全阵容</div>
+      <div class="desc">两周后欧洲最大 indie 开发者线下聚集，40+ 国家团队名单可用于精准触达。</div>
+      <a class="src" href="https://www.gamesmarket.global/indie-arena-booth-full-gamescom-2026-lineup/" target="_blank">原文 · gamesmarket →</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://www.tripo3d.ai/mod/decorations/skyrim-weapons.png" alt="Tripo MOD landing page — Skyrim weapons">
+    <div class="body">
+      <span class="tag t-comp">竞品对位</span>
+      <div class="title">Tripo /mod 垂直落地页（素材参考）</div>
+      <div class="desc">主打"无需建模做 MOD"，宣称 50+ 游戏、直发 CurseForge/Workshop/Nexus。Meshy 暂无对位页面与素材。</div>
+      <a class="src" href="https://www.tripo3d.ai/mod" target="_blank">原页 · tripo3d.ai/mod →</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://www.tripo3d.ai/mod/decorations/minecraft-dragon-character.png" alt="Tripo MOD landing page — Minecraft character">
+    <div class="body">
+      <span class="tag t-comp">竞品对位</span>
+      <div class="title">Tripo /mod 页 Minecraft 方向示例</div>
+      <div class="desc">配套 use-case SEO 集群（best-ai-modding-tool、best-minecraft-model-maker）正在抢 MOD/Minecraft 搜索流量。</div>
+      <a class="src" href="https://www.tripo3d.ai/mod" target="_blank">原页 · tripo3d.ai/mod →</a>
+    </div>
+  </div>
+</div>
+
+<h2 class="sec"><span class="num">2</span>痛点雷达</h2>
+<p class="secsub">信号 → 人群 → 素材钩子方向</p>
+<table>
+  <tr><th>用户痛点</th><th>信号来源</th><th>人群</th><th>素材钩子方向</th></tr>
+  <tr>
+    <td><b>"AI 生成的模型打出来不像图"信任赤字</b></td>
+    <td><a href="https://www.fabbaloo.com/news/makerworld-introduces-new-image-requirement-to-address-misleading-ai-generated-model-listings" target="_blank">MakerWorld 强制实拍新规</a>；<a href="https://forum.bambulab.com/t/ai-generated-models-flooding-the-website/108701" target="_blank">Bambu 论坛长帖</a></td>
+    <td>美国打印玩家</td>
+    <td>反着打：全程实机实拍，"我们不放渲染图"本身就是钩子。粗糙 UGC &gt; 精修 CG</td>
+  </tr>
+  <tr>
+    <td><b>大模型拆件/拼接刚需</b></td>
+    <td><a href="https://all3dp.com/4/bambu-lab-researchers-are-teaching-ai-to-split-models-into-3d-printable-parts/" target="_blank">Bambu SegviGen（8/10）</a></td>
+    <td>打印进阶玩家、手办党</td>
+    <td>"打不下？一键拆件带卡扣"演示；蹭 Bambu 热点做时效素材</td>
+  </tr>
+  <tr>
+    <td><b>家里坏个塑料件，不会建模</b></td>
+    <td><a href="https://www.printables.com/model?ordering=-likes_count_7_days" target="_blank">Printables 周榜清一色功能替换件</a></td>
+    <td>美国泛家庭用户</td>
+    <td>"拍张照 → AI 建模 → 打印装回去" 30 秒 UGC，Before/After 结构</td>
+  </tr>
+  <tr>
+    <td><b>手办党工序痛点：分件、断面、补洞</b></td>
+    <td><a href="https://zenn.dev/karaage0703/articles/3d6bb2170f42bd" target="_blank">Zenn 教程高热</a>；<a href="https://hobby.dengeki.com/wf/" target="_blank">WF 扩为两天</a></td>
+    <td>日本手办/GK 人群</td>
+    <td>日语全流程素材：生图→建模→<b>自动分件</b>→打印上色，对标 Tripo 31 天+长跑结构</td>
+  </tr>
+  <tr>
+    <td><b>indie 美术产能瓶颈 + 行业裁员</b></td>
+    <td><a href="https://www.gamedeveloper.com/production/halo-studios-jettisons-long-serving-contractors-after-launch-of-halo-campaign-evolved" target="_blank">Halo Studios 裁外包美术（8/6）</a></td>
+    <td>欧美 indie 开发者</td>
+    <td>"没有美术预算也能出 demo"；数字反差："1 个人 + 1 周 = 整套资产"</td>
+  </tr>
+  <tr>
+    <td><b>MOD 创作者要提效也怕被打成 slop</b></td>
+    <td><a href="https://www.shacknews.com/article/150216/nexus-mods-gen-ai-tagging-moderation" target="_blank">Nexus 新政</a>；<a href="https://www.tripo3d.ai/mod" target="_blank">Tripo /mod 页</a></td>
+    <td>MOD / Minecraft / Skyrim 玩家</td>
+    <td>"干净拓扑、可编辑、敢标 AI-Assisted"合规向；游戏实录 + 资产进游戏瞬间</td>
+  </tr>
+  <tr>
+    <td><b>美术师 64% 反对"被 AI 替代"</b></td>
+    <td><a href="https://www.techbuzz.ai/articles/ai-in-game-development-why-the-2026-backlash-is-real" target="_blank">GDC 2026 调查：52% 负面</a></td>
+    <td>专业美术 / TA</td>
+    <td>话术红线：永远"美术师的加速器"（retopo/贴图/道具填充），绝不出现 "replace artist"</td>
+  </tr>
+  <tr>
+    <td><b>想要流行 IP 潮玩但买不起/买不到</b></td>
+    <td><a href="https://www.creativebloq.com/3d/3d-printing/why-pay-usd30-for-a-hideous-labubu-when-you-can-3d-print-your-own-abomination-for-around-usd5" target="_blank">Creative Bloq："$5 自己打 Labubu"</a></td>
+    <td>潮玩年轻人群</td>
+    <td>"设计你自己的丑萌盲盒角色"——原创生成规避版权，吃 Labubu 式情绪</td>
+  </tr>
+</table>
+
+<h2 class="sec"><span class="num">3</span>素材 Idea（可直接进 brief）</h2>
+
+<div class="idea">
+  <div class="head"><span class="idx">①</span><span class="name">"We don't show renders."</span><span class="tag t-us">美国 · 信任向</span></div>
+  <div class="hook">"Every print you see is real. No renders."</div>
+  <div class="row"><b>形式：</b>15–30s 视频，全程手机实拍：Meshy 生成 → 切片 → 打印 → 成品与屏幕模型同框对比</div>
+  <div class="row"><b>风格：</b>低保真 UGC、手持镜头｜<b>依据：</b>痛点 #1（MakerWorld 实拍新规是现成的社区情绪）</div>
+  <div class="vidlabel">▶ 参考素材（点击播放）</div>
+  <div class="vids">
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/jfhW0iiJEaM" allowfullscreen></iframe><div class="cap"><b>I Turned an AI Image Into a Real 3D Printed Figure</b> · UGC 创作者 — "AI 出图→打印成真"的实拍叙事骨架</div></div>
+  </div>
+</div>
+<div class="idea">
+  <div class="head"><span class="idx">②</span><span class="name">"拍照修家"系列</span><span class="tag t-us">美国 · 泛人群破圈</span></div>
+  <div class="hook">"That $2 part they charge $40 for? Print it."</div>
+  <div class="row"><b>形式：</b>坏铰链/断挂钩 → 拍照 → AI 生成 → 打印装回，Before/After 快剪 + 省钱情绪</div>
+  <div class="row"><b>依据：</b>Printables 热榜验证；对照周报 Tripo 60 变体亲子素材——同为"生活场景 &gt; 极客场景"，错位不撞款</div>
+  <div class="vidlabel">▶ 参考素材（点击播放）</div>
+  <div class="vids">
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/EsolfuJ5_M4" allowfullscreen></iframe><div class="cap"><b>This 3D Print Solves My Dishwasher Dilemma!</b>（Shorts）— 家电小件坏了→打印解决，"居家修复"UGC 口吻，信息流时长完美</div></div>
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/9lAjv86SJ3s" allowfullscreen></iframe><div class="cap"><b>Creating 3D Printed Replacement Parts — QUICK and EASY!</b> — "坏件→建模→打印替换"完整叙事结构可直接借鉴</div></div>
+  </div>
+</div>
+<div class="idea">
+  <div class="head"><span class="idx">③</span><span class="name">拆件时效热点素材</span><span class="tag t-us">美国 · 进阶玩家</span></div>
+  <div class="hook">"Bambu is researching AI part-splitting. It's already in Meshy."</div>
+  <div class="row"><b>形式：</b>新闻截图开场 + Auto Split 拆件/卡扣功能直给｜<b>时效窗：</b>本周（SegviGen 8/10 发布）</div>
+  <div class="vidlabel">▶ 参考素材（点击播放）</div>
+  <div class="vids">
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/iDO0mbQPo-g" allowfullscreen></iframe><div class="cap"><b>How to 3D Print Large Models by Cutting into Pieces</b> — 大模型切块打印再拼装的完整演示，正对"拆件"用户心智</div></div>
+  </div>
+</div>
+<div class="idea">
+  <div class="head"><span class="idx">④</span><span class="name">C108 手办素材</span><span class="tag t-jp">日本 · 本周末 8/15–16！</span></div>
+  <div class="hook">"AI で推し（オリジナル）キャラをフィギュア化"</div>
+  <div class="row"><b>形式：</b>30–50s 工序流水：AI 生图→建模→自动分件→打印上色，蹭 #C108 流量（<a href="https://www.famitsu.com/article/202608/83350" target="_blank">活动信息</a>）</div>
+  <div class="row"><b>风格：</b>taka_company 式长视频——Tripo 同结构素材已连投 31 天+，结构已验证｜<b>注意：</b>引导原创角色规避版权</div>
+  <div class="vidlabel">▶ 参考素材（点击播放）</div>
+  <div class="vids">
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/apPfXYESMn4" allowfullscreen></iframe><div class="cap"><b>写真1枚から自分フィギュアが完成！Tripo × 3Dプリンター</b> · <b style="color:#be123c">Tripo 官方日语素材</b> — 竞品在日本市场的"照片→手办"内容，可直接拆解其日语话术</div></div>
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/MDwhgZAYvuY" allowfullscreen></iframe><div class="cap"><b>誰でもできる最新生成AIモデリング｜Hitem3D</b> · 日本创作者 — 日语市场"AI 建模→打印成真"教程范本</div></div>
+  </div>
+</div>
+<div class="idea">
+  <div class="head"><span class="idx">⑤</span><span class="name">MOD 合规+爽点双拼</span><span class="tag t-game">美国 · MOD 人群</span></div>
+  <div class="hook">"Make the mod. Tag it right. Nexus-safe AI assets."</div>
+  <div class="row"><b>形式：</b>Skyrim/Minecraft 实录：截图 → 生成资产 → 进游戏瞬间，弹幕感字幕</div>
+  <div class="row"><b>依据：</b>Nexus 新政热度 + Tripo /mod 已验证搜索意图，<b>合规角度是 Tripo 没占的空位</b></div>
+  <div class="vidlabel">▶ 参考素材（点击播放）</div>
+  <div class="vids">
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/zIxBTCEYy0E" allowfullscreen></iframe><div class="cap"><b>Turn Any Image into a 3D Model for Game Modding</b> · <b style="color:#be123c">Tripo 官方 MOD 素材</b> — 竞品对 MOD 人群的定位与话术直接可拆解</div></div>
+  </div>
+  <div class="tiktok-links">另见 TikTok（站外打开）：<a href="https://www.tiktok.com/@achzach/video/7431182127007305002" target="_blank">用 Meshy 从照片做 Minecraft 建筑 · @achzach</a></div>
+</div>
+<div class="idea">
+  <div class="head"><span class="idx">⑥</span><span class="name">"1 人军团" indie 素材</span><span class="tag t-eu">欧美 · Gamescom 预热</span></div>
+  <div class="hook">"182 indie teams are heading to Gamescom. Most have zero 3D artists."</div>
+  <div class="row"><b>形式：</b>一人用 Meshy 出全套游戏资产的 timelapse，数字钩子 + 屏录加速｜<b>时效窗：</b>8/24 开幕前两周</div>
+  <div class="vidlabel">▶ 参考素材（点击播放）</div>
+  <div class="vids">
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/k9cbm5jSOxk" allowfullscreen></iframe><div class="cap"><b>I Built My Dream Game in 72 Hours — Assets by AI</b> · indie dev — "72 小时一人做完一款游戏"的爆款叙事结构</div></div>
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/47Y3YK_uc4Q" allowfullscreen></iframe><div class="cap"><b>AI 3D Game Clip: Robotic Cat & Glitched Biomes</b> · <b style="color:#0e7490">Meshy 官方客户案例</b> — solo dev 全部素材出自 Meshy，现成的"一人军团"证言素材</div></div>
+  </div>
+</div>
+<div class="idea">
+  <div class="head"><span class="idx">⑦</span><span class="name">Mudbox 停售借势</span><span class="tag t-game">专业向 · 欧美</span></div>
+  <div class="hook">"Autodesk just killed Mudbox. Your sculpting pipeline didn't die with it."</div>
+  <div class="row"><b>形式：</b>行业新闻评论体（周报验证过官方"测评体"可行）｜<b>时效窗：</b>8/11 新闻，本周</div>
+  <div class="vidlabel">▶ 参考素材（点击播放）</div>
+  <div class="vids">
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/kUa6N-2X4Zo" allowfullscreen></iframe><div class="cap"><b>Create Stylized 3D Game Assets with AI | Meshy Full Workflow</b> · <b style="color:#0e7490">Meshy 官方</b> — Meshy→ZBrush→Substance 完整雕刻管线，可直接复用/剪辑</div></div>
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/RT9LT-URI8I" allowfullscreen></iframe><div class="cap"><b>Master Cartoon Character Creation with Meshy and ZBrush</b> · 第三方创作者 — "AI 底模 + ZBrush 精修"心智已在创作者中形成的佐证</div></div>
+  </div>
+</div>
+<div class="idea">
+  <div class="head"><span class="idx">⑧</span><span class="name">盲盒角色生成器</span><span class="tag t-us">美国 · 潮玩向</span></div>
+  <div class="hook">"Stop paying $30 for a Labubu. Design your own gremlin."</div>
+  <div class="row"><b>形式：</b>生成原创丑萌角色 → 打印 → 上色开箱，女性向/潮玩向快剪</div>
+  <div class="row"><b>风格参考：</b>周报 SiefsHome "photo to vase" 17s 爽点结构</div>
+  <div class="vidlabel">▶ 参考素材（点击播放）</div>
+  <div class="vids">
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/YFZRE2P2Btw" allowfullscreen></iframe><div class="cap"><b>I 3D Printed Labubus And Don't Regret It</b> — Labubu 热点 + 3D 打印，"争议感+第一人称"标题结构可直接套用</div></div>
+    <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/cuPz-Vu2pvM" allowfullscreen></iframe><div class="cap"><b>Top 5 3D Printed LABUBU'S</b>（Shorts）— 盘点式短视频，信息流表现好</div></div>
+  </div>
+  <div class="tiktok-links">另见 TikTok（站外打开）：<a href="https://www.tiktok.com/@daisylee2002/video/7511059944137952543" target="_blank">3D printed Labubu 更新 · @daisylee2002</a> ｜ <a href="https://www.tiktok.com/@marsgizmo/video/6912981197068963073" target="_blank">3D 打印 timelapse 爆款 · @marsgizmo</a></div>
+</div>
+
+<h2 class="sec"><span class="num">4</span>风格洞察：现在的用户想看什么素材</h2>
+<div class="insight"><div class="mkt">🇺🇸 美国打印圈：反渲染、要实拍</div>社区正处"较真验证"情绪（Nozzlegate 硬件翻车 + AI 模型泛滥争议），过度精修素材会被当骗子。粗糙真实 &gt; 精美 CG，敢晒失败重打反而涨信任。</div>
+<div class="insight"><div class="mkt">🇯🇵 日本：工序美学 + 长视频耐受</div>30–60s 完整工序流水（生成→分件→打印→上色）被反复验证——Tripo 两条 31 天+ 长跑素材均此结构。钩子要落在具体工序痛点（パーツ分割、断面処理），不落"AI 很神奇"。</div>
+<div class="insight"><div class="mkt">🎮 游戏开发者：怕替代、吃提效</div>52% 负面情绪下，"wow AI"类素材会招骂评（负面互动拉高 CPM）。有效话术是工序级的："retopo 不用手做了"，主角永远是开发者本人。</div>
+<div class="insight"><div class="mkt">🏠 泛人群破圈口：省钱 + 生活场景</div>Tripo 亲子素材（60 变体）和 Printables 功能件热榜指向同一结论：破圈素材讲"生活里省了什么"，不讲技术。</div>
+
+<h2 class="sec"><span class="num">5</span>竞品对位提醒（结合本周 Foreplay 周报）</h2>
+<div class="callout"><b>MOD 合规空位：</b>Tripo /mod 素材（21–29 变体测试中）还是泛泛的 "generate MOD assets in seconds"，撞上 Nexus 新政热度——合规角度（idea ⑤）建议本周出。</div>
+<div class="callout"><b>亲子人群已被验证：</b>Tripo 60 变体亲子素材仍在投。idea ②（拍照修家）是同人群不同场景的错位打法，避免直接撞款。</div>
+<div class="callout"><b>JP/KR KOL 窗口期：</b>Tripo 白名单矩阵停投中、长跑素材只剩 2 条——趁其下一波未启动，用 C108 热点（idea ④）先占日语流量。</div>
+<div class="callout"><b>MakerWorld 三引擎 A/B：</b>MakerLab 里 Meshy/Tripo/Hunyuan 并排可选（<a href="https://www.smith3d.com/bambu-lab-makerworld-unlock-ai-3d-model-generation-for-everyday-makers/" target="_blank">介绍</a>），"哪家打出来最好"的对比内容值得官方下场占心智。</div>
+
+<div class="vidlabel">▶ 竞品 & 自家素材基准线（点击播放）</div>
+<div class="vids">
+  <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/-_ZlUTXaFqA" allowfullscreen></iframe><div class="cap"><b>This AI Creates 3D Assets You Can Actually Use | Tripo 3.1</b> · 第三方测评 — Tripo 当前对外的"实际能用"叙事</div></div>
+  <div class="vid"><iframe loading="lazy" src="https://www.youtube.com/embed/di8A-S2VYP0" allowfullscreen></iframe><div class="cap"><b>Meshy-5 Preview: Production-Ready AI 3D Model Generator</b> · <b style="color:#0e7490">Meshy 官方</b> — 自家发布片，作为素材基准线</div></div>
+</div>
+
+<h2 class="sec"><span class="num">6</span>时效节点日历</h2>
+<table>
+  <tr><th>日期</th><th>事件</th><th>素材动作窗口</th></tr>
+  <tr><td><b>8/15–16</b></td><td><a href="https://www.famitsu.com/article/202608/83350" target="_blank">Comiket 108（东京）</a></td><td>日语手办素材本周内上线（idea ④）</td></tr>
+  <tr><td><b>8/24–28</b></td><td><a href="https://www.gamesmarket.global/indie-arena-booth-full-gamescom-2026-lineup/" target="_blank">Gamescom 2026（科隆）</a>，Indie Arena 182 团队</td><td>indie 向素材 + 现场触达（idea ⑥）</td></tr>
+  <tr><td><b>8月内</b></td><td>Elegoo CANVAS 四色系统发货，开箱评测将起量</td><td>多色打印素材可蹭评测流量</td></tr>
+  <tr><td><b>~本周</b></td><td><a href="https://all3dp.com/4/bambu-lab-researchers-are-teaching-ai-to-split-models-into-3d-printable-parts/" target="_blank">Bambu SegviGen 热度</a></td><td>拆件素材时效窗（idea ③）</td></tr>
+  <tr><td><b>12/2</b></td><td><a href="https://commission.europa.eu/news-and-media/news/safer-and-more-transparent-ai-2026-08-02_en" target="_blank">EU AI Act 生成内容标记合规 deadline</a></td><td>欧洲客户信任向内容持续有话题窗</td></tr>
+</table>
+
+<footer>
+  <div style="font-weight:700; color:var(--ink); margin-bottom:8px;">附：其他资讯来源</div>
+  <div class="srclist">
+    <a href="https://www.gamedeveloper.com/business/unity-credits-ai-advertising-platform-for-driving-its-best-quarter-ever-" target="_blank">GameDeveloper · Unity 最佳季度（AI 广告驱动）</a> ·
+    <a href="https://all3dp.com/4/prusa-indx-upgrade-kits-slip-to-mid-august-amid-ongoing-bondtech-nozzlegate-issue/" target="_blank">All3DP · Prusa Nozzlegate 发酵</a> ·
+    <a href="https://makerworld.com/en" target="_blank">MakerWorld 热榜与设计大赛</a> ·
+    <a href="https://gamedev.net/news/why-new-eu-deepfake-legislation-means-games-need-to-be-careful-when-featuring-real-world-people-and-locations-r4691/" target="_blank">GameDev.net · EU 深伪新规</a> ·
+    <a href="https://izuka-effects.com/tirpo-vs-meshy/" target="_blank">IzukaEffects · Tripo vs Meshy 日语横评</a> ·
+    <a href="https://note.com/papatomo50/n/n441152c62d80" target="_blank">note · Tripo/Meshy indie 解说</a> ·
+    <a href="https://gamefromscratch.com/godot-4-8-dev1-released/" target="_blank">GameFromScratch · Godot 4.8 dev1</a> ·
+    <a href="https://www.fabbaloo.com/" target="_blank">Fabbaloo</a>
+  </div>
+  <div style="margin-top:14px;">Meshy Growth · 竞品追踪输入 ｜ 生成于 2026-08-11 ｜ 图片均热链自原文站点，若不显示请点原文链接查看 ｜ 参考视频：点击封面在页内播放（在浏览器中打开本文件时可用）；在 Claude 预览窗内因沙箱限制播放器可能受限，请点各视频旁的「↗ 在 YouTube 打开」；TikTok 因平台限制仅提供跳转链接</div>
+</footer>
+
+</div>
+<script>
+(function(){
+  function init(){
+    document.querySelectorAll('.vid iframe, .vids iframe').forEach(function(f){
+      var m = (f.getAttribute('src')||'').match(/embed\/([\w-]+)/);
+      if(!m) return;
+      var id = m[1];
+      var facade = document.createElement('div');
+      facade.className = 'ytfacade';
+      facade.innerHTML = '<img loading="lazy" src="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt="video thumbnail"><div class="playbtn"></div>';
+      facade.addEventListener('click', function(){
+        var i = document.createElement('iframe');
+        i.src = 'https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';
+        i.setAttribute('allow','autoplay; encrypted-media; picture-in-picture');
+        i.setAttribute('allowfullscreen','');
+        i.style.cssText = 'width:100%;aspect-ratio:16/9;border:0;border-radius:10px;display:block;background:#000;';
+        facade.replaceWith(i);
+      });
+      var wrap = f.parentNode;
+      wrap.insertBefore(facade, f);
+      var cap = wrap.querySelector('.cap');
+      if(cap){
+        var a = document.createElement('a');
+        a.href = 'https://www.youtube.com/watch?v='+id;
+        a.target = '_blank';
+        a.className = 'ytlink';
+        a.textContent = ' ↗ 在 YouTube 打开';
+        cap.appendChild(a);
+      }
+      f.remove();
+    });
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); } else { init(); }
+})();
+</script>
+</body>
+</html>
