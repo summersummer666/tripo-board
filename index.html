@@ -64,6 +64,18 @@
   .article .live-tag{color:var(--green);border-color:rgba(46,204,113,.4);}
   .article .callout{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--acc);border-radius:8px;padding:12px 16px;margin:14px 0;}
   .article .src{color:#6c7288;font-size:12px;margin-top:28px;border-top:1px solid var(--border);padding-top:12px;}
+  /* 分析内嵌素材卡 */
+  .refs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 6px;}
+  .refs figure{width:172px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .refs .rm{aspect-ratio:4/5;background:#000;position:relative;}
+  .refs .rm video,.refs .rm img{width:100%;height:100%;object-fit:contain;display:block;}
+  .refs figcaption{font-size:10.5px;color:var(--sub);padding:5px 8px 7px;line-height:1.45;}
+  .refs figcaption b{color:#cfd3e4;font-weight:600;}
+  .top5item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:12px 0;}
+  .top5item .t5h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+  .top5item .t5n{color:var(--acc);font-weight:800;font-size:16px;}
+  .top5item .t5t{color:var(--txt);font-weight:600;font-size:14.5px;}
+  .top5item p{margin:6px 0;font-size:13.5px;}
 </style>
 </head>
 <body>
@@ -105,24 +117,69 @@
 <div class="callout"><b>解读（对照上期基线）</b>：上期是"50+ 多语言 KOL 白名单投流 + Tripo Turns 1 周年庆 + H3.1 造势"。本周发生明显切换——周年庆 campaign 与白名单矩阵基本收尾，重心转向<b>官方主页大规模短素材轰炸</b>，用高变体数快速测试新人群、新场景。节奏上更像一次"新一轮人群/卖点海选"，值得追踪哪些素材存活。</div>
 
 <h2>2. 长跑胜出素材 Top 5</h2>
-<table>
-<tr><th>#</th><th>素材</th><th>账号</th><th>状态</th><th>为什么可能有效</th></tr>
-<tr><td>1</td><td>美杜莎手办全流程（视频 50s，日语）</td><td>taka_company</td><td><span class="tag live-tag">Still Running 31 天+</span></td><td>钩子"理想のキャラを3D立体化"：AI 生图→Tripo 建模→打印上色成手办；主打"拆件/补洞一键全自动"，精准戳中日本手办人群的工序痛点；邀请注册送 500 credits</td></tr>
-<tr><td>2</td><td>Freddy 迷你玩具上色（视频 58s，韩语）</td><td>sweebk</td><td><span class="tag live-tag">Still Running 34 天+</span></td><td>IP 向迷你玩具 + 手工上色过程，配 1 周年权益（Pro 5 折 / 旗舰 75% off）；KR 市场唯一长跑素材</td></tr>
-<tr><td>3</td><td>"I thought this would take one weekend."（43s）</td><td>Tripoai 官方</td><td><span class="tag">跑 21 天后停 · 10 变体</span></td><td>反差钩子 + 蜘蛛侠角色制作过程；结尾"Comment «PDF»"评论关键词引流，兼做私域沉淀</td></tr>
-<tr><td>4</td><td>"from photo to vase ✨"（17s）</td><td>SiefsHome</td><td><span class="tag">跑 24 天后停 · 10 变体</span></td><td>照片→花瓶→3D 打印的极短爽点流程，家居装饰人群，女性向</td></tr>
-<tr><td>5</td><td>H3.1 高模主打图（图片）</td><td>Tripoai 官方</td><td><span class="tag">跑 12 天 · 45 变体（全库最高）</span></td><td>"Up to 2M Polygons"高模卖点，配 highvalue_purchase campaign，说明高模卖点在拉付费上 ROI 达标</td></tr>
-</table>
-<p>另值得一提：官方复用 KOL 口吻的"3D assets used to mean big budgets…"（60s，Smart Mesh + H3.1 + 8K Texture 实测向）跑 10 变体，说明"测评体"官方素材可行。</p>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">#1</span><span class="t5t">美杜莎手办全流程（视频 50s，日语）</span><span class="tag">taka_company</span><span class="tag live-tag">Still Running 31 天+</span></div>
+  <p>钩子"理想のキャラを3D立体化"：AI 生图→Tripo 建模→打印上色成手办；主打"拆件/补洞一键全自动"，精准戳中日本手办人群的工序痛点；邀请注册送 500 credits。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/6f901d26f5595a10051253cc68bc96010b9e7daf2e09e77b11c1175bf03b6653.mp4" poster="https://r2.foreplay.co/35b133c71767937f0bad352a49ccbc18d9e281fd33f7c39c3dbaa91050cd68cb.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>美杜莎手办</b>·日语·50s·1 变体长跑</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">#2</span><span class="t5t">Freddy 迷你玩具上色（视频 58s，韩语）</span><span class="tag">sweebk</span><span class="tag live-tag">Still Running 34 天+</span></div>
+  <p>IP 向迷你玩具 + 手工上色过程，配 1 周年权益（Pro 5 折 / 旗舰 75% off）；KR 市场唯一长跑素材。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/b0a43557b7dbd5ac2a8451e12ae5d2c03dc33878465864641f537a9b5ce0ce8e.mp4" poster="https://r2.foreplay.co/db9867618aaf5e556b4951af69d8c73569111d3860c5236122cb9152ea087495.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Freddy 迷你玩具</b>·韩语·58s</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">#3</span><span class="t5t">"I thought this would take one weekend."（43s）</span><span class="tag">Tripoai 官方</span><span class="tag">跑 21 天后停 · 10 变体</span></div>
+  <p>反差钩子 + 蜘蛛侠角色制作过程；结尾"Comment «PDF»"评论关键词引流，兼做私域沉淀。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/ca63789d3cf5a7578f31518b302ec00dbca4c8b81d82bfc86b1ddcfd4201fd08.mp4" poster="https://r2.foreplay.co/c636269a40585b3b74735806d5c994fcd2fbe246f74a70151d2afb0825e8e730.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>蜘蛛侠角色提速</b>·43s·评论引流</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">#4</span><span class="t5t">"from photo to vase ✨"（17s）</span><span class="tag">SiefsHome</span><span class="tag">跑 24 天后停 · 10 变体</span></div>
+  <p>照片→花瓶→3D 打印的极短爽点流程，家居装饰人群，女性向。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/df73f5864ef938b756d704b1c0830cd0dc702484525d64525c8531716849dea3.mp4" poster="https://r2.foreplay.co/9c89d4ebfa473a69934140d81b445b1ed303f56cfc8b0a25b2b7cc21a9dabedd.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>photo → vase</b>·17s·家居向</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">#5</span><span class="t5t">H3.1 高模主打图（图片）</span><span class="tag">Tripoai 官方</span><span class="tag">跑 12 天 · 45 变体（全库最高）</span></div>
+  <p>"Up to 2M Polygons"高模卖点，配 highvalue_purchase campaign，说明高模卖点在拉付费上 ROI 达标。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/9556a5261a569e89f7d031c91ac4dbb3b04f75fdc1c9ecc65a89c3e49ff1c398.png" loading="lazy" alt=""></div><figcaption><b>H3.1 高模图</b>·45 变体</figcaption></figure></div>
+</div>
+
+<p>另值得一提：官方复用 KOL 口吻的"3D assets used to mean big budgets…"（60s，Smart Mesh + H3.1 + 8K Texture 实测向）跑 10 变体，说明"测评体"官方素材可行：</p>
+<div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/0f58513d33abaef8ab9a5dd9da31dc88fdd8d8022f464a921c7f3365c49f57c7.mp4" poster="https://r2.foreplay.co/e8d5de45403f93fce10a38e947e738f1cf6f3d44c4c5772f98d3bada278e28b6.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>官方测评体</b>·60s·10 变体</figcaption></figure></div>
 
 <h2>3. 新素材趋势：本周的人群试探线</h2>
 <ul>
-<li><b>家长人群（本周最大单一创意）</b>："孩子的画→当天打印成玩具"，图片素材，<b>60 个变体</b>，Still Running。把 3D 打印从极客工具讲成亲子场景。</li>
-<li><b>游戏 MOD 玩家（新垂直+专属落地页）</b>："Make Game Mods in Minutes" / "Build MODs from Photos"，单独开了 <b>tripo3d.ai/mod</b> 落地页（UTM campaign=mod），图+视频多套，21–29 变体。</li>
-<li><b>家具/室内设计师（新 B 端人群）</b>："Up to 50% OFF AI 3D Design Tools"，家具概念图→3D 模型、缩短设计流程，39 变体，Still Running。</li>
-<li><b>3D 打印垂直</b>：落地页 /discover/3dprinting，配"Ultra Detailed 3D AI"（高模）与"Clean Topology Automatically"（自动拓扑）两组卖点，18–25 变体。</li>
-<li><b>产品设计/电商</b>："Simplify 3D Product Creation"（8/11 新上，多套并行测试）。</li>
-<li><b>单功能直给素材</b>：自动拆件、高清修复、Smart Mesh 游戏资产等——一个功能一条素材，短平快。</li>
+<li><b>家长人群（本周最大单一创意）</b>："孩子的画→当天打印成玩具"，图片素材，<b>60 个变体</b>，Still Running。把 3D 打印从极客工具讲成亲子场景。
+<div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/2cb861be489a61ae7b4946acfd9ac6f18782eba86c51c6cbba13fcbd59517707.png" loading="lazy" alt=""></div><figcaption><b>孩子的画→玩具</b>·60 变体·在投</figcaption></figure></div></li>
+<li><b>游戏 MOD 玩家（新垂直+专属落地页）</b>："Make Game Mods in Minutes" / "Build MODs from Photos"，单独开了 <b>tripo3d.ai/mod</b> 落地页（UTM campaign=mod），图+视频多套，21–29 变体。
+<div class="refs">
+<figure><div class="rm"><img src="https://r2.foreplay.co/024e40d57d8489fb3df1ded3dfd8db3cbe097efbee508eb14eb6fc571371099f.jpg" loading="lazy" alt=""></div><figcaption><b>Game Mods 图版</b>·29 变体·在投</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/d52db3c069534b71c3113ba1640ca237acd0de0d43fee2bbc84f68a16b5aca0d.mp4" poster="https://r2.foreplay.co/9612f38c3858c987c8d7ff1a54bbb5f14d5330a287c6dee4f3c84d469c4da828.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Game Mods 视频版</b>·20 变体</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/88fa238a6e414f9864e89f90397625c80ffdeb2f68338a1e69725138ad72df8b.mp4" poster="https://r2.foreplay.co/0fb19828e0f12ce053b8510bc9b4bc997263b47d7a35d5a0b05ac4c2175cce76.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>MODs from Photos</b>·14 变体</figcaption></figure>
+</div></li>
+<li><b>家具/室内设计师（新 B 端人群）</b>："Up to 50% OFF AI 3D Design Tools"，家具概念图→3D 模型、缩短设计流程，39 变体，Still Running。
+<div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/20d20a823479ebba41ee2c83bd5344bd1397e4f237d488726234db1e6c2f87bf.jpg" loading="lazy" alt=""></div><figcaption><b>家具概念图→3D</b>·39 变体·在投</figcaption></figure></div></li>
+<li><b>3D 打印垂直</b>：落地页 /discover/3dprinting，配"Ultra Detailed 3D AI"（高模）与"Clean Topology Automatically"（自动拓扑）两组卖点，18–25 变体。
+<div class="refs">
+<figure><div class="rm"><img src="https://r2.foreplay.co/834172287c38b84f6b1e6e3b7cba5228ab1ec0ada83851d03b8989e68b41a548.png" loading="lazy" alt=""></div><figcaption><b>Ultra Detailed 图版</b>·25 变体</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/e7b98926f84dac29c154593bab2b4d56b874058f4aa2a90fb626a9d41bd8b020.mp4" poster="https://r2.foreplay.co/ce64a80a1297000e8a8edab38307521ed7a29c44438070ccfcd49ac05933c2c3.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Ultra Detailed 视频版</b>·18 变体</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/c2931ecead910c4553010cc8d8f0ac495f6f0381c2a0a6aef53a57010bf51da0.mp4" poster="https://r2.foreplay.co/bb045b1384ea61bc8d630cb5fccbaae088eafa62047dfc97826440f3b2e8b949.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Clean Topology</b>·21 变体</figcaption></figure>
+</div></li>
+<li><b>产品设计/电商</b>："Simplify 3D Product Creation"（8/11 新上，多套并行测试）。
+<div class="refs">
+<figure><div class="rm"><video src="https://r2.foreplay.co/0c07b3b4b2533bc374bf6818c922fec2c5db65cf958a223ea4c99036d163ca89.mp4" poster="https://r2.foreplay.co/ea357f3e6e14761c4dc0258a85058db457579769e096e591ad229a1f7467d4b5.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Product Creation A 版</b>·8/11 新上</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/0e93c29bf946f4d4322544336480fb3e59ff29b5a1909417fbf36b05fae816df.mp4" poster="https://r2.foreplay.co/2d9ca7edac8fca94425903f9080bbbcefd537a3ee49f2cfa6af2ff1283986eb3.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Product Creation B 版</b>·8/11 新上</figcaption></figure>
+</div></li>
+<li><b>单功能直给素材</b>：自动拆件、高清修复、Smart Mesh 游戏资产等——一个功能一条素材，短平快。
+<div class="refs">
+<figure><div class="rm"><video src="https://r2.foreplay.co/b01fdc5b5cba15d7ff4f430be14a65e94c4dae8d37594fc9cc2944e702c4f682.mp4" poster="https://r2.foreplay.co/4013a707a1da01297455b16a55df89f5a4579e8c28f8a1404052530f6df9c580.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>自动拆件</b></figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/369005f56fa54d3c22053034bf6b38afa00ddbefa330014527bb8a53a134420e.mp4" poster="https://r2.foreplay.co/f25234720fb9afbf1506a6317cd9ea0ced29ee2963080e31946e2354aa7007ba.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>高清修复</b>·8/11 新上</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/7a4829d315f42701d476f98390c32aee099fb2c7818f5cb2810997a15be34571.mp4" poster="https://r2.foreplay.co/686795a532a948010131a6938ab3804d782d50ececf32039bec36be322e4b9e6.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Smart Mesh 游戏资产</b>·在投</figcaption></figure>
+</div></li>
 </ul>
 <p>落地页策略变化：从统一 studio.tripo3d.ai 分化出垂直落地页（/mod、/discover/3dprinting、官网页面），按人群分流。</p>
 
@@ -143,11 +200,26 @@
 
 <h2>6. 对 Meshy 的可执行启示</h2>
 <ol>
-<li><b>抢跑"游戏 MOD"垂直</b>：Tripo 已为 MOD 单开落地页和 campaign，但素材还是泛泛的"generate MOD assets in seconds"。Meshy 可以做更具体的 UGC：'从一张截图给你的 Minecraft / Roblox / Skyrim 做专属 MOD 资产'，配游戏画面实录，抢在对方素材成熟前占位。</li>
-<li><b>复制"孩子的画→玩具"亲子素材</b>：对方本周变体数最高（60）且仍在投的创意，验证了家长人群的付费意愿。Meshy 可拍"娃的涂鸦→打印成玩具的全过程"UGC（美/日市场各一版），并考虑与打印机品牌（Bambu/Creality）联动送耗材。</li>
-<li><b>日韩手办内容长期化</b>：taka_company 式全流程视频连投 31 天+，建议在 JP 签 2–3 个手办/桌游 KOL 做同结构内容，韩国做 IP 迷你玩具上色向。</li>
-<li><b>模板化单卖点短素材铺量</b>：对方一天能上 250 条变体（1–2 句文案 + 单功能演示）。Meshy 可建一套"单卖点短视频模板"（拓扑/拆件/PBR 材质/动画绑定各一条），低成本批量产出做赛马测试。</li>
-<li><b>家具/室内设计 B 端素材</b>：对方开始用 50% off 试探设计师人群。Meshy 可做"概念图→可编辑 3D 家具模型→渲染提案"的工作流演示素材，主打"缩短提案周期"，投 LinkedIn/Meta 双端对比测试。</li>
+<li><b>抢跑"游戏 MOD"垂直</b>：Tripo 已为 MOD 单开落地页和 campaign，但素材还是泛泛的"generate MOD assets in seconds"。Meshy 可以做更具体的 UGC：'从一张截图给你的 Minecraft / Roblox / Skyrim 做专属 MOD 资产'，配游戏画面实录，抢在对方素材成熟前占位。
+<div class="refs">
+<figure><div class="rm"><img src="https://r2.foreplay.co/024e40d57d8489fb3df1ded3dfd8db3cbe097efbee508eb14eb6fc571371099f.jpg" loading="lazy" alt=""></div><figcaption>参考：<b>Game Mods 图版</b>·29 变体</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/d52db3c069534b71c3113ba1640ca237acd0de0d43fee2bbc84f68a16b5aca0d.mp4" poster="https://r2.foreplay.co/9612f38c3858c987c8d7ff1a54bbb5f14d5330a287c6dee4f3c84d469c4da828.jpg" controls muted loop playsinline preload="none"></video></div><figcaption>参考：<b>Game Mods 视频版</b></figcaption></figure>
+</div></li>
+<li><b>复制"孩子的画→玩具"亲子素材</b>：对方本周变体数最高（60）且仍在投的创意，验证了家长人群的付费意愿。Meshy 可拍"娃的涂鸦→打印成玩具的全过程"UGC（美/日市场各一版），并考虑与打印机品牌（Bambu/Creality）联动送耗材。
+<div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/2cb861be489a61ae7b4946acfd9ac6f18782eba86c51c6cbba13fcbd59517707.png" loading="lazy" alt=""></div><figcaption>参考：<b>孩子的画→玩具</b>·60 变体</figcaption></figure></div></li>
+<li><b>日韩手办内容长期化</b>：taka_company 式全流程视频连投 31 天+，建议在 JP 签 2–3 个手办/桌游 KOL 做同结构内容，韩国做 IP 迷你玩具上色向。
+<div class="refs">
+<figure><div class="rm"><video src="https://r2.foreplay.co/6f901d26f5595a10051253cc68bc96010b9e7daf2e09e77b11c1175bf03b6653.mp4" poster="https://r2.foreplay.co/35b133c71767937f0bad352a49ccbc18d9e281fd33f7c39c3dbaa91050cd68cb.jpg" controls muted loop playsinline preload="none"></video></div><figcaption>参考：<b>日语·美杜莎手办</b>·31 天+</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/b0a43557b7dbd5ac2a8451e12ae5d2c03dc33878465864641f537a9b5ce0ce8e.mp4" poster="https://r2.foreplay.co/db9867618aaf5e556b4951af69d8c73569111d3860c5236122cb9152ea087495.jpg" controls muted loop playsinline preload="none"></video></div><figcaption>参考：<b>韩语·Freddy 玩具</b>·34 天+</figcaption></figure>
+</div></li>
+<li><b>模板化单卖点短素材铺量</b>：对方一天能上 250 条变体（1–2 句文案 + 单功能演示）。Meshy 可建一套"单卖点短视频模板"（拓扑/拆件/PBR 材质/动画绑定各一条），低成本批量产出做赛马测试。
+<div class="refs">
+<figure><div class="rm"><video src="https://r2.foreplay.co/c2931ecead910c4553010cc8d8f0ac495f6f0381c2a0a6aef53a57010bf51da0.mp4" poster="https://r2.foreplay.co/bb045b1384ea61bc8d630cb5fccbaae088eafa62047dfc97826440f3b2e8b949.jpg" controls muted loop playsinline preload="none"></video></div><figcaption>参考：<b>自动拓扑</b>·单卖点模板</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/b01fdc5b5cba15d7ff4f430be14a65e94c4dae8d37594fc9cc2944e702c4f682.mp4" poster="https://r2.foreplay.co/4013a707a1da01297455b16a55df89f5a4579e8c28f8a1404052530f6df9c580.jpg" controls muted loop playsinline preload="none"></video></div><figcaption>参考：<b>自动拆件</b>·单卖点模板</figcaption></figure>
+<figure><div class="rm"><video src="https://r2.foreplay.co/7a4829d315f42701d476f98390c32aee099fb2c7818f5cb2810997a15be34571.mp4" poster="https://r2.foreplay.co/686795a532a948010131a6938ab3804d782d50ececf32039bec36be322e4b9e6.jpg" controls muted loop playsinline preload="none"></video></div><figcaption>参考：<b>Smart Mesh 游戏资产</b></figcaption></figure>
+</div></li>
+<li><b>家具/室内设计 B 端素材</b>：对方开始用 50% off 试探设计师人群。Meshy 可做"概念图→可编辑 3D 家具模型→渲染提案"的工作流演示素材，主打"缩短提案周期"，投 LinkedIn/Meta 双端对比测试。
+<div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/20d20a823479ebba41ee2c83bd5344bd1397e4f237d488726234db1e6c2f87bf.jpg" loading="lazy" alt=""></div><figcaption>参考：<b>家具概念图→3D</b>·39 变体</figcaption></figure></div></li>
 </ol>
 
 <p class="src">数据源：Foreplay Discovery（Tripoai + Tripo 3D 品牌页），采集于 2026-08-11。Tripo 3D 页本周数据抓至接口上限 400 条，实际或更多；"变体数"为 Foreplay 的 same-creative 计数，代表素材复用/放量程度。分析每周一更新，看板数据每日更新。</p>
