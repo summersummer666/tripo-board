@@ -76,6 +76,12 @@
   .top5item .t5n{color:var(--acc);font-weight:800;font-size:16px;}
   .top5item .t5t{color:var(--txt);font-weight:600;font-size:14.5px;}
   .top5item p{margin:6px 0;font-size:13.5px;}
+  /* 横向参考：竞品子 tab */
+  .article .seg{margin:14px 0 4px;}
+  .refgroup{display:none;}
+  .refgroup.on{display:block;}
+  .refmeta{color:var(--sub);font-size:12.5px;line-height:1.7;margin:10px 0 2px;}
+  .refmeta b{color:#cfd3e4;}
 </style>
 </head>
 <body>
@@ -238,126 +244,165 @@
 <div class="view" id="view-ref">
 <div class="article">
 <!--REF_START-->
-<p style="color:var(--sub);font-size:13px;">横向参考：Suno（AI 音乐生成）＋ ElevenLabs（AI 语音／API）｜采集 2026-08-12 ｜ Suno 260 条（7/31–8/12，241 条在投）、ElevenLabs 257 条（8/3–8/11，227 条在投）。这一 tab 不做完整竞对分析，只挑<b>结构可以直接搬到 Meshy 的好素材</b>，每条都写清楚"能借什么"。</p>
+<p style="color:var(--sub);font-size:13px;">横向参考 ｜ 每家取<b>在投广告数最高的 Top 10</b> 素材，只看"好在哪里"和"Meshy 可以学什么"。数据每周更新，采集 2026-08-13。</p>
 
-<div class="callout"><b>本期两个最值得记的横向结论</b><br>① <b>Suno 把落地页本地化做到了，Tripo 没有。</b>Suno 的法/日/韩语素材分别指向 suno.com/fr、/ja、/ko 三个本地化落地页；Tripo 本周德/法/韩语素材全部回流英文主站。同样在多语言铺量，Suno 的链路是完整的——这就是上期给 Meshy 提的那个缺口的正面样板。<br>② <b>ElevenLabs 的开发者素材直接投文档页。</b>"Unbelievably Fast STT""Programmatic Music Creation"等高变体素材的落地页是 <span class="tag">elevenlabs.io/docs/overview/capabilities/…</span>，不是营销页。对开发者人群，跳过 marketing page 直落文档是可复用的打法，Meshy 的 API 业务可以直接照搬。</div>
+<div class="seg" id="refBrand">
+  <button data-v="suno" class="on">Suno</button>
+  <button data-v="eleven">ElevenLabs</button>
+</div>
 
-<h2>Suno ｜ AI 音乐生成（与 Meshy 最同构：C 端创作工具 + 订阅制）</h2>
-<p>260 条素材中 <b>241 条在投</b>（存活率 93%），最高变体数 <b>151</b>。语言分布：英语 112、韩语 29、西语 21、法语 14、德语 12、日语 11。落地页 175 条直投 <span class="tag">suno.com/go/paid</span> 付费页，另有 /fr、/ko、/ja 本地化页与 App Store 直链。</p>
+<div class="refgroup on" id="ref-suno">
+<p class="refmeta">AI 音乐生成 ｜ 抓取 340 条（7/31–8/12），<b>311 条在投</b>（91%）｜ 格式：图片 131 / 视频 99 / DCO 110 ｜ 语言：英 163、韩 35、西 31、法 20、日 15、德 14 ｜ 落地页：/go/paid 付费页 229，另有 <b>/ko /fr /ja /de 四个本地化页</b></p>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">S1</span><span class="t5t">"The Perfect Sound for Your Content"——✅ 清单式图片素材</span><span class="tag live-tag">在投</span><span class="tag">151 变体（全库最高）</span><span class="tag">直投付费页</span></div>
-  <p>一张图 + 4 条 ✅ 打勾功能点，每条都写成用户场景而不是功能名（"几秒内为你的帖子做专属配乐""匹配任何调性——热门音效、品牌主题曲、爆款瞬间"），CTA 是 SUBSCRIBE、落地页直接 <span class="tag">suno.com/go/paid</span>，中间不放官网首页。</p>
-  <p><b>能借什么</b>：Meshy 可以做同样的"✅ 清单图 + 直达付费页"，把功能点翻译成场景句——"几分钟给你的游戏做一套专属道具""一张照片变成可打印的手办""导出即可进 Unity/UE"。151 个变体说明这种最朴素的清单图在放量测试里胜出，不必一上来就拍精致视频。</p>
-  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/ec8a2654250ea2bdd86b24c281c2aacca38159f1d21b0d5bf999e9a09771cf29.png" loading="lazy" alt=""></div><figcaption><b>清单式图片素材</b>·151 变体·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">1</span><span class="t5t">"The Perfect Sound for Your Content" ✅ 清单图</span><span class="tag live-tag">在投 151 条</span><span class="tag">图片</span><span class="tag">→ /go/paid</span></div>
+  <p><b>好在哪里</b>：全库投得最狠的一条，却只是一张图 + 4 条 ✅ 打勾——而且每条都写成场景不是功能（"几秒为你的帖子做专属配乐""匹配任何调性：热门音效、品牌主题曲、爆款瞬间"），CTA 直接进付费页，不经首页。</p>
+  <p><b>Meshy 可以学什么</b>：做同款"✅ 清单图 + 直达付费页"，功能名换成场景句——"几分钟给你的游戏做一套专属道具""一张照片变可打印手办""导出即进 Unity/UE"。别一上来就拍精致视频。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/ec8a2654250ea2bdd86b24c281c2aacca38159f1d21b0d5bf999e9a09771cf29.png" loading="lazy" alt=""></div><figcaption><b>✅ 清单图</b>·在投 151 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">S2</span><span class="t5t">Pro Plan 权益清单 13 秒视频</span><span class="tag live-tag">36 条广告 · 31 条在投</span><span class="tag">75 变体 · 13 天</span></div>
-  <p>把订阅权益逐条念完就结束：每月最多 500 首、商用授权、可上传 8 分钟音频、优先队列加速、新功能早享。13 秒、无剧情、无 KOL，纯权益罗列，是 Suno 铺量最狠的一条视频。</p>
-  <p><b>能借什么</b>：Meshy 的订阅权益完全能套这个模板——每月 N 个模型额度、商用授权、高模/多格式导出、优先生成队列、新模型早享。这类素材制作成本极低、可批量出多语言版本，适合做订阅转化的兜底位。</p>
-  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/db53b0027c9b285a7a70793ea07a092ba3f0b3dc92128c113d1608eced29453d.mp4" poster="https://r2.foreplay.co/f68c347a4ea8fd5d65c13eb79547274086470b858bb5752c4cddfe29005abe2b.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Pro Plan 权益清单</b>·13s·75 变体·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">2</span><span class="t5t">同一张图换一套文案，打音乐人</span><span class="tag live-tag">在投 89 条</span><span class="tag">图片</span><span class="tag">→ /go/paid</span></div>
+  <p><b>好在哪里</b>：和第 1 条<b>用的是同一张图</b>，但文案整套换成专业向（分轨变体、上传自己的采样、多轨时间线调 BPM/音量/音高、导出 stem + MIDI）。一张素材同时覆盖内容创作者和音乐人两个人群。</p>
+  <p><b>Meshy 可以学什么</b>：素材复用不必换图，换"卖点语言"即可——同一张模型效果图，一版讲"不会建模也能做"（爱好者），一版讲"拓扑干净、可直接进管线"（专业向），把制作成本摊到两个人群上。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/ec8a2654250ea2bdd86b24c281c2aacca38159f1d21b0d5bf999e9a09771cf29.png" loading="lazy" alt=""></div><figcaption><b>同图·音乐人版文案</b>·在投 89 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">S3</span><span class="t5t">创作者第一人称工作流："录了个 riff，让 Suno 加鼓，瞬间活了"</span><span class="tag live-tag">在投</span><span class="tag">25 变体 · 50s</span></div>
-  <p>真人第一人称口述整个创作过程：先弹一段自己喜欢的 riff，让 Suno Studio 加鼓，"instantly came alive🤘"，然后在 Suno Studio 里把整首编完。没有产品演示腔，全程是"我在干活"。</p>
-  <p><b>能借什么</b>：这是 Tripo 那两条日韩长跑 KOL 素材（手办全流程）的同构结构，两家都验证过——<b>第一人称工作流 UGC 是这个品类最稳的素材形态</b>。Meshy 版本："我画了个草图 → 让 Meshy 补成可打印模型 → 打出来上色"，或"我给自己的独立游戏做了一整套资产"。</p>
-  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/f5f0b92257728b34b92060c4647230fcf39a9c3d775a442ab6cc75c82791d104.mp4" poster="https://r2.foreplay.co/f0d2550ecc14cc080ca339971e34278c2dce2995d9b1e6ab80ad9a63ca84744d.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>第一人称工作流</b>·50s·25 变体·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">3</span><span class="t5t">Pro Plan 权益清单 13 秒视频</span><span class="tag live-tag">在投 75 条 · 54 条广告仍在跑</span><span class="tag">13s</span><span class="tag">13 天</span></div>
+  <p><b>好在哪里</b>：13 秒把订阅权益念完就结束——每月 500 首、商用授权、可上传 8 分钟音频、优先队列、新功能早享。无剧情无 KOL，是它铺量最狠且存活最久的视频。</p>
+  <p><b>Meshy 可以学什么</b>：直接套模板——每月 N 个模型额度、商用授权、高模/多格式导出、优先生成队列、新模型早享。制作成本极低，还能一键出多语言版，适合做订阅转化的兜底位。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/db53b0027c9b285a7a70793ea07a092ba3f0b3dc92128c113d1608eced29453d.mp4" poster="https://r2.foreplay.co/f68c347a4ea8fd5d65c13eb79547274086470b858bb5752c4cddfe29005abe2b.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Pro Plan 权益清单</b>·13s·在投 75 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">S4</span><span class="t5t">正面回应"AI 抢饭碗"争议的 KOL 素材</span><span class="tag">22 变体 · 56s</span><span class="tag">已停投</span></div>
-  <p>开场直接讲行业舆论："最近关于 AI 做音乐有很多争论和担忧，各方观点我都看过——人类的创造力永远是关键那一味。"然后展示自己怎么把 AI 当工具用。#suno #aimusic #musicproducer</p>
-  <p><b>能借什么</b>：3D 圈有一模一样的舆论阻力（"AI 要抢建模师的活"）。这条素材证明<b>正面接话题反而能降低阻力</b>，而不是绕开它。Meshy 可以找资深建模师／技术美术做同结构内容："我不怕 AI，我用它把重复劳动干掉，省下的时间做真正难的部分。"这条虽已停投，但结构值得一试。</p>
-  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/be039d37e9e90dfbd0334dfe5a8cca6ac33eb787d117d08f3fbff6196cafad39.mp4" poster="https://r2.foreplay.co/f7b0c91ae682bfdd3b550affeace3da2cafb0b34170cb26112bc1a8352931c03.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>回应 AI 争议</b>·56s·22 变体</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">4</span><span class="t5t">Suno Studio 新品发布 73 秒长片</span><span class="tag live-tag">在投 46 条</span><span class="tag">73s</span><span class="tag">8/12 新上</span></div>
+  <p><b>好在哪里</b>：新品发布用 73 秒长片，且片尾标注 "in collaboration with @madeatartcamp"——与真实创作者共创，一上线就给 46 条广告。证明重要发布不需要压到 15 秒内。</p>
+  <p><b>Meshy 可以学什么</b>：发新模型/新管线时，找一个真实创作者用新功能完整做一个作品拍长片，片尾署名共创。比官方演示视频可信，也顺带拿到创作者的分发。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/001725f3da3763f261531d1dbc83c4c151e39a43fb9028b86f8eb99ff2a4b146.mp4" poster="https://r2.foreplay.co/fad68c7c1bb3fb1964dbe00d714f61b575dbbbfcbf6c2b020916744c7f3b3ef1.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Suno Studio 发布片</b>·73s·在投 46 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">S5</span><span class="t5t">本地化落地页三件套：法语 /fr、韩语、德语</span><span class="tag live-tag">在投</span><span class="tag">17 / 16 / 13 变体</span><span class="tag">落地页随语言切换</span></div>
-  <p>同一套 Pro Plan 权益清单，法语版指向 <span class="tag">suno.com/fr</span>、韩语版指向 <span class="tag">suno.com/ko</span>、日语版指向 <span class="tag">suno.com/ja</span>——素材本地化 + 落地页本地化配套。韩语还额外有短句版（"AI로 아이디어가 명곡으로"，15 变体在投）。</p>
-  <p><b>能借什么</b>：这正是上期给 Meshy 提的第 2 条启示的现成样板。Tripo 本周德/法/韩语素材全部落到英文主站，Suno 做了完整链路——如果 Meshy 在 DE/FR/KR/JP 把落地页也本地化，是在跟 Tripo 抢同一批人时的直接优势。</p>
+  <div class="t5h"><span class="t5n">5</span><span class="t5t">"Start small. End with a record."</span><span class="tag live-tag">在投 31 条</span><span class="tag">图片</span><span class="tag">CTA=装 App</span></div>
+  <p><b>好在哪里</b>：全文案就两句对偶（起点很小 → 终点是成品），标题 "Suno = Instant Tracks"。CTA 是装 App 而非订阅，说明 App 拉新是独立跑的一条链路。</p>
+  <p><b>Meshy 可以学什么</b>：对偶短句比功能描述好记——"Start with a sketch. End with a game asset."。另外若有移动端，App 下载别和网页订阅混在同一批素材里投，转化目标不同。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/fb08661cb1ee0e90cfb219a9f27cc4e98f1a3471c557342b4a8b9a9013345e48.jpg" loading="lazy" alt=""></div><figcaption><b>极短对偶句</b>·在投 31 条</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">6</span><span class="t5t">"Make Suno Part of Your Workflow"</span><span class="tag live-tag">在投 28 条</span><span class="tag">21s</span><span class="tag">13 天</span></div>
+  <p><b>好在哪里</b>：不卖"生成音乐"，卖<b>省下的时间</b>——"把粗糙想法变成真正的起点，少花时间做 demo，把时间留给真正重要的活"。定位成流程里的一环，而不是替代品。</p>
+  <p><b>Meshy 可以学什么</b>：对专业用户（技术美术、建模师）用同一角度：不说"AI 帮你建模"，说"白模阶段省下的那几天，留给真正难的部分"。这也能顺带化解"AI 抢饭碗"的抵触。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/9709ad3fd5525684385f42976639aeb44fb56c89e893208646cb2d7e3cdef481.mp4" poster="https://r2.foreplay.co/f6e0cd64f8fb29c5b9f81b633f19d6cc2df4c943871aab5fe939d91f3e54b615.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>融入工作流</b>·21s·在投 28 条</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">7</span><span class="t5t">西语版 Pro Plan（图 + 视频双形态）</span><span class="tag live-tag">在投 26 条 · 18 条广告仍在跑</span><span class="tag">西语</span><span class="tag">13 天</span></div>
+  <p><b>好在哪里</b>：同一套权益清单整体本地化成西语，图片和视频两个形态一起投，连投 13 天。西语 31 条的量级说明这不是试水而是正式市场。</p>
+  <p><b>Meshy 可以学什么</b>：本地化不是翻译一条素材，而是把<b>已经验证过的赢家模板</b>整套搬到新语言，并保持图/视频双形态。先在英语市场跑出赢家，再复制到 DE/FR/KR/JP，比在新市场从零试探快得多。</p>
   <div class="refs">
-    <figure><div class="rm"><img src="https://r2.foreplay.co/b1e7ca0c34f1e67a4e1468246bc56fc4c1c8f4960db4ca630245079eacf35c3b.png" loading="lazy" alt=""></div><figcaption><b>法语版</b>·17 变体·→ suno.com/fr</figcaption></figure>
-    <figure><div class="rm"><video src="https://r2.foreplay.co/c44af2b4484c416c2ee2e861a297d441bd6622f49c8aad48b0132ba1ad98b9f7.mp4" poster="https://r2.foreplay.co/ff6a821641217efc7579ec5afffa052e6afb8eb975c65c8f1c8a12ea83a34cf9.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>韩语版</b>·50s·16 变体·在投</figcaption></figure>
-    <figure><div class="rm"><img src="https://r2.foreplay.co/88d3e59e81eb1aa07042e14112fada6fc839ff85ce1c896ef9861a6b480ed15d.png" loading="lazy" alt=""></div><figcaption><b>德语版</b>·13 变体·在投</figcaption></figure>
+    <figure><div class="rm"><video src="https://r2.foreplay.co/fadf61204edb67dc66bd9357652409269f449f21099f01284046c426a2694e0b.mp4" poster="https://r2.foreplay.co/fb9305bc83a50ddb62117b2e1614fdffb446b7a58d121ac3579da9bc6f4ba7da.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>西语·视频版</b>·8s·在投</figcaption></figure>
+    <figure><div class="rm"><img src="https://r2.foreplay.co/3ef68f0216f471b5d3c9cb904675908beb268f80b620292b52b0e179cd09167c.png" loading="lazy" alt=""></div><figcaption><b>西语·图版</b>·在投</figcaption></figure>
   </div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">S6</span><span class="t5t">"Start small. End with a record."——极短对偶句 + 装 App</span><span class="tag live-tag">在投</span><span class="tag">31 变体</span><span class="tag">CTA=装 App</span></div>
-  <p>全部文案只有两句："Start small. End with a record. Suno gets your ideas studio-ready."标题是 "Suno = Instant Tracks"。CTA 用 INSTALL_MOBILE_APP 而不是订阅，说明有一条独立的 App 拉新链路。</p>
-  <p><b>能借什么</b>：对偶短句（起点很小 → 终点是成品）比功能描述更好记，Meshy 版可以是"Start with a sketch. End with a game asset."。另外值得注意的是 Suno 把 App 下载单独当一条转化链路跑，如果 Meshy 有移动端，这一路不该和网页订阅混在一起投。</p>
-  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/fb08661cb1ee0e90cfb219a9f27cc4e98f1a3471c557342b4a8b9a9013345e48.jpg" loading="lazy" alt=""></div><figcaption><b>极短对偶句</b>·31 变体·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">8</span><span class="t5t">创作者第一人称："录了个 riff，让它加鼓，瞬间活了"</span><span class="tag live-tag">在投 25 条</span><span class="tag">50s</span></div>
+  <p><b>好在哪里</b>：全程"我在干活"的口述，没有产品演示腔——先弹一段自己喜欢的 riff，让 Suno 加鼓，"instantly came alive🤘"，然后就地把整首编完。</p>
+  <p><b>Meshy 可以学什么</b>：这和 Tripo 那两条连投 30 天+的日韩手办 KOL 素材是同一个结构，两家都验证了——<b>第一人称工作流 UGC 是这个品类最稳的形态</b>。Meshy 版："我画了个草图 → 补成可打印模型 → 打出来上色"。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/f5f0b92257728b34b92060c4647230fcf39a9c3d775a442ab6cc75c82791d104.mp4" poster="https://r2.foreplay.co/f0d2550ecc14cc080ca339971e34278c2dce2995d9b1e6ab80ad9a63ca84744d.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>第一人称工作流</b>·50s·在投 25 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">S7</span><span class="t5t">Suno Studio 新品发布：与创作者共同制作的 73 秒长片</span><span class="tag live-tag">在投</span><span class="tag">46 变体 · 8/12 新上</span></div>
-  <p>"首个生成式音频工作站，现已对 Premier 用户开放"，片尾标注 "Video in collaboration with @madeatartcamp"。73 秒，是本次抓到的最长素材，且一上来就给了 46 个变体。</p>
-  <p><b>能借什么</b>：新功能发布不一定要短。<b>73 秒 + 与创作者联名共创</b>这套组合被 Suno 用在最重要的产品发布上，Meshy 发新模型/新管线时可以照此办：找一个真实创作者用新功能完整做一个作品，片尾署名共创。</p>
-  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/001725f3da3763f261531d1dbc83c4c151e39a43fb9028b86f8eb99ff2a4b146.mp4" poster="https://r2.foreplay.co/fad68c7c1bb3fb1964dbe00d714f61b575dbbbfcbf6c2b020916744c7f3b3ef1.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Suno Studio 发布片</b>·73s·46 变体·在投</figcaption></figure></div>
-</div>
-
-<h2>ElevenLabs ｜ AI 语音 / API（Meshy 的 API 与 B 端业务可直接参考）</h2>
-<p>257 条素材中 <b>227 条在投</b>（存活率 88%），最高变体数 29，几乎全英文（<b>没做多语言本地化</b>，与 Suno 正相反）。落地页高度分人群：/creative（内容创作者）、/api 与 /developer-api（开发者）、/conversational-ai 与 /agents（Agent）、/voice-library、/audiobooks、docs 文档页，另有 27 条投向一个独立产品站 reception.ai。</p>
-
-<div class="top5item">
-  <div class="t5h"><span class="t5n">E1</span><span class="t5t">开发者素材直投文档页</span><span class="tag live-tag">在投</span><span class="tag">29 / 28 / 28 变体</span><span class="tag">落地页 = docs</span></div>
-  <p>"Unbelievably Fast STT""Programmatic Music Creation"这几条最高变体的开发者素材，落地页直接是 <span class="tag">elevenlabs.io/docs/overview/capabilities/text-to-speech</span> 之类的文档页，CTA 是 SIGN_UP。文案也全是工程语气："从代码里几秒生成自然语音，不用维护任何 pipeline""毫秒级以内完成语音识别"。</p>
-  <p><b>能借什么</b>：Meshy 的 API 业务可以直接照搬——开发者不需要看营销页，把广告直接落到"文本转 3D API"的文档页，文案讲延迟、并发、SDK、不用自己搭管线。这是本 tab 里最容易立刻落地的一条。</p>
-  <div class="refs">
-    <figure><div class="rm"><img src="https://r2.foreplay.co/83d8d7a2c12e121a0120a3bacb13725335f5e28322be2adb154f71af22d0a982.jpg" loading="lazy" alt=""></div><figcaption><b>Fast STT（文档页）</b>·29 变体·在投</figcaption></figure>
-    <figure><div class="rm"><img src="https://r2.foreplay.co/fbacf10214a5b9b6e0c84d2d7faf8d036edd497c63379591a19f9fde67509c43.jpg" loading="lazy" alt=""></div><figcaption><b>Programmatic Music（文档页）</b>·28 变体·在投</figcaption></figure>
-    <figure><div class="rm"><img src="https://r2.foreplay.co/ac753b8cab4787e2212f380f9aee4faa8a626c9213b9990d055b39d75ffd0bb8.jpg" loading="lazy" alt=""></div><figcaption><b>Production Ready 基建向</b>·12 变体·在投</figcaption></figure>
-  </div>
+  <div class="t5h"><span class="t5n">9</span><span class="t5t">"Custom Music for Every Video"——按下游用途定位</span><span class="tag live-tag">在投 17 条 · 14 条广告仍在跑</span><span class="tag">图片</span><span class="tag">13 天</span></div>
+  <p><b>好在哪里</b>：不讲工具讲归属感——"每个创作者都值得拥有属于自己的声音"，按<b>用户拿它去干什么</b>（给视频配乐）来定位，而不是按产品是什么。</p>
+  <p><b>Meshy 可以学什么</b>：按下游用途切人群做素材矩阵：给短视频做 3D 片头、给独立游戏做资产、给电商做商品 3D 图、给打印店做模型。一个用途一条素材，比通用"AI 生成 3D"更容易找到人。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/4a71a7a835d365ba47cc854fefc0f566f19b80c2cd25b6e56ce347ae95ceb3d0.png" loading="lazy" alt=""></div><figcaption><b>按下游用途定位</b>·在投 17 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">E2</span><span class="t5t">卖结果不卖功能："不用露脸就能做一个能变现的频道"</span><span class="tag live-tag">在投</span><span class="tag">18 变体 · 30s</span></div>
-  <p>钩子不是"生成配音"，而是用户想要的最终结果——"Start a monetizable channel—without ever showing your face."（做一个能赚钱的频道，全程不用露脸）。下面才接功能清单：一个工作台里出配音/视频/图片/音乐/音效、不需要摄像机和麦克风、70+ 语言做全球化。</p>
-  <p><b>能借什么</b>：把 Meshy 的卖点从"生成 3D 模型"抬到用户的最终结果——"不会建模也能上架你的第一套游戏资产""一个人做完整个游戏的美术"。功能清单放在钩子之后，不要放在最前面。</p>
-  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/06a12a1427dd6c5aa9242e53832c278aecb0f6d938e52f5ef04c6ae158104078.mp4" poster="https://r2.foreplay.co/a00cc73d4585d7073f2872e3c147a48dc99a3774aeb3b9d1709812e7a403b44b.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>能变现的频道</b>·30s·18 变体·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">10</span><span class="t5t">法语版 → 法语落地页 suno.com/fr</span><span class="tag live-tag">在投 17 条</span><span class="tag">法语</span><span class="tag">落地页同步本地化</span></div>
+  <p><b>好在哪里</b>：素材本地化 + 落地页本地化<b>配套</b>——法语素材进 /fr、韩语进 /ko、日语进 /ja、德语进 /de。链路从广告到落地页全程是母语。</p>
+  <p><b>Meshy 可以学什么</b>：这正是 Tripo 缺的那一环（它本周德/法/韩语素材全部回流英文主站）。Meshy 若在 DE/FR/KR/JP 把落地页也做出来，是跟 Tripo 抢同一批人时最省力的一处优势。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/b1e7ca0c34f1e67a4e1468246bc56fc4c1c8f4960db4ca630245079eacf35c3b.png" loading="lazy" alt=""></div><figcaption><b>法语版</b>·在投 17 条·→ suno.com/fr</figcaption></figure></div>
+</div>
+</div>
+
+<div class="refgroup" id="ref-eleven">
+<p class="refmeta">AI 语音 / API ｜ 抓取 337 条（7/30–8/11），<b>284 条在投</b>（84%）｜ 格式：视频 147 / DCO 144 / 图片 46 ｜ 语言：英语 304，<b>几乎不做本地化</b> ｜ 落地页按人群高度拆分：/creative 53、App Store 32、developer-api 30、reception.ai 29、/api 21、voice-library 15、agents 14</p>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">1</span><span class="t5t">开发者素材直投文档页（TTS）</span><span class="tag live-tag">在投 29 条</span><span class="tag">图片</span><span class="tag">→ docs/text-to-speech</span></div>
+  <p><b>好在哪里</b>：落地页不是营销页，是<b>文档页</b>。文案也全是工程语气："从代码里几秒生成自然语音，不用维护任何 pipeline"。对开发者，跳过 marketing page 直接给文档，省一次跳转。</p>
+  <p><b>Meshy 可以学什么</b>：Meshy API 的广告直接落到"文本转 3D API"文档页，文案讲延迟、并发、SDK、不用自建管线。这是本 tab 里最容易立刻落地的一条。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/83d8d7a2c12e121a0120a3bacb13725335f5e28322be2adb154f71af22d0a982.jpg" loading="lazy" alt=""></div><figcaption><b>TTS 文档页</b>·在投 29 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">E3</span><span class="t5t">同一模板套文化梗做系列化铺量</span><span class="tag live-tag">在投</span><span class="tag">19 + 16 变体</span></div>
-  <p>同一套"✅ 清单 + Try free"模板，换不同文化梗做变体：一条走权游味道（"Generate any visual imaginable—fire and blood included"），一条走奥德赛（"Your imagination's odyssey starts here / worthy of the Sirens themselves / visions no mortal eye has seen"）。落地页都是 /creative。</p>
-  <p><b>能借什么</b>：模板固定、只换梗，是低成本扩素材量又不显重复的做法。Meshy 可以用游戏与动画梗做系列——像素风、魂系、乐高、宝可梦式收集感——同一清单模板套不同视觉世界观，比反复微调文案更容易出赢家。</p>
-  <div class="refs">
-    <figure><div class="rm"><video src="https://r2.foreplay.co/fe2d57b4fb76abc7581ddfedde500303323092a69fe22d16132d17dabe8cca5d.mp4" poster="https://r2.foreplay.co/5173d54bf14e44c872d0309a7c52c908a631f69745b035604ae37e8c84fb78a8.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>权游梗版</b>·18s·19 变体</figcaption></figure>
-    <figure><div class="rm"><video src="https://r2.foreplay.co/fdc520b7308af298e1ef6aa2052693080e4a600caf04d2b2e12b57eeb495f35c.mp4" poster="https://r2.foreplay.co/25f41cee75ea0fead1c4b0bff7ae314a7089766c5269a4cf5b32f2dda3d22ce2.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>奥德赛梗版</b>·14s·16 变体·在投</figcaption></figure>
-  </div>
+  <div class="t5h"><span class="t5n">2</span><span class="t5t">同一标题拆成 TTS / STT 两条分投</span><span class="tag live-tag">在投 28 条</span><span class="tag">图片</span><span class="tag">→ docs/speech-to-text</span></div>
+  <p><b>好在哪里</b>：一个能力一条素材、各自落到对应文档页（这条讲"毫秒级实时语音识别"→ STT 文档）。顺带一个小瑕疵：第 1 条讲的是语音合成，标题却也写 "Unbelievably Fast STT"，明显复制没改——说明连它也在用模板快速铺量。</p>
+  <p><b>Meshy 可以学什么</b>：把能力拆成独立素材各自投对应文档（文生 3D、图生 3D、自动拓扑、绑定、纹理），别做成一条"全能力"素材。但标题记得跟着改，模板化不等于不校对。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/81646160f2d46aeca892c2121ae4892d48b31cce635f07f9895081747f73f6ce.jpg" loading="lazy" alt=""></div><figcaption><b>STT 文档页</b>·在投 28 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">E4</span><span class="t5t">KOL 素材带官方创作者计划标签 + 长期收益叙事</span><span class="tag live-tag">在投</span><span class="tag">13 变体 · 23s</span><span class="tag">#ElevenCreativePartner</span></div>
-  <p>开头是 <span class="tag">#ad #ElevenCreativePartner</span> 官方合作标注，文案讲长期收益而非一次体验："我一年多前克隆了一次自己的声音，之后再没重录过。别人听了都知道是我——不用麦克风、不用布置、不用再浪费一小时录素材。"</p>
-  <p><b>能借什么</b>：两点。一是给创作者计划起一个可标签化的名字（ElevenCreativePartner），素材自带品牌资产；二是 KOL 叙事从"我试了一下很酷"换成"我用了一年多，省下了什么"——后者对付费转化更有效。Meshy 可对应"我这一年做的所有游戏资产都是 Meshy 出的"。</p>
-  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/2289a7e9d6fe1c37e1c8967903571161744de4db4766ed1b0d1390eac27c934b.mp4" poster="https://r2.foreplay.co/262d3fb95728346ec36eff66194a963a626dde66e8a1e1588db8109afed4bed1.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>克隆一次，用了一年多</b>·23s·13 变体·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">3</span><span class="t5t">"Programmatic Music Creation"——从代码里生成</span><span class="tag live-tag">在投 28 条</span><span class="tag">图片</span><span class="tag">→ docs/music</span></div>
+  <p><b>好在哪里</b>："直接从代码作曲，用 API 批量生成配乐、主题曲、循环片段。"把 C 端功能（生成音乐）重新包装成 B 端能力（可编程、可批量），同一底层能力卖两次。</p>
+  <p><b>Meshy 可以学什么</b>：Meshy 的生成能力同样可以"卖两次"——C 端讲"一句话出模型"，B 端讲"用 API 批量生成整套关卡资产/商品模型，可编程、可接管线"。素材和落地页分开做。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/fbacf10214a5b9b6e0c84d2d7faf8d036edd497c63379591a19f9fde67509c43.jpg" loading="lazy" alt=""></div><figcaption><b>Programmatic Music</b>·在投 28 条</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">E5</span><span class="t5t">单个新功能开独立子域落地页 + 销售线索 CTA</span><span class="tag live-tag">在投</span><span class="tag">24 变体</span><span class="tag">CTA=Contact Us</span></div>
-  <p>"Agents That Adapt Emotionally / Your users have emotions. Now your AI does too. Meet Expressive Mode." 落地页是独立子域 <span class="tag">start.elevenlabs.io/v3/expressive-mode</span>，CTA 用 CONTACT_US 收销售线索而不是让人直接注册。</p>
-  <p><b>能借什么</b>：面向企业客户的新能力，用"独立落地页 + 留资 CTA"而不是"注册免费试用"。Meshy 若要推企业级管线（批量生成、私有部署、风格定制），这套结构比塞进主站更清楚，也更容易算线索成本。</p>
-  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/0c38dcab3d617a33f014675d39f409152832653bfce31b9fad9a4fa1e1c3a21a.jpg" loading="lazy" alt=""></div><figcaption><b>Expressive Mode</b>·24 变体·独立子域·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">4</span><span class="t5t">"One API. Endless Audio Use Cases."</span><span class="tag live-tag">在投 27 条</span><span class="tag">图片</span><span class="tag">14 天</span><span class="tag">→ docs/intro</span></div>
+  <p><b>好在哪里</b>：连投 14 天、在这批里跑得最久。卖的是<b>集成成本低</b>——"一个 API 搞定对话 Agent、语音合成、实时音频流"，开发者最怕的是接一堆服务。</p>
+  <p><b>Meshy 可以学什么</b>：对开发者主打"一个 API 覆盖全流程"：生成 → 拓扑优化 → UV/纹理 → 绑定 → 多格式导出，不用再拼三四家服务。这个角度比"生成质量最好"更打动工程决策。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/ec75d5a62e2041fab2af6646a7185e2a620b1aabb8a0f9dd2f2f4513cdbfd9e8.jpg" loading="lazy" alt=""></div><figcaption><b>One API</b>·在投 27 条·连投 14 天</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">E6</span><span class="t5t">垂直用例独立落地页：有声书 / Character Casting</span><span class="tag live-tag">在投</span><span class="tag">16 变体</span><span class="tag">落地页 /audiobooks</span></div>
-  <p>"Audiobooks in 70+ Languages"，主推 Character Casting——能看到全书角色表、听每个角色念自己的台词、随时换任意一个声音。落地页 <span class="tag">elevenlabs.io/audiobooks</span>。</p>
-  <p><b>能借什么</b>：把一个具体行业用例做成独立落地页 + 专属功能名（Character Casting 这个命名本身就是卖点）。Meshy 的对应机会是"游戏资产包""3D 打印店铺""电商商品 3D 化"这类垂直，各自一个落地页 + 一个能记住的功能名，而不是都往通用生成页导。</p>
-  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/7351eb5d707db34985b18de8f5b284db2a906e4a0eae75ffaa6e093471cae978.mp4" poster="https://r2.foreplay.co/f26e4fff040f3465538ba40944782443dcbd05df8c24239d8c23f2ead675df05.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Audiobooks / Character Casting</b>·16 变体·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">5</span><span class="t5t">新功能开独立子域 + 留资 CTA</span><span class="tag live-tag">在投 24 条</span><span class="tag">图片</span><span class="tag">CTA=Contact Us</span></div>
+  <p><b>好在哪里</b>："你的用户有情绪，现在你的 AI 也有了。"单个新能力（Expressive Mode）单独开子域 <span class="tag">start.elevenlabs.io/v3/expressive-mode</span>，CTA 是留资而不是免费注册——按企业线索算成本。</p>
+  <p><b>Meshy 可以学什么</b>：企业级能力（批量生成、私有部署、风格定制）用"独立落地页 + 留资 CTA"单独跑，不要塞进主站免费注册流，线索成本才算得清。</p>
+  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/0c38dcab3d617a33f014675d39f409152832653bfce31b9fad9a4fa1e1c3a21a.jpg" loading="lazy" alt=""></div><figcaption><b>Expressive Mode</b>·在投 24 条·独立子域</figcaption></figure></div>
 </div>
 
 <div class="top5item">
-  <div class="t5h"><span class="t5n">E7</span><span class="t5t">用 F1 车队背书讲企业级可靠性</span><span class="tag live-tag">在投</span><span class="tag">12 变体</span></div>
-  <p>"Build audio AI at F1 speed"——当音频工作流是业务关键路径时，可靠性才是重点：ElevenAPI 提供 F1 车队要求、全球工程团队信赖的合规、可用性与一致性。</p>
-  <p><b>能借什么</b>：B 端素材不比功能比<b>可靠性</b>，并借一个高辨识度客户做速度/稳定性的具象化。Meshy 面向游戏工作室时可以用同样的角度：不讲"生成得多好看"，讲"批量出资产不掉线、格式规范稳定、能进你现有管线"，并借一个知名工作室做背书。</p>
-  <div class="refs"><figure><div class="rm"><img src="https://r2.foreplay.co/ed60e66bd4055561b473962c0b300fd994f17b3b7a456e0f045bbfba89bc9536.png" loading="lazy" alt=""></div><figcaption><b>F1 speed（企业可靠性）</b>·12 变体·在投</figcaption></figure></div>
+  <div class="t5h"><span class="t5n">6</span><span class="t5t">"不用露脸就能做一个能变现的频道"</span><span class="tag live-tag">在投 18 条</span><span class="tag">30s</span><span class="tag">13 天</span></div>
+  <p><b>好在哪里</b>：钩子是用户想要的<b>最终结果</b>（做一个能赚钱的频道），不是产品能力（生成配音）。功能清单放在钩子之后才出现。</p>
+  <p><b>Meshy 可以学什么</b>：把卖点从"生成 3D 模型"抬到结果——"不会建模也能上架你的第一套游戏资产""一个人做完整个游戏的美术"。功能清单永远放钩子之后。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/06a12a1427dd6c5aa9242e53832c278aecb0f6d938e52f5ef04c6ae158104078.mp4" poster="https://r2.foreplay.co/a00cc73d4585d7073f2872e3c147a48dc99a3774aeb3b9d1709812e7a403b44b.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>能变现的频道</b>·30s·在投 18 条</figcaption></figure></div>
 </div>
 
-<p class="src">数据源：Foreplay Discovery — Suno（品牌 ID <span class="tag">oPvAH6CW7CEKiBLDuT4O</span>）、ElevenLabs（品牌 ID <span class="tag">9Z7CseeEuZYSx2YRDbtg</span>），采集于 2026-08-12。每家抓取 26 页约 260 条（Suno 覆盖 7/31–8/12、ElevenLabs 覆盖 8/3–8/11），按"变体数高 + 仍在投 + 结构可迁移到 3D／游戏／打印"筛出上述条目，非完整竞对分析。"变体数"为 Foreplay 的 same-creative 计数。本 tab 与竞对分析同步每周更新。</p>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">7</span><span class="t5t">同一卖点换成"被动收入"说法再投一条</span><span class="tag live-tag">在投 18 条</span><span class="tag">30s</span></div>
+  <p><b>好在哪里</b>：和第 6 条同人群同落地页，只把结果换个说法——"做一个不露脸的频道赚被动收入"。同一个人群用不同的动机词（变现 / 被动收入）各投一条，让算法自己选。</p>
+  <p><b>Meshy 可以学什么</b>：别只写一版钩子。同一人群准备 2–3 个动机词各投一条（省钱 / 省时间 / 多接单 / 上架赚钱），交给投放系统赛马，比内部争论文案更快出结论。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/b95ff275c511e9923c07ac141b2f48f7fc8027f97864ceb0760524640e08d786.mp4" poster="https://r2.foreplay.co/317708c4236ddee0ce77315d5eccb7cc0d80f7c1f8b03360e33a44fefb93822e.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>被动收入版</b>·30s·在投 18 条</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">8</span><span class="t5t">"不用切标签页就能把想法做成成品"</span><span class="tag live-tag">在投 18 条</span><span class="tag">26s</span><span class="tag">→ /flows</span></div>
+  <p><b>好在哪里</b>：痛点具体到一个动作——<b>切标签页</b>。卖的是"一个可视化画布上跑自动化流程，还接了 35+ 个第三方图像/视频模型"，把"整合别人"变成自己的卖点。</p>
+  <p><b>Meshy 可以学什么</b>：3D 工作流的同款痛点是"在生成器、修模软件、引擎之间来回导来导出"。Meshy 可以主打"一个画布把生成→修模→导出串起来"，并把已支持的引擎/格式数量当卖点写出来。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/97af8a5ca73ba9f6e4465bfff86134dc6be4ecba7cd0ae35c4c4407d0d2ab36e.mp4" poster="https://r2.foreplay.co/e98acbda1132f2ac93afcd051966fef02fcbcaf98234120828c8d54a32331225.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Flows 画布</b>·26s·在投 18 条</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">9</span><span class="t5t">"Build Smarter AI Agents"——比可靠性不比效果</span><span class="tag live-tag">在投 17 条</span><span class="tag">36s</span><span class="tag">→ /conversational-ai</span></div>
+  <p><b>好在哪里</b>：B 端文案落点是"最低延迟、最高可靠性"，而不是"效果最好"。当客户要把它放进生产链路，可靠性才是决策项。</p>
+  <p><b>Meshy 可以学什么</b>：面向游戏工作室时，别只比模型好看——讲"批量出资产不掉线、格式规范稳定、能接进现有管线"，并给出具体数字（成功率、平均耗时、支持格式数）。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/5ffade927a85763c9185ef08f8de9affadceb95d87e6424f657fc0912b424f55.mp4" poster="https://r2.foreplay.co/8e81c54f8db3349d9c1f239c14530ff06f771bd395666744be984292ee1ed93a.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>AI Agents</b>·36s·在投 17 条</figcaption></figure></div>
+</div>
+
+<div class="top5item">
+  <div class="t5h"><span class="t5n">10</span><span class="t5t">同一模板套文化梗做系列化</span><span class="tag live-tag">在投 16 条 · 8 条广告仍在跑</span><span class="tag">14s</span><span class="tag">→ /creative</span></div>
+  <p><b>好在哪里</b>：模板（✅ 清单 + Try free）不变，只换梗——这条走奥德赛（"worthy of the Sirens themselves""visions no mortal eye has seen"），另有一条走权游（"fire and blood included"）。低成本扩量又不显重复。</p>
+  <p><b>Meshy 可以学什么</b>：固定一套清单模板，只换视觉世界观做系列——像素风、魂系、乐高感、宝可梦式收集。比反复微调文案更容易撞出赢家。</p>
+  <div class="refs"><figure><div class="rm"><video src="https://r2.foreplay.co/fdc520b7308af298e1ef6aa2052693080e4a600caf04d2b2e12b57eeb495f35c.mp4" poster="https://r2.foreplay.co/25f41cee75ea0fead1c4b0bff7ae314a7089766c5269a4cf5b32f2dda3d22ce2.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>奥德赛梗版</b>·14s·在投 16 条</figcaption></figure></div>
+</div>
+</div>
+
+<p class="src">数据源：Foreplay Discovery — Suno（品牌 ID <span class="tag">oPvAH6CW7CEKiBLDuT4O</span>）、ElevenLabs（品牌 ID <span class="tag">9Z7CseeEuZYSx2YRDbtg</span>），采集于 2026-08-13，每家翻 34 页约 340 条。排序口径：按创意分组后取<b>在投广告数</b>（Foreplay same-creative 计数中仍在投的最大值）从高到低，只保留仍在投的创意，各取 Top 10。本 tab 每周随竞对分析一起更新；后续新增竞品直接加子 tab。</p>
 <!--REF_END-->
 </div>
 </div>
@@ -453,6 +498,15 @@ document.getElementById('mainTabs').addEventListener('click',e=>{
   document.querySelectorAll('.view').forEach(el=>el.classList.toggle('on', el.id==='view-'+v));
   // 切走时暂停非当前 tab 的所有视频
   document.querySelectorAll('.view:not(.on) video').forEach(vd=>vd.pause());
+});
+// 横向参考：竞品子 tab 切换（以后加竞品只需加 button + refgroup，无需改 JS）
+const refBrand = document.getElementById('refBrand');
+if(refBrand) refBrand.addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  const v = e.target.dataset.v;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));
+  document.querySelectorAll('#view-ref .refgroup').forEach(el=>el.classList.toggle('on', el.id==='ref-'+v));
+  document.querySelectorAll('#view-ref .refgroup:not(.on) video').forEach(vd=>vd.pause());
 });
 document.getElementById('fBrand').addEventListener('click',e=>{
   if(e.target.tagName!=='BUTTON')return;
