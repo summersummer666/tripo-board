@@ -82,12 +82,21 @@
   .refgroup.on{display:block;}
   .refmeta{color:var(--sub);font-size:12.5px;line-height:1.7;margin:10px 0 2px;}
   .refmeta b{color:#cfd3e4;}
+  /* 素材卡 → Meta 广告库 跳转 */
+  .adsbtn{position:absolute;top:10px;left:10px;z-index:3;display:inline-flex;align-items:center;gap:3px;
+    background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.20);color:#e8eaf2;
+    font-size:10.5px;font-weight:600;line-height:1.25;padding:3px 7px;border-radius:6px;
+    text-decoration:none;backdrop-filter:blur(2px);transition:.15s;white-space:nowrap;}
+  .adsbtn:hover{background:var(--acc);border-color:var(--acc);color:#fff;}
+  .refs .adsbtn{top:6px;left:6px;font-size:9.5px;padding:2px 5px;}
+  .medialink{display:block;width:100%;height:100%;}
+  .medialink img{width:100%;height:100%;object-fit:contain;display:block;}
 </style>
 </head>
 <body>
 <header>
   <h1>Tripo 广告素材看板 <span style="color:var(--sub);font-weight:400;font-size:15px;">Tripoai + Tripo 3D · Foreplay 抓取 · 每日自动更新</span></h1>
-  <div class="meta">数据更新时间：<b id="updated"><!--UPDATED_START-->2026-08-17 15:20（北京时间）<!--UPDATED_END--></b> ｜ <span id="stats"><!--STATS_START-->共 <b>40</b> 组代表性创意（Tripo 3D 38 / Tripoai 2）｜ 本周官方页新增 <b>484</b> 条广告、去重 319 组创意<!--STATS_END--></span> ｜ 默认按<b>变体数</b>（素材复用次数）从高到低 ｜ 点视频区域即可播放/暂停。<br>⚠️ 素材源为 Foreplay 公开直链（分享给他人无需 Foreplay 账号），但可能有时效——视频无法播放时用卡片底部链接看原素材。变体数 = 同一创意在 Meta 被复制投放的广告条数，代表放量程度。</div>
+  <div class="meta">数据更新时间：<b id="updated"><!--UPDATED_START-->2026-08-17 15:20（北京时间）<!--UPDATED_END--></b> ｜ <span id="stats"><!--STATS_START-->共 <b>40</b> 组代表性创意（Tripo 3D 38 / Tripoai 2）｜ 本周官方页新增 <b>484</b> 条广告、去重 319 组创意<!--STATS_END--></span> ｜ 默认按<b>变体数</b>（素材复用次数）从高到低 ｜ 点视频区域即可播放/暂停；<b>点图片素材或左上角「广告库 ↗」可跳转 Meta 广告库</b>看原始文案与版本数。<br>⚠️ 素材源为 Foreplay 公开直链（分享给他人无需 Foreplay 账号），但可能有时效——视频无法播放时用卡片底部链接看原素材。变体数 = 同一创意在 Meta 被复制投放的广告条数，代表放量程度。</div>
   <div class="tabs" id="mainTabs">
     <button data-view="board" class="on">📊 素材看板</button>
     <button data-view="analysis">📝 竞对分析</button>
@@ -449,12 +458,18 @@ function render(){
   list.forEach(a=>{
     const card = document.createElement('div'); card.className='card';
     const bc = a.brand==='Tripoai' ? 'tripoai' : 'tripo3d';
+    const AL = a.fb ? `https://www.facebook.com/ads/library/?id=${a.fb}` : null;
+    // 图片素材：整块可点直接跳广告库；视频：保留点画面播放，用左上角按钮跳转
     const media = a.video
       ? `<video src="${R2+a.video}" poster="${R2+a.thumb}" controls muted loop playsinline preload="none"></video>`
-      : `<img src="${R2+a.thumb}" loading="lazy" alt=""><div class="imgtag">图片素材</div>`;
+      : (AL
+          ? `<a class="medialink" href="${AL}" target="_blank" rel="noopener" title="在 Meta 广告库中查看文案与版本"><img src="${R2+a.thumb}" loading="lazy" alt=""></a><div class="imgtag">图片素材 · 点击看广告库</div>`
+          : `<img src="${R2+a.thumb}" loading="lazy" alt=""><div class="imgtag">图片素材</div>`);
+    const adsBtn = AL ? `<a class="adsbtn" href="${AL}" target="_blank" rel="noopener" title="在 Meta 广告库中查看文案与版本">广告库 ↗</a>` : '';
     card.innerHTML = `
       <div class="media">
         <div class="vbadge">${a.v}<span>变体</span></div>
+        ${adsBtn}
         ${media}
       </div>
       <div class="body">
