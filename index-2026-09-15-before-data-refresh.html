@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tripo 素材看板（每周更新）</title>
+<style>
+  :root{--bg:#0e0f13;--card:#171922;--card2:#1d2030;--txt:#e8eaf2;--sub:#9aa0b4;--acc:#7c5cff;--green:#2ecc71;--red:#e74c3c;--border:#262a3a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;padding:24px;}
+  header{max-width:1400px;margin:0 auto 20px;}
+  h1{font-size:22px;font-weight:700;letter-spacing:.3px;}
+  .meta{color:var(--sub);font-size:13px;margin-top:6px;line-height:1.6;}
+  .meta b{color:var(--txt);}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center;}
+  .seg{display:inline-flex;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .seg button{background:none;border:none;color:var(--sub);padding:8px 16px;font-size:13px;cursor:pointer;transition:.15s;}
+  .seg button.on{background:var(--acc);color:#fff;}
+  .count{color:var(--sub);font-size:13px;margin-left:auto;}
+  .grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;position:relative;}
+  .media{position:relative;background:#000;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .media video,.media img{width:100%;height:100%;object-fit:contain;display:block;cursor:pointer;}
+  .vbadge{position:absolute;top:10px;right:10px;background:rgba(124,92,255,.92);color:#fff;font-size:15px;font-weight:800;padding:4px 12px;border-radius:999px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .vbadge span{font-size:10px;font-weight:500;opacity:.85;display:block;margin-top:-2px;text-align:center;}
+  .imgtag{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.6);color:#cfd3e4;font-size:11px;padding:2px 8px;border-radius:6px;z-index:2;}
+  .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .row1{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .brand{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;}
+  .brand.tripoai{background:#3a2f14;color:#f4c542;}
+  .brand.tripo3d{background:#14293a;color:#4aa8f0;}
+  .brand.bambu{background:#123023;color:#4fd48a;}
+  .brand.elegoo{background:#2e1a34;color:#c98af0;}
+  .brand.creality{background:#33220f;color:#f0a552;}
+  .article .brand{margin-right:2px;}
+  .pub{font-size:13px;font-weight:600;}
+  .row2{display:flex;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--sub);}
+  .chip{background:var(--card2);border:1px solid var(--border);padding:2px 8px;border-radius:6px;}
+  .chip.live{color:var(--green);border-color:rgba(46,204,113,.4);}
+  .chip.dead{color:var(--sub);}
+  .hook{font-size:13px;line-height:1.55;color:#cfd3e4;flex:1;}
+  .links{display:flex;gap:12px;font-size:11.5px;border-top:1px solid var(--border);padding-top:9px;}
+  .links a{color:var(--sub);text-decoration:none;}
+  .links a:hover{color:var(--acc);}
+  .note{max-width:1400px;margin:14px auto 0;color:#6c7288;font-size:12px;line-height:1.6;}
+  /* ===== 主 tab ===== */
+  .tabs{max-width:1400px;margin:18px auto 0;display:flex;gap:8px;border-bottom:1px solid var(--border);}
+  .tabs button{background:none;border:none;color:var(--sub);font-size:15px;font-weight:600;padding:10px 18px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s;}
+  .tabs button.on{color:var(--txt);border-bottom-color:var(--acc);}
+  .tabs button:hover{color:var(--txt);}
+  .view{display:none;}
+  .view.on{display:block;}
+  #view-board .controls{max-width:1400px;margin:16px auto;}
+  /* ===== 分析文章 ===== */
+  .article{max-width:920px;margin:20px auto 40px;font-size:14.5px;line-height:1.85;color:#cfd3e4;}
+  .article h2{font-size:19px;color:var(--txt);margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .article h2:first-child{margin-top:8px;}
+  .article h3{font-size:15.5px;color:var(--txt);margin:20px 0 8px;}
+  .article p{margin:10px 0;}
+  .article b,.article strong{color:var(--txt);}
+  .article ul,.article ol{margin:10px 0 10px 22px;}
+  .article li{margin:7px 0;}
+  .article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  .article th,.article td{border:1px solid var(--border);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6;}
+  .article th{background:var(--card2);color:var(--txt);white-space:nowrap;}
+  .article tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+  .article .tag{display:inline-block;background:var(--card2);border:1px solid var(--border);color:var(--sub);font-size:11px;padding:1px 8px;border-radius:6px;margin-right:4px;}
+  .article .live-tag{color:var(--green);border-color:rgba(46,204,113,.4);}
+  .article .callout{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--acc);border-radius:8px;padding:12px 16px;margin:14px 0;}
+  .article .src{color:#6c7288;font-size:12px;margin-top:28px;border-top:1px solid var(--border);padding-top:12px;}
+  /* 分析内嵌素材卡 */
+  .refs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 6px;}
+  .refs figure{width:172px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .refs .rm{aspect-ratio:4/5;background:#000;position:relative;}
+  .refs .rm video,.refs .rm img{width:100%;height:100%;object-fit:contain;display:block;}
+  .refs figcaption{font-size:10.5px;color:var(--sub);padding:5px 8px 7px;line-height:1.45;}
+  .refs figcaption b{color:#cfd3e4;font-weight:600;}
+  .top5item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:12px 0;}
+  .top5item .t5h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+  .top5item .t5n{color:var(--acc);font-weight:800;font-size:16px;}
+  .top5item .t5t{color:var(--txt);font-weight:600;font-size:14.5px;}
+  .top5item p{margin:6px 0;font-size:13.5px;}
+  /* 横向参考：竞品子 tab */
+  .article .seg{margin:14px 0 4px;}
+  .refgroup{display:none;}
+  .refgroup.on{display:block;}
+  .refmeta{color:var(--sub);font-size:12.5px;line-height:1.7;margin:10px 0 2px;}
+  .refmeta b{color:#cfd3e4;}
+  /* 素材卡 → Meta 广告库 跳转 */
+  .adsbtn{position:absolute;top:10px;left:10px;z-index:3;display:inline-flex;align-items:center;gap:3px;
+    background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.20);color:#e8eaf2;
+    font-size:10.5px;font-weight:600;line-height:1.25;padding:3px 7px;border-radius:6px;
+    text-decoration:none;backdrop-filter:blur(2px);transition:.15s;white-space:nowrap;}
+  .adsbtn:hover{background:var(--acc);border-color:var(--acc);color:#fff;}
+  .refs .adsbtn{top:6px;left:6px;font-size:9.5px;padding:2px 5px;}
+  .medialink{display:block;width:100%;height:100%;}
+  .medialink img{width:100%;height:100%;object-fit:contain;display:block;}
+a{color:#4f46e5} h2{margin:36px 0 12px;font-size:22px} h3{margin:24px 0 8px} p{margin:10px 0} ul{padding-left:22px} li{margin:7px 0} blockquote{border-left:3px solid #a5b4fc;margin:12px 0;padding:8px 14px;background:#eef2ff} .status{display:inline-block;background:#fff1ce;color:#815d13;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700} .samples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0} .sample{border:1px solid #e8e6e1;background:white;border-radius:12px;overflow:hidden;min-width:0} .sample img,.sample video{width:100%;height:240px;object-fit:contain;background:#101117;display:block} .sample .copy{padding:14px} .sample h3{font-size:15px;margin:0 0 8px} .sample p{font-size:13px} .sample small{color:#676767} .sample a{overflow-wrap:anywhere} .table-wrap{overflow-x:auto} .sample .state{font-weight:700;color:#15803d}.sample .ended{color:#a33931} @media(max-width:760px){.samples{grid-template-columns:1fr 1fr}.wrap{padding:24px 16px}.hero h1{font-size:25px}} @media(max-width:480px){.samples{grid-template-columns:1fr}} .tabs{flex-wrap:wrap}.samples{max-width:1400px;margin:20px auto}.sample{background:var(--card);border-color:var(--border)}.sample .copy{color:var(--txt)}.sample small{color:var(--sub)}.sample a{color:#b6a7ff}.sample .state{color:#52da96}.sample .ended{color:#ff9c91}.latest-summary{max-width:1400px;margin:24px auto;color:#cfd3e4;line-height:1.8}.latest-summary a{color:#b6a7ff}.latest-summary h2{margin-top:12px}.sample video,.sample img{height:300px}.article a{color:#b6a7ff}.merged-report{padding:0 20px 35px}.report-nav{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.report-nav a{padding:6px 12px;border:1px solid var(--border);border-radius:8px;text-decoration:none}.hot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.hot-card,.merged-report .insight{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:12px;margin:12px 0}.hot-card h3{margin-top:12px}.hot-card footer{border-top:1px solid var(--border);padding-top:12px;font-size:13px;color:var(--sub)}.merged-report blockquote{background:#252a40;color:#dbe0f4}.merged-report table{width:100%;border-collapse:collapse}.merged-report th,.merged-report td{padding:12px;border:1px solid var(--border);text-align:left}.merged-report details{border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:30px}.merged-report summary{cursor:pointer;font-weight:700}.merged-report section,.merged-report h2,.merged-report h3{scroll-margin-top:20px}@media(max-width:760px){.hot-grid{grid-template-columns:1fr}.merged-report{padding:0 14px 25px}}</style>
+</head>
+<body>
+<header>
+  <h1>Tripo 广告素材看板 <span style="color:var(--sub);font-weight:400;font-size:15px;">Tripoai + Tripo 3D · Foreplay 素材 · 每周五 17:00 更新</span></h1>
+  <div class="meta"><b>本期内容核查：2026-09-15 · 部分更新</b> ｜ <a style="color:#b6a7ff" href="#weekly-report">本期周报与热点 ↓</a><br>历史全量数据采集时间：<b id="updated"><!--UPDATED_START-->
+2026-09-07 17:35（北京时间）
+<!--UPDATED_END--></b> ｜ <span id="stats"><!--STATS_START-->
+共 <b>32</b> 组代表性创意（Tripo 3D 30 / Tripoai 2）｜ 近 14 天官方页新增 <b>396</b> 条广告、去重 <b>52</b> 组创意
+<!--STATS_END--></span> ｜ 默认按<b>变体数</b>（素材复用次数）从高到低 ｜ 点视频区域即可播放/暂停；<b>点图片素材或左上角「广告库 ↗」可跳转 Meta 广告库</b>看原始文案与版本数。<br>⚠️ 素材源为 Foreplay 公开直链（分享给他人无需 Foreplay 账号），但可能有时效——视频无法播放时用卡片底部链接看原素材。变体数 = 同一创意在 Meta 被复制投放的广告条数，代表放量程度。</div>
+  <div class="tabs" id="mainTabs">
+    <button data-view="latest" class="on">🆕 周报与热点</button><button data-view="board">📊 素材历史（9/7）</button>
+    <button data-view="analysis">📝 竞对分析</button>
+    <button data-view="ref">🔎 横向参考</button>
+    <button data-view="printer">🖨 打印机厂商</button>
+  </div>
+</header><div class="view on" id="view-latest"><div class="latest-summary merged-report"><h2 id="weekly-report">本期周报 · 素材与热点追踪</h2><span class="status">2026-09-15 · 部分更新</span><p>本周窗口：9/14–9/15；补查：9/8–9/13。已核实 14 条广告，展示 6 条代表素材；全量统计仍截至 9/7。</p><nav class="report-nav"><a href="#hotspots">热点追踪</a><a href="#news">竞品动态</a><a href="#samples">素材样本</a><a href="#audit">核查与限制</a><a href="creative-report-2026-09-15.html">9/15 原始报告</a><a href="creative-report-2026-09-07.html">9/7 历史周报</a></nav><section id="hotspots"><h2>值得我们跟进的热点</h2><p>基于 9/15 已核实来源的选题判断，不是热度榜或投放效果榜。以下均为建议，尚未执行；每周复查后更新为继续跟进、已验证或归档。</p><div class="hot-grid"><article class="hot-card"><span class="status">优先验证 · 待跟进</span><h3>打印：从分件走到实物</h3><p><b>已核实信号：</b>9/9 Meshy 上线 Auto Split API；9/13 Tripo 打印广告样本出现 5 个同素材广告。</p><p><b>为什么值得跟：</b>与 Meshy 的打印用户场景直接相关，可用完整流程证明用途。</p><p><b>建议下一步：</b>准备一套输入图 → 生成 → 分件 → 切片 → 实物的演示；先确认接口权限与可打印性，再制作素材。</p><p><b>追踪指标：</b>记录分件后处理时间、打印成功情况和成品照片；广告复制数不代表效果。</p><footer>下次复查：2026-09-18 · <a href="https://docs.meshy.ai/en/api/changelog" target="_blank" rel="noopener">Meshy 官方更新 ↗</a></footer></article><article class="hot-card"><span class="status">优先验证 · 待跟进</span><h3>日韩：素材与落地页一起本地化</h3><p><b>已核实信号：</b>本期有日语游戏角色视频，以及四条韩语同主题工作流广告，韩语样本指向专属落地页。</p><p><b>为什么值得跟：</b>值得检验的是具体人群与页面承接是否一致。</p><p><b>建议下一步：</b>各做一份日语游戏角色、韩语创作流程的素材提纲与页面草图，请母语同事校对。</p><p><b>追踪指标：</b>先复查广告是否持续在投、是否出现新变体；后续如执行测试，再用自身转化数据判断。</p><footer>下次复查：2026-09-18 · <a href="https://www.facebook.com/ads/library/?id=1946882935981380" target="_blank" rel="noopener">日语广告样本 ↗</a></footer></article><article class="hot-card"><span class="status">小样验证 · 待跟进</span><h3>服装电商：平面照片转 3D 商品</h3><p><b>已核实信号：</b>9/12 起投的三条已核实视频采用服装照片转 3D 的同主题文案。</p><p><b>为什么值得跟：</b>电商商品展示可作为独立场景，但纹理、背面和轮廓还原需要先实测。</p><p><b>建议下一步：</b>选一件有明确细节的服装，记录输入与生成结果；验证质量后再决定是否制作电商演示。</p><p><b>追踪指标：</b>检查纹理与背面是否可用，复查该主题的新素材和在投状态；三条视频不等于三个方向。</p><footer>下次复查：2026-09-18 · <a href="https://www.facebook.com/ads/library/?id=1525795502632037" target="_blank" rel="noopener">服装广告样本 ↗</a></footer></article><article class="hot-card"><span class="status">持续观察 · 待跟进</span><h3>日本教育：讲清创作过程与作者选择</h3><p><b>已核实信号：</b>Tripo 在 9/10、9/14 发布日本高校研究案例，项目仍在进行。</p><p><b>为什么值得跟：</b>适合研究学生与创作者如何使用 AI，而不只展示生成结果。</p><p><b>建议下一步：</b>准备创作者访谈提纲，围绕选择、修改、失败与最终作品；有真实项目后再制作案例。</p><p><b>追踪指标：</b>追踪后续是否出现公开作品、WebAR 或打印成果，未落地计划继续标为计划。</p><footer>下次复查：2026-09-18 · <a href="https://www.tripo3d.ai/blog/from-chj-giga-to-3d-tripo-ai--jissen-womens-university" target="_blank" rel="noopener">Tripo 官方案例 ↗</a></footer></article><article class="hot-card"><span class="status">持续观察 · 待跟进</span><h3>Hi3D：工具横评与日本创作者 PR</h3><p><b>已核实信号：</b>9/8 官方发布六款工具横评；9/12 日本创作者发布明确标注 PR 的体验稿。</p><p><b>为什么值得跟：</b>可观察竞品如何解释差异、选择创作者与承接日本受众。</p><p><b>建议下一步：</b>整理横评维度与 PR 演示顺序，准备相同输入的内部体验记录，结论以实际结果为准。</p><p><b>追踪指标：</b>复查是否新增官方案例或创作者稿；品牌横评和 PR 稿均不视作独立评测。</p><footer>下次复查：2026-09-18 · <a href="https://www.hi3d.ai/zh/blog/best-ai-3d-model-generator" target="_blank" rel="noopener">Hi3D 官方横评 ↗</a></footer></article></div></section><section id="news"><h2>竞品动态与近期素材</h2><h3>本周窗口：9/14–9/15</h3><div class="insight"><b>9/14 · Tripo：继续用日本高校研究扩展教育叙事。</b><p>官方发布实​​践女子大学学生 Ayaka Yamazaki 的角色研究案例，讨论如何把 AI 生成中的意外形态继续发展为角色。项目尚在进行，WebAR 和 3D 打印属于后续计划，不应写成已交付成果。</p><blockquote>“The project is still in progress.”</blockquote><p><a href="https://www.tripo3d.ai/blog/from-chj-giga-to-3d-tripo-ai--jissen-womens-university">官方正文</a> · 日期来自已打开的<a href="https://www.tripo3d.ai/blog">博客列表：“2026/09/14”</a>。</p></div><div class="insight"><b>9/14 · Meshy：图生图 API 可直接承接前序任务。</b><p>官方更新允许使用 input_task_id 串联已完成的文生图或图生图任务，减少复制输出链接的步骤。适合作为工作流演示的选题依据，不能直接当作广告效果证据。</p><blockquote>“now accepts <code>input_task_id</code>”</blockquote><p><a href="https://docs.meshy.ai/en/api/changelog">官方 API 更新记录</a>，原日期：“Sep 14”，所属月份：“September 2026”。</p></div><h3>补查遗漏期：9/8–9/13（不计为本周新发布）</h3><div class="insight"><b>9/8 · Hi3D：官方发布六款 AI 3D 工具横评。</b><p>文章把高细节保留与打印后处理作为自身定位，涵盖 Meshy、Tripo 和 Rodin 等工具。它是品牌自述的视觉比较，不能将其中排名当成独立基准测试。</p><blockquote>“visual comparison rather than a laboratory benchmark”</blockquote><p><a href="https://www.hi3d.ai/zh/blog/best-ai-3d-model-generator">Hi3D 原文</a>，页面日期：“2026年9月8日”，作者：“Hi3D Team”。</p></div><div class="insight"><b>9/12 · Hi3D：日本创作者发布明确标注 PR 的体验稿。</b><p>note 作者混合順说明文章属于 Hi3D 推广，同时讨论使用体验与成本。可确认日本创作者推广仍有新内容；单篇稿件不足以推断渠道规模或投放预算。文中的折扣和兑换码未通过官方活动页交叉核实，本报告不转述为可用优惠。</p><blockquote>“Hi3Dさんのプロモーションとなります。”</blockquote><p><a href="https://note.com/kongo_jun/n/ne4e9b548c1be">note 原文</a>，日期：“2026年9月12日 00:02”。</p></div><div class="insight"><b>9/10 · Tripo：19 Portals 历史建筑项目。</b><p>官方案例介绍从历史图像生成 19 个不同的三维门楼解释，并计划通过 WebAR 展示。官方正文预告 9/26 在东京艺术大学举行的 IEAD 年会上首次公开呈现；这是未来计划，尚未发生。</p><blockquote>“19 Portals remains an ongoing project.”</blockquote><p><a href="https://www.tripo3d.ai/blog/19-portals-no-single-answer-tripo-ai-and-jissen-womens-university-explore-the-creative-space-of-ai-3d">官方正文</a> · <a href="https://www.tripo3d.ai/blog">列表日期：“2026/09/10”</a>。</p></div><div class="insight"><b>9/9–9/11 · Meshy：分件 API 与调用行为更新。</b><p>9/9 新增 Auto Split API，面向模型分件打印；9/11 记录 meshy-6-lite 与 meshy-5 的迁移安排，并调整对执行中任务的删除处理。选题上可以展示“分件后如何进入打印流程”，实际产物仍需独立验证。</p><blockquote>“New Auto Split API” · “409 Conflict”</blockquote><p><a href="https://docs.meshy.ai/en/api/changelog">官方记录</a>，原日期：“Sep 9”“Sep 11”。</p></div><h3 id="samples">近期广告样本：9/11–9/13 起投，9/15 核查</h3><p>来源为 Foreplay Tripo3D 品牌页逐条详情；14 个不同广告 ID 中，13 条显示在投，1 条显示 9/14 结束。以下 6 条按内容方向选择，不按效果排名。“同素材广告”沿用 Creative Duplicates，不能解释成花费、转化或本周新增量。页面运行天数采用包含起投日的展示方式，故此处只列原始日期。</p><div class="samples"><article class="sample"><video controls playsinline preload="metadata" poster="https://r2.foreplay.co/b08c10d2b9bf4f55b7f56ca70fe6ccfe711dce51d24fe8e02fc234ea35f9722a.jpg" aria-label="打印模型：生成到绑骨"><source src="https://r2.foreplay.co/3446fd8433250c88b6f19f652f702da686965e0f618fe68ec5216122f66539b4.mp4" type="video/mp4"></video><div class="copy"><small>起投 2026-09-13 · 同素材广告 5 条</small><h3>打印模型：生成到绑骨</h3><p class="state ">核查时在投</p><p>原文：“Create printable models faster with Tripo AI.”</p><p>画面把输入图、3D 模型与 AutoRigging 放在同一竖屏。文案主打可打印模型；绑骨画面不等于打印效果证明。</p><p><a href="https://www.facebook.com/ads/library/?id=1734316157681596" target="_blank" rel="noopener">Meta 广告库 ↗</a> · <a href="https://app.foreplay.co/discovery/brands/VcPyFobqOqSrd6V4KRQG" target="_blank" rel="noopener">Foreplay 来源 ↗</a></p></div></article><article class="sample"><video controls playsinline preload="metadata" poster="https://r2.foreplay.co/01e1e022ba3f768fd8ab773d1222f7d5ef32660bb5d1f0d160399b452bfaf049.jpg" aria-label="日语 Smart Mesh P2.0"><source src="https://r2.foreplay.co/b3336186302bf93e3752ed6b5d395f1e4c8993f616d4401d8943d01a0d288e33.mp4" type="video/mp4"></video><div class="copy"><small>起投 2026-09-12 · 同素材广告 1 条</small><h3>日语 Smart Mesh P2.0</h3><p class="state ">核查时在投</p><p>原文：“ゲームキャラクターを数秒で作成”</p><p>面向游戏角色制作的日语视频，不能继续沿用旧周报的日语投放判断。样本数量不足以判断整体加码。</p><p><a href="https://www.facebook.com/ads/library/?id=1946882935981380" target="_blank" rel="noopener">Meta 广告库 ↗</a> · <a href="https://app.foreplay.co/discovery/brands/VcPyFobqOqSrd6V4KRQG" target="_blank" rel="noopener">Foreplay 来源 ↗</a></p></div></article><article class="sample"><img loading="lazy" src="https://r2.foreplay.co/6f1eac101f8ed373a615c0760abf060dbd7c851d4ec237fc28de93981645e5de.jpg" alt="MOD / 8K 游戏资产图片"><div class="copy"><small>起投 2026-09-12 · 同素材广告 1 条</small><h3>MOD / 8K 游戏资产图片</h3><p class="state ">核查时在投</p><p>原文：“Create detailed 3D game assets with AI.”</p><p>图片以钩爪、护甲和局部细节展示游戏资产，正文仍围绕 MOD。标题与画面是广告主宣传口径。</p><p><a href="https://www.facebook.com/ads/library/?id=1109974418069094" target="_blank" rel="noopener">Meta 广告库 ↗</a> · <a href="https://app.foreplay.co/discovery/brands/VcPyFobqOqSrd6V4KRQG" target="_blank" rel="noopener">Foreplay 来源 ↗</a></p></div></article><article class="sample"><video controls playsinline preload="metadata" poster="https://r2.foreplay.co/8bc5164608e123753de3bf47ea68b3780fc575327a7c7dcf763cb546e541ad1a.jpg" aria-label="服装照片转电商 3D"><source src="https://r2.foreplay.co/e5b51f8474a308dde7967d1d027798e2f25116e2ce5ebf4ea26ce4806adccaeb.mp4" type="video/mp4"></video><div class="copy"><small>起投 2026-09-12 · 同素材广告 1 条</small><h3>服装照片转电商 3D</h3><p class="state ">核查时在投</p><p>原文：“Turn flat apparel photos into textured 3D models instantly.”</p><p>服装实体表面与网格对照，诉求转向在线商店产品展示。本次另核实两条同文案视频，不能把三条等同于三个新方向。</p><p><a href="https://www.facebook.com/ads/library/?id=1525795502632037" target="_blank" rel="noopener">Meta 广告库 ↗</a> · <a href="https://app.foreplay.co/discovery/brands/VcPyFobqOqSrd6V4KRQG" target="_blank" rel="noopener">Foreplay 来源 ↗</a></p></div></article><article class="sample"><img loading="lazy" src="https://r2.foreplay.co/7c300f9ba2dd2e66c1c4756671d4cd07b2e9cd4e8309345126975ae1f30ffb12.jpg" alt="电影感图片转 3D 环境"><div class="copy"><small>起投 2026-09-12 · 同素材广告 1 条</small><h3>电影感图片转 3D 环境</h3><p class="state ended">已结束：2026-09-14</p><p>原文：“Cinematic Image → 3D Environment”</p><p>Foreplay 详情显示 9/12–9/14，已结束。保留为试投方向样本，不列为在投赢家。</p><p><a href="https://www.facebook.com/ads/library/?id=1411206377010175" target="_blank" rel="noopener">Meta 广告库 ↗</a> · <a href="https://app.foreplay.co/discovery/brands/VcPyFobqOqSrd6V4KRQG" target="_blank" rel="noopener">Foreplay 来源 ↗</a></p></div></article><article class="sample"><img loading="lazy" src="https://r2.foreplay.co/492eee56930f077d184ea8eb1b59745404dea27ba2b85257091872de147ca8a6.png" alt="韩语工作流借势 + 专属落地页"><div class="copy"><small>起投 2026-09-11 · 同素材广告 1 条</small><h3>韩语工作流借势 + 专属落地页</h3><p class="state ">核查时在投</p><p>原文：“GPT-6 Astra 워크플로우를 3D로 확장하세요”</p><p>本次核实到四条同主题韩语广告，均指向 /lp/astra-tripo。不能再把所有新素材的落地页都概括成主页；未检验转化表现。</p><p><a href="https://www.facebook.com/ads/library/?id=1088050553806853" target="_blank" rel="noopener">Meta 广告库 ↗</a> · <a href="https://app.foreplay.co/discovery/brands/VcPyFobqOqSrd6V4KRQG" target="_blank" rel="noopener">Foreplay 来源 ↗</a></p></div></article></div></section><details id="audit"><summary>查看数据覆盖、健康检查与核查台账</summary><h2 id="health">看板健康检查</h2><div class="table-wrap"><table><tr><th>项目</th><th>本次运行前页面原文</th><th>本期处理</th></tr><tr><td>广告全量数据</td><td>“2026-09-07 17:35（北京时间）”<br>“32” 组代表性创意；近 14 天 “396” 条广告、去重 “52” 组</td><td>截至 9/15 已跨 8 个日历日，超过附件 2 天检查阈值。保留历史统计，新增本次样本。</td></tr><tr><td>竞对分析</td><td>“分析周期：2026-08-31 – 09-07”</td><td>旧分析未覆盖本周一 9/14，单独标记为历史版本。</td></tr><tr><td>素材灵感周报</td><td>“第 5 期”；“2026-09-07（周一）”</td><td>本次发布 9/15 试运行版，第 5 期可从历史入口查看。</td></tr></table></div><p>三个栏目均以 9/7 为最新标记，本次证据不足以区分独立故障，也不能把日期过期直接归因于设备休眠或发布失败。旧页面按周一更新；从本任务起改为周五 17:00 计划执行，首个计划日为 9/18。</p><h2 id="missing">未找到清单与覆盖限制</h2><ul><li><b>Foreplay 全量数据：</b>浏览器连续翻页出现超时，未完整回溯 9/8–9/15，无法更新全库总量、分组排名、语言占比与周环比；Tripoai、Suno、ElevenLabs、Bambu、ELEGOO、Creality 本次未重新采集。对应旧栏目继续保留 9/7 日期。</li><li><b>Hi3D 本周 9/14–9/15 的新发版：</b>本次核实的是 9/8 横评与 9/12 PR 文章；PR TIMES、Fabbaloo 的定向搜索未提供本窗口可采用的记录。不能由此推断该品牌没有动态。</li><li><b>Rodin：</b>已打开 <a href="https://docs.hyper3d.ai/en/get-started/changelog">官方 API changelog</a>，当前顶部月份为 “August 2026”，未见本窗口条目。这只描述该页面覆盖。</li><li><b>Hunyuan3D：</b>已打开 <a href="https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1">官方 2.1 仓库</a>，README News 最新显示 “Jul 26, 2025”；不足以代表混元全部产品的更新情况。定向搜索未核实本窗口新版本。</li><li><b>Meshy 7.1：</b>搜索命中媒体报道，但未完成该报道原文及相应官方发布页的核实；<a href="https://docs.meshy.ai/en/webapp/changelog">官方 webapp changelog</a>本次读取最新月份为 “August 2026”。不将搜索摘要里的规格、发布日期写入本期事实。</li><li><b>舆情：</b>已做 EN/JA/ZH 搜索并核实日语 PR 稿；未完成更广泛的社区原帖、每日摘要和所有垂直媒体覆盖，不作“本周没有舆情”结论。</li></ul><h2 id="ledger">核查台账</h2><div class="table-wrap"><table><tr><th>渠道</th><th>尝试与结果</th><th>说明</th></tr><tr><td>Web 搜索</td><td>14 个查询，4 次调用</td><td>品牌、官方更新、日语渠道及中英文行业动态。</td></tr><tr><td>Web 打开 / 补读</td><td>17 次：14 次返回正文，3 次失败</td><td>失败：Hi3D 首页、Hi3D 横评正文、note PR 正文；返回 Internal Error。后两篇经浏览器补查成功。</td></tr><tr><td>浏览器来源读取</td><td>看板、旧周报、Foreplay 品牌页、Hi3D 横评、note PR 均成功</td><td>线上旧版日期、正文与来源按本次实际读取记录。</td></tr><tr><td>Foreplay 详情</td><td>有效批次返回 15 条记录，去重 14 个广告 ID</td><td>另有 1 个批次超时，未返回的中间结果不计有效样本；该批次具体翻页成功数无法追溯。</td></tr></table></div><p>以上为内容采集台账，不包含本地文件检查、预览及发布后的回读。搜索命中不等于正文核实；失败与未覆盖部分均保留，不用历史数字补成本期结果。</p></details></div></div>
+
+
+<div class="view" id="view-board">
+  <div class="controls">
+    <div class="seg" id="fBrand">
+      <button data-v="all" class="on">全部</button>
+      <button data-v="Tripoai">Tripoai</button>
+      <button data-v="Tripo 3D">Tripo 3D</button>
+    </div>
+    <div class="seg" id="fSort">
+      <button data-v="variants" class="on">变体数</button>
+      <button data-v="days">投放天数</button>
+      <button data-v="newest">最新</button>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="note" id="footnote"><!--NOTE_START-->
+数据说明：变体数 = Foreplay 的同创意计数（Meta 端同素材不同投放组合的数量），代表放量程度；投放天数 = 起投日至数据更新日。本次采集覆盖 <b>8/24–9/7</b>（Tripo 3D 官方页 1,300 条 / 130 页回溯至 8/11；近 14 天新增 396 条广告、去重 52 组创意，其中 164 条在投），按变体数收录仍在投的代表性素材。<b>本周的结构性变化：Tripo 8/31 重启投放，本周起投 342 条（上一自然周 54 条），但一周后只剩 164 条在投；9/2 同日上线韩 / 德 / 法三语清单模板；9 组新文案只活 4 组。</b>Tripoai KOL 页自 7/11 起<b>连续 8 周零上新</b>，仍是同 2 条素材在投。
+<!--NOTE_END--></div>
+</div>
+
+<div class="view" id="view-analysis"><div class="article"><div class="callout"><b>历史分析 · 数据截至 2026-09-07</b><p>本次未完成该栏目的全量刷新。下文“本周”均指旧分析周期，不能当作 9/15 的当前结论。<a href="creative-report.html">查看 9/15 已核实的新内容 →</a></p></div></div>
+<div class="article">
+<!--ANALYSIS_START-->
+<p style="color:var(--sub);font-size:13px;">分析周期：2026-08-31 – 09-07（周一 15:30 采集）｜ 数据说明：Tripo 3D 官方页抓取 <b>1,300 条</b>（130 页，回溯至 <b>8/11</b>）、Tripoai 白名单页 <b>500 条</b>（50 页，回溯至 6/24），含文案、起投日、在投状态、变体数、落地页 UTM、版位与语言。对照基准为上一自然周 8/24–8/30（54 条）。<b>注意</b>：本次回溯边界为 8/11，6 月起投的常青素材不在本次数据内，其累计数沿用 8/31 深挖（回溯 5/30）的结果并已标注。</p>
+
+<h2>1. 本周概览</h2>
+<div class="callout"><b>Tripo 在 8/31 重启投放，本周起投 342 条——但一周后只剩 164 条在投（48%）。</b><br>
+上一自然周（8/24–8/30）只有 54 条，本周是它的 <b>6.3 倍</b>；8/31 单日 136 条是近四周单日最高（上期 9/2 补充里提到的 8/31 补录 135 条即这一批，本期按自然周把 8/31 计入本周）。可是逐日看在投率：8/31 起投 136 条剩 68 条在投、<b>9/1 起投 84 条只剩 21 条</b>、9/2 起投 75 条剩 39 条——重启的头三天是大规模铺量 + 快速淘汰，不是稳态投放。9/3 之后回落到每天 8–19 条。（9/6–9/7 的低值受 Foreplay 1–2 天补录延迟影响，不作结论。）</div>
+<p><b>逐日</b>：8/31 共 136 条（68 在投）、9/1 共 84（21）、9/2 共 75（39）、9/3 共 19（18）、9/4 共 19（9）、9/5 共 8（8）、9/6 共 1（1）。<b>9/2 是一次三语本地化批次</b>（韩 / 德 / 法各一组清单素材同日上线，见第 2 节）。</p>
+<p><b>格式与语言</b>：视频 217 / 图片 105 / DCO 19，视频占 63%（上周 73%）。语言：英语 283（83%）、<b>韩语 35（10%）</b>、法语 9、德语 9、日语 5。韩语绝对量从上一自然周的 10 条升到 35 条，占比从 19% 回到 10%；德语从 2 条到 9 条；日语 5 条（1 组），TGS 前两周它在日语侧没有加码。</p>
+<p><b>落地页</b>：主页 studio.tripo3d.ai 326 条（95%）、<b>tripo3d.ai/mod 8 条、tripo3d.ai/discover/3dprinting 6 条</b>、/home 2 条。<b>上周"垂直页彻底停止投入"的判断需要修正</b>：本周两个垂直页合计收到 14 条新广告（MOD 素材 6 条导 /mod，拓扑素材 2 条 + HD Model 新文案 3 条 + 其他导 3dprinting）。规模仍小，但从 0 回到"试投"。</p>
+<p><b>版位</b>：Instagram 342（全覆盖）、Facebook / Messenger / Threads 各 330、Audience Network 272、WhatsApp 5。数据边界（8/11 起）内全页在投 <b>183 条</b>。</p>
+<p><b>Tripoai（KOL 白名单页）：连续第 8 周 0 上新。</b>最新起投日仍是 7/11，500 条历史素材无新增创作者，仍是同 2 条在投（连投 58 / 62 天，见第 5 节）。</p>
+
+<h2>2. 本周起投素材 Top 5（8/31–9/7）</h2>
+<div class="callout"><b>口径</b>：只看分析周期内起投的创意组，按「本周起投且仍在投的广告数」排名；每张卡标注 Foreplay 的<b>同创意累计在投数</b>与该文案在数据里的<b>首见日</b>（回溯边界 8/11，早于边界写 ≤08-12）。此前条数 ≥ 本周条数标「老创意加投」，此前只有零星试投标「此前试投·本周放量」，本周才首见标「本周新文案」。</div>
+<p>本周起投 342 条、50 组创意，其中 <b>9 组是新文案</b>（4 组仍在投，见第 3 节）。<b>前五名全部是老创意加投</b>：#1 是 MOD 常青素材（71 条），#2/#4/#5 是 9/2 同日上线的韩 / 德 / 法三语清单模板，#3 是拓扑线。第 6–10 名：「Build MODs from Photos」8 条 / 8 在投（累计在投 29）、「AI Makes 3D Creation Easy」打印向 19 条 / 7 在投、「Auto-Rig Your 3D Characters」7 / 7、「Smart Mesh for Game Assets」6 / 6、「Simplify 3D Product Creation」6 / 5。</p>
+<div class="callout"><b>更正上期一处判断</b>：上期把「Auto-Rig Your 3D Characters」标为"本周才成组的新创意"（依据是同创意计数只有 2）。本次回溯到 8/11 后发现该文案 <b>8/14 已首见、8/24 前已有 8 条</b>，应为"此前试投·8/24 起放量"。同创意计数低不等于文案新——首见日才是判断依据，已写入口径。</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">1</span><span class="t5t">「Make Game Mods in Minutes」— 重启一周，它一条老素材铺了 71 条</span><span class="tag live-tag">在投 36 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 71 条</span><span class="tag">同创意累计在投 37</span><span class="tag">首见 ≤08-12</span><span class="tag">老创意加投</span><span class="tag">→ 主页</span></div>
+  <p>本周起投 <b>71 条、36 条在投</b>，8/31–9/5 六天连续追加，占本周全部起投的 21%。文案与主视觉是那条 6 月起投、累计 300+ 条广告的 MOD 常青素材，数据边界（8/11）内此前已有 188 条；同创意累计在投 37。<b>本周 71 条里有 6 条导 <span class="tag">tripo3d.ai/mod</span></b>——上周复投时全部改指主页，本周又给垂直页补了一点量。</p><p><b>含义</b>：Tripo 拿到约 30 亿融资后的第一周，预算仍压在验证最久的 MOD 素材上，且开始"半恢复"/mod 垂直页。<b>对我们</b>：MOD 位正面硬撞仍不划算；但它 36/71 的在投率说明这批新广告一半已被系统淘汰，铺量不等于有效。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=860053277073613" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=860053277073613" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/97a5f5262de2cfce4e457b5d3fe34eaf1f00b5573739532968892cc489f203fd.jpg" loading="lazy" alt=""></a></div><figcaption><b>本周起投 #1</b>·本周起投 71 条·在投 36 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">2</span><span class="t5t">韩语 ✓ 清单长视频（29s）— 9/2 本地化批次里放量最多的一条</span><span class="tag live-tag">在投 10 条</span><span class="tag">视频 29s</span><span class="tag">韩语</span><span class="tag">09-02 起 · 本周 14 条</span><span class="tag">同创意累计在投 3</span><span class="tag">首见 08-20</span><span class="tag">老创意加投</span><span class="tag">→ 主页</span></div>
+  <p>9/2 单日起投 <b>14 条、10 条在投</b>，同创意累计在投 3，8/20 首见（此前 16 条）。文案是韩语版功能清单：<b>「✓ Smart Mesh로 최적화된 3D 구조 생성 / ✓ High Detail Model로 정교한 디테일 구현 / ✓ 8K Texture로 사실적인 소재 표현 / ✓ Segment V2로 더욱 유연한 모델 편집」</b>。同日还起投了德语（#4）、法语（#5）同结构的清单素材。</p><p><b>含义</b>：9/2 是一次三语本地化批次（韩 / 德 / 法），韩语放量最多。本周韩语 35 条、占 10%（上一自然周 10 条 / 19%，绝对量翻了 3 倍）。<b>Meshy 的韩语落地页与原创文案仍是空位</b>——Tripo 这条清单素材的四个功能点，Meshy 7 都能一一对位。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1094252523125099" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/a208397bb81c450d4e6017847ca86083fd01811c0b6bd985a93aec6cb7610762.mp4" poster="https://r2.foreplay.co/b23f70c38e5a5860e33c40df0f68262de35964abb6242afdb51db93f30bbc2cf.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>本周起投 #2</b>·本周起投 14 条·在投 10 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">3</span><span class="t5t">「Clean Topology Automatically」— 拓扑线连续第二周复投，2 条导打印垂直页</span><span class="tag live-tag">在投 9 条</span><span class="tag">视频 20s</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 12 条</span><span class="tag">同创意累计在投 24</span><span class="tag">首见 ≤08-12</span><span class="tag">老创意加投</span><span class="tag">→ 主页</span></div>
+  <p>本周起投 <b>12 条、9 条在投</b>（8/31–9/2），同创意累计在投 24，此前 38 条。文案与 7 月起投的拓扑老素材一字不差，视频是 8/31 起换用的新文件。<b>12 条里 2 条导 <span class="tag">tripo3d.ai/discover/3dprinting</span></b>——拓扑叙事第一次被投向打印人群。</p><p><b>含义</b>：Tripo 把"干净拓扑"从游戏人群扩到打印人群试水。Meshy 面向打印玩家的素材可以直接接这个话题：拓扑干净 → 可打印性 → 不用修复。<b>本周必须有一条把 Meshy 7 几何对齐讲给打印人群的素材。</b></p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1844855306868293" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/c2931ecead910c4553010cc8d8f0ac495f6f0381c2a0a6aef53a57010bf51da0.mp4" poster="https://r2.foreplay.co/bb045b1384ea61bc8d630cb5fccbaae088eafa62047dfc97826440f3b2e8b949.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>本周起投 #3</b>·本周起投 12 条·在投 9 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">4</span><span class="t5t">德语「Dein KI-Partner für 3D-Design」— 9/2 批次的德语清单图</span><span class="tag live-tag">在投 9 条</span><span class="tag">图片</span><span class="tag">德语</span><span class="tag">09-02 起 · 本周 9 条</span><span class="tag">同创意累计在投 2</span><span class="tag">首见 08-20</span><span class="tag">老创意加投</span><span class="tag">→ 主页</span></div>
+  <p>9/2 单日起投 <b>9 条、全部在投</b>，同创意累计在投 2，8/20 首见（此前 12 条）。文案：<b>「Dein neuer KI-Assistent für 3D-Erstellung… Nutze KI als kreativen Partner: ✓ Text zu 3D-Modell ✓ Bild zu 3D-Modell ✓ Schnelle Ideenvi…」</b>把工具定位成"创意搭档"。本周德语共 9 条，全部是这一组。</p><p><b>含义</b>：德语是 Tripo 上周为 0、本周一次性补 9 条的语种，说明 9/2 批次是按语种成套上的。<b>对我们</b>：欧洲三语（德 / 法 / 西）用同一套清单骨架翻译即可上线，成本极低。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=2180081462941895" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=2180081462941895" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/7dbf8f004f2221d3b47eac08a365ca15e04355aecc3e39da0b8a8c951fc99936.png" loading="lazy" alt=""></a></div><figcaption><b>本周起投 #4</b>·本周起投 9 条·在投 9 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">5</span><span class="t5t">法语「Créez des modèles 3D avec l’IA」（39s）— 同批次法语视频</span><span class="tag live-tag">在投 8 条</span><span class="tag">视频 39s</span><span class="tag">法语</span><span class="tag">09-02 起 · 本周 9 条</span><span class="tag">同创意累计在投 3</span><span class="tag">首见 08-20</span><span class="tag">老创意加投</span><span class="tag">→ 主页</span></div>
+  <p>9/2 单日起投 <b>9 条、8 条在投</b>，同创意累计在投 3，8/20 首见（此前 19 条）。39 秒是本周 Top 5 里最长的素材，文案结构与韩语 #2 完全对应（「Grâce à des technologies avancées : ✓ 🧩 Smart…」）。本周法语共 9 条，也全部是这一组。</p><p><b>含义</b>：韩 / 德 / 法三条是同一套模板的三个语言版，同日上线、同一落地页（主页，无本地化落地页）。<b>Meshy 若做本地化落地页，这是它没做的一环</b>，比翻译文案更能拉开差距。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1589361972642917" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/54444d91a3efaf8bcca3bfab3bb936e70182013bb9ba63a8605a0ab9dd2a3c3d.mp4" poster="https://r2.foreplay.co/a67021a918f8f5a79234d8a566565d1071782b36ee52a81688e4b77d71fb37f3.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>本周起投 #5</b>·本周起投 9 条·在投 8 条</figcaption></figure></div>
+</div>
+
+<div class="callout" style="margin-top:14px"><b>基线对照：常青素材（不参与本周排名）</b><br>
+本次抓取回溯至 8/11，看不到 6 月起投的老广告，因此常青基线沿用 <b>8/31 深挖（回溯 5/30）</b>的结果：「3D printing just got a lot easier」（孩子的画→打印玩具，6/01 起，当时累计在投 61 / 12 条广告）、「Make Game Mods in Minutes」（6/01 起，累计 301 条广告，本周又铺 71 条即上表 #1）、「Build MODs from Photos」（6/01 起，累计 194 条，本周 8 条）。在本次 8/11 以来的数据里，累计在投最高的仍是 MOD（37）、Build MODs（29）、「Generate with Tripo AI」（27，9/5 仅新起 2 条）、拓扑（24）、「Ultra Detailed 3D AI」（23，本周 7 条）。</div>
+
+<h2>3. 新文案趋势：9 组新文案，活过一周的只有 4 组</h2>
+<div class="callout"><b>本周 9 组新文案里 5 组已停投</b>——9/2 批次的「Unlock Ultra-Realistic Textures」（8K 贴图，6 条）、「Advanced Image-to-3D AI」（6 条）、「Make Products Stand Out in 3D」（电商，5 条）、「Build Modular 3D Characters」（4 条），以及 8/31 的一条 Smart Mesh 变体（1 条），全部在一周内下线。<b>存活的 4 组都是 9/3 之后起投、每组 3 条</b>：两组讲 HD Model（英语导打印页、韩语导主页）、一组亲子教育、一组 Smart Mesh 变体。</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">1</span><span class="t5t">「Help your child develop spatial thinking」— 第一次把亲子教育写进文案（17s）</span><span class="tag live-tag">在投 3 条</span><span class="tag">视频 17s</span><span class="tag">英语</span><span class="tag">09-03 起</span><span class="tag">3 条广告</span><span class="tag">→ 主页</span></div>
+  <p>9/3 起投 3 条、全部在投。<b>「Just upload an image to build a fun 3D model. Help your child develop spatial thinking and artistic skills through hands-on creation!」</b>——不是"孩子的画变玩具"（那条老素材讲的是打印），而是直接讲<b>儿童空间思维与艺术能力</b>。</p><p><b>含义</b>：新人群探针（家长 / 教育）。量极小，但方向明确。Meshy 若接这个位，措辞要避开"AI 替孩子画"，落在"孩子的画变成能拿在手里的东西"。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1067832199058998" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/08be4097257de16e7a7cea36a0373710c0e12435bf5c850def4c4c385a522bc1.mp4" poster="https://r2.foreplay.co/ee215b40334f2efb41f3ae2196b5a208b76bd022a096c28380ebd8de5dbc0c30.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>新文案 #1</b>·09-03 起投·在投 3 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">2</span><span class="t5t">「See Every Detail in 3D.」HD Model → /discover/3dprinting（图片）</span><span class="tag live-tag">在投 3 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">09-03 起</span><span class="tag">3 条广告</span><span class="tag">→ tripo3d.ai/discover/3dprinting</span></div>
+  <p>9/3 起投 3 条、全部在投，<b>落地页是打印垂直页</b>。「HD Model preserves intricate details and realistic textures in your 3D creations.」把 HD Model 的卖点讲给打印人群。</p><p><b>含义</b>：本周打印垂直页共收到 6 条新广告（上周 0），加上拓扑素材导打印页的 2 条——<b>打印人群在 Tripo 那里从"停投"回到"试投"</b>。这是 Meshy 打印线最直接的对手动作。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1455699689730273" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1455699689730273" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/9fc4e506ea570c47c050d65dfe46a53773f536772cad0afcb6c0faaabf619e48.jpg" loading="lazy" alt=""></a></div><figcaption><b>新文案 #2</b>·09-03 起投·在投 3 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">3</span><span class="t5t">韩语「고정밀 3D 모델, AI로 완성」— HD Model 的韩语版（图片）</span><span class="tag live-tag">在投 3 条</span><span class="tag">图片</span><span class="tag">韩语</span><span class="tag">09-05 起</span><span class="tag">3 条广告</span><span class="tag">→ 主页</span></div>
+  <p>9/5 起投 3 条、全部在投。「Tripo AI의 HD Model로 더욱 정밀하고 디테일한 3D 모델을 만들어보세요.」本周最新的一批新文案，是把 HD Model 单独拎出来做韩语素材。</p><p><b>含义</b>：韩语不只翻译清单，还在单独出功能点素材——韩国市场是它本地化最深的市场，这个判断连续三期成立。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=934690673024060" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=934690673024060" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/b90ed9e17af78549d06924aeede8d845353b5df2885f3886bad8bb901ea9b1c4.png" loading="lazy" alt=""></a></div><figcaption><b>新文案 #3</b>·09-05 起投·在投 3 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">4</span><span class="t5t">「Smart Mesh for Game Assets」新文案变体（18s）</span><span class="tag live-tag">在投 3 条</span><span class="tag">视频 18s</span><span class="tag">英语</span><span class="tag">09-03 起</span><span class="tag">3 条广告</span><span class="tag">→ 主页</span></div>
+  <p>9/3 起投 3 条、全部在投。标题沿用老标题，正文换成「Smart Mesh turns your ideas into detailed 3D game characters in seconds…」，视频文件是新的。</p><p><b>含义</b>：Smart Mesh 线在做"老标题 + 新正文 + 新视频"的 A/B。本周 9 组新文案里有 5 组已停投（9/2 批次的 8K 贴图、Advanced Image-to-3D、电商产品、模块化角色，以及 8/31 的一条 Smart Mesh 变体），<b>只有这 4 组活过了一周</b>。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1578634560372986" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/f5923cefcfdf272f026f4b5c10e6e3f4e6093736f33aa94806c2917927568dc4.mp4" poster="https://r2.foreplay.co/0dcd255539bc167569df856e61ed3a2b7f3b215def4c99f51cdfabad52ed1ed8.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>新文案 #4</b>·09-03 起投·在投 3 条</figcaption></figure></div>
+</div>
+
+<p><b>解读</b>：重启后 Tripo 的新文案试的是<b>功能点单独成片</b>（HD Model、8K 贴图、模块化拆件、Auto-Rig）和<b>两个新人群</b>（电商产品、亲子教育）。功能点里只有 HD Model 活下来且做了韩语版；人群里电商 9/2 上 5 条已停、亲子 9/3 上 3 条仍在投。</p>
+
+<h2>4. 促销与转化链路变化</h2>
+<p><b>本周 342 条里只有 1 条带折扣</b>：韩语「🎊 최대 75% 할인 진행 중」（最高 75% 折扣，9/2 起投、在投、导主页）。英语新素材连续第二周折扣归零。老促销素材「Last Call: Up to 80% OFF」（8/03 起投）在数据边界内还有 7 条在投，<b>已挂 35 天</b>，本周没有新增。</p>
+<p><b>垂直落地页从"停投"回到"试投"</b>：/mod 8 条、/discover/3dprinting 6 条（上周 0 / 0）。方式是把老素材（MOD、拓扑）和新文案（HD Model）各分几条导过去，没有专门为垂直页做的新创意。</p>
+<p><b>UTM 归因出现新的坏法</b>：本周 342 条里 <b>188 条（55%）</b>的 utm_campaign 仍是未渲染的 Meta 宏 <span class="tag">{{campaign.name}}</span>；另有 <b>87 条（25%）</b>的链接是 <span class="tag">utm_campaign={{campaign.name}}utm_id={{ad.id}}</span>——两个参数之间漏了 <code>&amp;</code>，宏被拼进了同一个值；42 条完全没有 campaign 参数；只有 14 条带纯数字 ID、8 条写了 <span class="tag">mod</span>、3 条带可读名。<b>可用归因不到 8%，连续第五期。</b></p>
+
+<h2>5. KOL 白名单动向</h2>
+<p><b>Tripoai 页连续第 8 周 0 上新</b>，最新起投日仍是 7/11，500 条历史素材（回溯至 6/24）无新增创作者。仍是同 2 条在投：</p>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">1</span><span class="t5t">日语 taka_company：美杜莎手办全流程（连投 58 天）</span><span class="tag live-tag">在投 1 条</span><span class="tag">视频 50s</span><span class="tag">07-11 起 · 58 天</span><span class="tag">日语</span></div>
+  <p>50 秒日语视频，连投 <b>58 天</b>。文案原文：<b>「理想のキャラを3D立体化✨」</b>——AI 生图导入 Tripo 完成手办，点名<b>「面倒なパーツ分割や断面の穴埋めも」</b>由工具处理。</p><p><b>值得注意</b>：官方页本周日语只有 5 条（1 组「ゲーム装備をリアルに」），KOL 侧这条仍是 Tripo 全库最主要的日语素材。TGS 前两周，Tripo 在日语侧没有新动作。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=28363806069886790" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/6f901d26f5595a10051253cc68bc96010b9e7daf2e09e77b11c1175bf03b6653.mp4" poster="https://r2.foreplay.co/35b133c71767937f0bad352a49ccbc18d9e281fd33f7c39c3dbaa91050cd68cb.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>KOL #1</b>·连投 58 天</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">2</span><span class="t5t">韩语 sweebk：Freddy 迷你玩具上色（连投 62 天）</span><span class="tag live-tag">在投 1 条</span><span class="tag">视频 58s</span><span class="tag">07-07 起 · 62 天</span><span class="tag">韩语</span></div>
+  <p>58 秒韩语视频，连投 <b>62 天</b>，Tripoai 白名单页最久的在投素材。带邀请码机制：通过 SWEEBK 主页链接注册可得 500 积分。</p><p><b>值得注意</b>：官方页本周韩语 35 条 + KOL 侧最久在投素材是韩语——韩国仍是 Tripo 投入最深的非英语市场。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=27430793769906764" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/b0a43557b7dbd5ac2a8451e12ae5d2c03dc33878465864641f537a9b5ce0ce8e.mp4" poster="https://r2.foreplay.co/db9867618aaf5e556b4951af69d8c73569111d3860c5236122cb9152ea087495.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>KOL #2</b>·连投 62 天</figcaption></figure></div>
+</div>
+
+<h2>6. 对 Meshy 的可执行启示</h2>
+<p style="color:var(--sub);font-size:12.5px;">本节外部事实均来自 9/7 情报底稿（逐页核实并附链接）；核实不到的一律不写。</p>
+<ol>
+<li><b>Tripo 拿到约 30 亿融资并已重启投放，"趁停投抢量"的窗口只有一周、已经关闭。</b>已核实：投资界 9/1《VAST宣布完成B轮和B+轮融资，合计约30亿人民币》。它重启第一周把 71 条压在 MOD 老素材上、新文案 9 组只活 4 组——<b>它的预算多、但方向没变</b>。Meshy 的对策是错位而不是对轰：打印链路、多色分件、亲子、日语市场四个位它本周都只是试投或没投。</li>
+<li><b>把 Meshy 7 几何对齐讲给打印人群，本周上线。</b>Tripo 本周第一次把拓扑素材导向 /discover/3dprinting（2 条）并用 HD Model 新文案试打印页（3 条）。<b>它在打印人群还只是试投，我们有一周左右先手</b>。形式：生成 → 直接进切片器 → 切片成功 → 打印实拍，演出"没有修复这一步"。</li>
+<li><b>三语清单模板一周内上线。</b>Tripo 9/2 用同一套 ✓ 清单骨架同日上了韩 / 德 / 法三版（各 9–14 条），但落地页全部是英文主页。<b>Meshy 做同样的三语清单 + 本地化落地页</b>，落地页是它没做的一环。韩语优先——Tripo 韩语本周 35 条、KOL 侧最久在投素材也是韩语，连续三期如此。</li>
+<li><b>TGS 首展前先补日语 webapp 更新履历。</b>已核实：Meshy 日语版 webapp changelog 最新条目为「2026年7月」，没有 8/12 发布的 Meshy 7；而 PR TIMES 9/7 官方稿已宣布 <i>「東京ゲームショウ2026」のビジネスデイに、初めてブースを出展</i>，AI Watch 同日报道了 Meshy 7。日语媒体在讲 Meshy 7、自家日语文档还停在 7 月，这是零成本能补的缺口。</li>
+<li><b>绑骨 + 动作库做成一条素材。</b>Tripo「Auto-Rig Your 3D Characters」连续两周在投（本周 7 条），Meshy 9/4 API changelog 已上线 Animation Library（<i>"fetch every preset action the Animation API accepts… Free; consumes no credits"</i>）。生成 → 绑骨 → 预设动作，一镜到底。</li>
+<li><b>亲子教育是新空位。</b>Tripo 9/3 用「Help your child develop spatial thinking and artistic skills」试了 3 条且仍在投。这个位与打印玩家的"孩子的画变玩具"常青素材相通，Meshy 可以用"孩子的画 → 拿在手里的实物"接，措辞避开"AI 替孩子画"（日本 LEON 事件后，"用谁的图"是敏感点）。</li>
+<li><b>UTM 检查写进上线 checklist。</b>Tripo 本周 80% 的新广告 campaign 归因不可用，还出现漏写 <code>&amp;</code> 把两个宏拼在一起的新错误。零创意成本的效率差，连续五期。</li>
+<li><b>不要再用"最近两天为 0"下停投结论。</b>上期采集当天 8/30–8/31 显示为 0，两天后补录出 8/31 135 条。本期 9/6–9/7 的低值同样只写"截至采集时"。</li>
+</ol>
+<p class="src">数据源：Foreplay Discovery（Tripo 3D + Tripoai 品牌页），采集于 2026-09-07 15:30 CST。Tripo 3D 1,300 条 / 130 页（回溯至 8/11；常青基线沿用 8/31 深挖数据）；Tripoai 500 条 / 50 页（回溯至 6/24）。"同创意累计在投 N"为该创意组本周 live 广告中 Foreplay same-creative 计数的最大值；"在投"以接口 live 字段为准；创意组按文案前 90 字符 + 标题前 40 字符归并。分析每周更新。</p>
+<!--ANALYSIS_END-->
+</div>
+</div>
+
+<div class="view" id="view-ref"><div class="article"><div class="callout"><b>历史分析 · 数据截至 2026-09-07</b><p>本次未完成该栏目的全量刷新。下文“本周”均指旧分析周期，不能当作 9/15 的当前结论。<a href="creative-report.html">查看 9/15 已核实的新内容 →</a></p></div></div>
+<div class="article">
+<!--REF_START-->
+<p style="color:var(--sub);font-size:13px;">横向参考 ｜ 口径：每家只看<b>分析周期（8/31–9/7）内起投</b>的创意组，按「本周起投且仍在投的广告数」取 Top 10，只看"好在哪里"和"Meshy 可以学什么"。每张卡标注 Foreplay 的<b>同创意累计在投数</b>、该文案在数据里的<b>首见日</b>，以及「老创意加投 / 此前试投·本周放量 / 本周新文案」。数据采集 2026-09-07 15:30。</p>
+<div class="seg" id="refBrand">
+  <button data-v="suno" class="on">Suno</button>
+  <button data-v="eleven">ElevenLabs</button>
+</div>
+<div class="refgroup on" id="ref-suno">
+<p class="refmeta">AI 音乐生成 ｜ 本周（8/31–9/7）起投 <b>208 条</b>、<b>192 条在投</b>，归并为 <b>67 组</b>创意，其中 30 组是本周新文案（多为 1–3 条的小组；回溯边界 7/19，2,200 条 / 220 页）｜ 上周窗口 480 条（含 8/31），<b>发版第二周量能减半</b> ｜ 格式：视频 116 / 图片 65 / DCO 27 ｜ 语言：英 165、<b>韩 21</b>、西 11、法 5、德 3 ｜ 落地页（按本周起投数）：<b>/go/paid 114</b>、<b>/ko 26</b>、/go/studio 25、主站 20、/home 6、Google Play 6、/fr 3、App Store 3 ｜ 注：另有 27 条<b>无文案的 DCO 广告</b>（全部导韩语专页 /ko，26 条在投）不参与创意排名</p>
+<div class="callout"><b>本周 Suno：发版第二周，留在投的是 UGC 不是公告。</b>Studio 2.0 官方公告（#8）本周只补 4 条，UGC「Tired of my messy cables」（#4）每天都在加；Pro 清单视频（#2）连续第二周每天补新广告；13 秒「$8/month」短视频（#1）9/3 单日起 21 条。韩语是它本周投入最深的非英语市场：21 条韩语文案 + 27 条 DCO 全部导 /ko，9/5 又上了新文案「Suno Pro 시작하기」。</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">1</span><span class="t5t">「Try Suno Today」13s — Pro 清单 + $8/month，本周唯一放量的新变体</span><span class="tag live-tag">在投 18 条</span><span class="tag">视频 13s</span><span class="tag">英语</span><span class="tag">09-03 起 · 本周 21 条</span><span class="tag">同创意累计在投 58</span><span class="tag">首见 07-20</span><span class="tag">老创意加投</span><span class="tag">→ 主页</span></div>
+  <p>9/3 单日起投 <b>21 条、18 条在投</b>，同创意累计在投 58，7/20 首见（此前 26 条）。13 秒里压了 Pro 参数清单与<b>「$8/month」</b>明码标价，落地页导主站。这版清单写的是「Most advanced model」（不带版本号），与 #6 带「v5.5」的版本并行在投，两版 7/20 起就都存在。</p><p><b>Meshy 可以学什么</b>：价格直接写进 13 秒短视频仍是它最省力的放量变体；带版本号与不带版本号两版并行，让系统分配。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1621182663051161" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/897fb0587875424684325105abf9fee0f6d9a05d950e8c93434de67121605ecb.mp4" poster="https://r2.foreplay.co/eeb5590491b8ab56be8564fa93be77fda8d83c883d373a40e068d790eb365b1f.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Suno 本周 #1</b>·本周起投 21 条·在投 18 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">2</span><span class="t5t">Pro Plan ✅ 清单视频（21s）— 连续第二周每天补新广告</span><span class="tag live-tag">在投 17 条</span><span class="tag">视频 21s</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 25 条</span><span class="tag">同创意累计在投 85</span><span class="tag">首见 ≤07-20</span><span class="tag">老创意加投</span><span class="tag">→ /go/paid</span></div>
+  <p>本周起投 <b>25 条、17 条在投</b>，8/31–9/5 六天每天都有新广告；同创意累计在投 85，该文案组在数据里累计 248 条广告（组内最高同创意在投 116）。落地页 <span class="tag">/go/paid</span>。</p><p><b>Meshy 可以学什么</b>：同一条清单骨架每天补几条新广告，是 Suno 保持学习期与新鲜度的固定做法，已连续两周观察到。Meshy 的付费清单素材照做即可，不必等"新一版"。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1397033031752765" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/6448c9fd7d8160b43a376f2e362b6fd7694fd631a7aa949f3b0a253b0276934b.mp4" poster="https://r2.foreplay.co/5c1d1bdad5dcedfced42ef8e6cb023bae49608d30f9d87a69c47a0cab8fddbb4.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Suno 本周 #2</b>·本周起投 25 条·在投 17 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">3</span><span class="t5t">「Write the words, pick a style, and hear your song」— 三步动词流程图（图片）</span><span class="tag live-tag">在投 15 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 15 条</span><span class="tag">同创意累计在投 35</span><span class="tag">首见 08-01</span><span class="tag">老创意加投</span><span class="tag">→ /go/paid</span></div>
+  <p>本周起投 <b>15 条、全部在投</b>（8/31、9/1），同创意累计在投 35，8/01 首见（此前 31 条）。把流程压成三步：写词 → 选风格 → 听到成曲，强调「sung the way you wrote them」。落地页 /go/paid。</p><p><b>Meshy 可以学什么</b>：用三步动词讲流程而不是列功能——「传一张图 → 选风格 → 拿到可导出模型」。只改文案。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=2998865330472690" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=2998865330472690" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/8d8b4efdde4ddc7e20c2a4e87da385077a204ec75f1165d2040499f45e49691d.jpg" loading="lazy" alt=""></a></div><figcaption><b>Suno 本周 #3</b>·本周起投 15 条·在投 15 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">4</span><span class="t5t">UGC「Tired of my messy cables」— Studio 2.0 发布后第二周仍在每天加投（55s）</span><span class="tag live-tag">在投 14 条</span><span class="tag">视频 55s</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 15 条</span><span class="tag">同创意累计在投 53</span><span class="tag">首见 08-16</span><span class="tag">老创意加投</span><span class="tag">→ /go/studio</span></div>
+  <p>本周起投 <b>15 条、14 条在投</b>，8/31–9/5 每天都在追加；同创意累计在投 53，8/16 首见（此前 38 条）。创作者口吻一句话：<b>「Tired of my messy cables and wanted to try something new with @sunomusic Studio 2.0 #suno」</b>，落地页 <span class="tag">/go/studio</span>。</p><p><b>Meshy 可以学什么</b>：发版后的第二周，Suno 留在投的不是官方公告（#8，本周只补 4 条）而是 <b>UGC 体验视频</b>。Meshy 7 / TGS 节点后，把创作者视角的素材留作长跑位。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1577646780437189" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/fc579674a016c93d197850743e627dcab2c95e37f0d1a7cb5c9bfc79437fcb85.mp4" poster="https://r2.foreplay.co/a2927f25fdef251a7351656855ac4e7c73373e54d934a6f87a404467c155f3d3.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Suno 本周 #4</b>·本周起投 15 条·在投 14 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">5</span><span class="t5t">「The right track probably doesn't exist yet」— 反"素材库找不到"痛点（图片）</span><span class="tag live-tag">在投 8 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 8 条</span><span class="tag">同创意累计在投 25</span><span class="tag">首见 08-01</span><span class="tag">老创意加投</span><span class="tag">→ /go/paid</span></div>
+  <p>本周起投 <b>8 条、全部在投</b>（8/31、9/1、9/3），同创意累计在投 25，8/01 首见（此前 24 条）。文案：「The right track probably doesn't exist yet. Make it with Suno… No more scrolling for something that almost works.」落地页 /go/paid。</p><p><b>Meshy 可以学什么</b>：换名词即可用：「你要的那个模型大概还不存在。别再翻资产商店找差一点的了。」</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1518590666975314" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1518590666975314" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/187da56becaa527065830887f244a42df006eb4e6f75996b65dd5cd71ad3a542.jpg" loading="lazy" alt=""></a></div><figcaption><b>Suno 本周 #5</b>·本周起投 8 条·在投 8 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">6</span><span class="t5t">「The perfect sound for your content」13s — 此前只试投 2 条，本周放量</span><span class="tag live-tag">在投 6 条</span><span class="tag">视频 13s</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 8 条</span><span class="tag">同创意累计在投 65</span><span class="tag">首见 07-20</span><span class="tag">此前试投·本周放量</span><span class="tag">→ /go/paid</span></div>
+  <p>本周起投 <b>8 条、6 条在投</b>（9/1、9/3），同创意累计在投 65，7/20 首见但<b>此前只有 2 条</b>。标题复用内容创作者向的钩子，正文是 Pro 清单 + 「Most advanced v5.5 model」+「$8/month」——与 #1 同为 13 秒 Pro 清单短视频，一条用通用 CTA 标题、一条用人群钩子标题。</p><p><b>Meshy 可以学什么</b>：同一套 13 秒清单结构配两种标题（通用 CTA / 人群钩子）并行投，让系统分配。Meshy 现有视频剪短版就能做同样的 A/B。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1411017544294287" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/b6bbb923fcca0110caa8ed69cb4668055b8d1dec30f59bca879206db094e56e9.mp4" poster="https://r2.foreplay.co/1fc631e6ab03554929fddd6e8f52d1be975acd314583cac9f12df34a440a5420.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Suno 本周 #6</b>·本周起投 8 条·在投 6 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">7</span><span class="t5t">「Make Music That Matches Your Content」— 同一视频换配乐的对比演示（46s）</span><span class="tag live-tag">在投 5 条</span><span class="tag">视频 46s</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 5 条</span><span class="tag">同创意累计在投 29</span><span class="tag">首见 07-20</span><span class="tag">老创意加投</span><span class="tag">→ /go/paid</span></div>
+  <p>本周起投 <b>5 条、全部在投</b>（9/1、9/3），同创意累计在投 29，此前 22 条。「See how the right song completely changes the feel of a video… Try the same experiment yourself」。落地页 /go/paid。</p><p><b>Meshy 可以学什么</b>：同源多结果对比——同一张概念图出三种风格的模型并排，一句"你自己试试"。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1974929999878230" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/37ad721c886b0537502d3bd0306bc3b8b907f82e3275dd5609acc5d3a5b7c7fe.mp4" poster="https://r2.foreplay.co/db45ba52183fef3427bc77f0ba851dfc9074f2ed75952776d5fbc7643352929b.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Suno 本周 #7</b>·本周起投 5 条·在投 5 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">8</span><span class="t5t">「Studio 2.0 is live.」— 官方发版公告进入维持期（43s）</span><span class="tag live-tag">在投 4 条</span><span class="tag">视频 43s</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 4 条</span><span class="tag">同创意累计在投 39</span><span class="tag">首见 08-13</span><span class="tag">老创意加投</span><span class="tag">→ /go/studio</span></div>
+  <p>本周起投 <b>4 条、全部在投</b>（9/1），同创意累计在投 39，8/13 首见（上周 8/28 单日起投 33 条）。「Own every note, knob and detail in our powerful browser-based DAW. 🎛️」落地页 /go/studio。</p><p><b>Meshy 可以学什么</b>：发版公告的生命周期约一周——上线日爆量，第二周只补几条维持；接力的是 UGC（#4）。TGS 相关素材可以照这个节奏排：展前公告爆量 → 展后 UGC 长跑。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1738880017381659" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/30b769bb38acd42df9ea753221e5b440217ca007ca118243ea27af54e4430ac1.mp4" poster="https://r2.foreplay.co/d7217aa4c3bd3bf624f5a52c7882d69f98e1188aab57b3073dfbdd9cfc80682c.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>Suno 本周 #8</b>·本周起投 4 条·在投 4 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">9</span><span class="t5t">西语 Pro 清单图 → /home（老创意，本周 4 条）</span><span class="tag live-tag">在投 4 条</span><span class="tag">图片</span><span class="tag">西语</span><span class="tag">08-31 起 · 本周 4 条</span><span class="tag">同创意累计在投 27</span><span class="tag">首见 07-20</span><span class="tag">老创意加投</span><span class="tag">→ /home</span></div>
+  <p>本周起投 <b>4 条、全部在投</b>（8/31、9/3），同创意累计在投 27，此前 36 条。#2 的西语直译版，落地页 /home。本周 Suno 西语 11 条、韩语 21 条（另有 27 条无文案 DCO 导韩语专页 /ko）、法语 5、德语 3。</p><p><b>Meshy 可以学什么</b>：核心清单素材的多语版长期挂着补量即可。Suno 本周还给韩语上了新文案「Suno Pro 시작하기」（9/5，3 条，导 /ko）——韩语专页 + 原创文案的组合它一直在维护。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1608779834312387" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1608779834312387" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/9b335f5093d8151e6f00d642662031973d560271b96cf9cf7fb81914dde55e59.png" loading="lazy" alt=""></a></div><figcaption><b>Suno 本周 #9</b>·本周起投 4 条·在投 4 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">10</span><span class="t5t">「The Perfect Sound for Your Content」✅ 清单图 — 累计在投 168 的常青位，本周 3 条导德语页</span><span class="tag live-tag">在投 3 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">09-02 起 · 本周 3 条</span><span class="tag">同创意累计在投 168</span><span class="tag">首见 07-24</span><span class="tag">老创意加投</span><span class="tag">→ /de</span></div>
+  <p>本周起投 <b>3 条、全部在投</b>（9/2、9/3、9/5），同创意累计在投 <b>168</b>（全库最高），7/24 首见（此前 11 条）。<b>本周这 3 条落地页是 <span class="tag">suno.com/de</span></b>——英文文案配德语落地页。</p><p><b>Meshy 可以学什么</b>：常青素材靠存量跑，每周只补 2–3 条；新补的这几条在测德语落地页。<b>另一条新文案值得记</b>：「Extract Stems with Suno」（9/3，3 条）把单一功能"分轨"做成独立素材——Meshy 的单功能素材（分件 / 绑骨 / 重拓扑）可以照此各出一条。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1385413863100774" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1385413863100774" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/4c3d4181a2fe3be89a5049e3b569feaa34a56e0d46e8ac141b3dfc1fee921aa4.png" loading="lazy" alt=""></a></div><figcaption><b>Suno 本周 #10</b>·本周起投 3 条·在投 3 条</figcaption></figure></div>
+</div>
+<div class="callout" style="margin-top:14px"><b>基线对照：Suno 全库累计在投最高的常青素材（不参与本周排名）</b><br>「The Perfect Sound for Your Content」✅ 清单图（同创意累计在投 168，本周 3 条即上表 #10，改导德语页）、Pro 参数清单组（组内最高同创意在投 116，数据内累计 248 条广告，即上表 #2）、「Your Music, Your Vibe」（116，本周 2 条）、「A Tool for Every Creative Moment」（113，本周 2 条）、「Make Music with Suno」（84，本周 1 条）、「Meet Suno v5.5」（82，本周 0 条）。常青位靠存量跑，新预算在 Pro 清单日更、Studio 2.0 UGC 与韩语。</div>
+</div>
+<div class="refgroup" id="ref-eleven">
+<p class="refmeta">AI 语音 / 开发者 API → 创作者工具 ｜ 本周（8/31–9/7）起投 <b>118 条</b>、<b>118 条在投</b>，归并为 <b>50 组</b>创意，其中 18 组是本周新文案（回溯边界 7/23，2,194 条 / 220 页）｜ 上周窗口 328 条，<b>本周量能降至约三分之一</b> ｜ 格式：图片 44 / DCO 37 / 视频 35 ｜ 语言：<b>英语 116（98%）</b>、法 1、葡 1 ｜ 落地页（按本周起投数）：<b>/agents 35</b>、<b>join/campaign/usopen 10</b>（美网借势活动页）、/creative 10、join/api/developer-api 6、/video/seedance-2-5 6、reception.ai/home-services 6、/api 4；<b>docs 文档页本周只有 3 条</b> ｜ 带折扣 6 条（全部是 Seedance 33% off）｜ 注：另有 39 条<b>无文案的 DCO</b>（全部导葡语页 /pt，39 条在投）不参与创意排名</p>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">1</span><span class="t5t">「33% off all Seedance 2.5 generations」— 限时折扣清单连续第二周居首，但从 25 条降到 6 条</span><span class="tag live-tag">在投 6 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 6 条</span><span class="tag">同创意累计在投 30</span><span class="tag">首见 08-18</span><span class="tag">老创意加投</span><span class="tag">→ /video/seedance-2-5</span></div>
+  <p>本周起投 <b>6 条、全部在投</b>（8/31、9/1、9/4），同创意累计在投 30，此前 71 条。文案不变：<b>「Get 33% off all Seedance 2.5 generations. Limited time offer.」</b>+ 四行 ✅ 清单；本周落地页从 A/B 页 /ab/seedance-offer 换成产品页 <span class="tag">/video/seedance-2-5</span>。上周它起投 25 条，本周 6 条——<b>ElevenLabs 整体从上周 328 条降到 118 条</b>。</p><p><b>Meshy 可以学什么</b>：限时折扣素材第二周就收量、换到正式产品页，说明"limited time"它是真的限时。Meshy 若做首单折扣，也按两周一个周期排，不要挂成常青。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1077610081351475" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1077610081351475" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/5a33f9b8bd6e886f4ea5c8928a25320b406da06ea5e636a817971c604f360cc9.jpg" loading="lazy" alt=""></a></div><figcaption><b>ElevenLabs 本周 #1</b>·本周起投 6 条·在投 6 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">2</span><span class="t5t">「Create the film you've always dreamed about」→ /creative（37s）</span><span class="tag live-tag">在投 5 条</span><span class="tag">视频 37s</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 5 条</span><span class="tag">同创意累计在投 16</span><span class="tag">首见 08-20</span><span class="tag">老创意加投</span><span class="tag">→ /creative</span></div>
+  <p>本周起投 <b>5 条、全部在投</b>（8/31–9/3 四天），同创意累计在投 16，此前 16 条。#1 的非折扣版：同一套 ✅ 清单，开头换成梦想句。落地页 <span class="tag">/creative</span>。</p><p><b>Meshy 可以学什么</b>：折扣版收量后，梦想版继续每天补——两版轮替而不是同时砸。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=27979320735070800" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/eff68dadf0262268b030bdb998474a1d51e18e8a168c7a791d518c960d280ca6.mp4" poster="https://r2.foreplay.co/389df4ab508b57e492a5e208aa5d0f4d811c3f622b7e2fe2722813f543c73ddd.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>ElevenLabs 本周 #2</b>·本周起投 5 条·在投 5 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">3</span><span class="t5t">US Open 借势：「Your CX team just got a doubles partner」— 本周唯一放量的新文案</span><span class="tag live-tag">在投 5 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">09-03 起 · 本周 5 条</span><span class="tag">同创意累计在投 2</span><span class="tag">首见 09-03</span><span class="tag">本周新文案</span><span class="tag">→ join.elevenlabs.io/campaign/usopen</span></div>
+  <p>9/3 起投 <b>5 条、全部在投</b>，此前 0 条，同创意累计在投 2。文案全用网球隐喻：<b>「Every great point starts with a great return. Your customers reach out, your AI agent responds in real time, on voice and chat. Rally after rally, consistent quality.」</b>落地页是专属活动页 <span class="tag">join.elevenlabs.io/campaign/usopen</span>（本周共 10 条导这里）。</p><p><b>Meshy 可以学什么</b>：<b>借体育赛事写 B 端素材</b>——隐喻贯穿全文 + 专属活动落地页。TGS 就是 Meshy 的对应节点：「Meshy 7 と 3D Agent、幕張で」+ 专属页，不要导通用主页。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=4767970273435389" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=4767970273435389" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/12d1aeac6842578de3bfff029838942d0b7989161b169adb5b802533a7367522.jpg" loading="lazy" alt=""></a></div><figcaption><b>ElevenLabs 本周 #3</b>·本周起投 5 条·在投 5 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">4</span><span class="t5t">「Deploy AI Agents in Minutes」— 从模板开始（30s）</span><span class="tag live-tag">在投 3 条</span><span class="tag">视频 30s</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 3 条</span><span class="tag">同创意累计在投 27</span><span class="tag">首见 08-17</span><span class="tag">老创意加投</span><span class="tag">→ /agents</span></div>
+  <p>本周起投 <b>3 条、全部在投</b>（9/1、9/5），同创意累计在投 27，此前 13 条。<b>「Skip the blank page. Start from a pre-built, pre-tested voice or chat agent and deploy today.」</b>落地页 <span class="tag">/agents</span>（本周 35 条导这里，仍是最大落地页）。</p><p><b>Meshy 可以学什么</b>：「Skip the blank page」是对"空白画布焦虑"的直接回应。Meshy 版：从一个预设角色 / 场景模板开始改，而不是从零生成。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1624045672843202" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/8a2ab97357f6d1f12d40e54311bb976e66e15ad16170803851f853daa87b134e.mp4" poster="https://r2.foreplay.co/b9200e7d716e09e2836bbef6036f31ae632505823dc71a24b4f54dac33c85e10.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>ElevenLabs 本周 #4</b>·本周起投 3 条·在投 3 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">5</span><span class="t5t">「Build audio AI at F1 speed」— 企业可靠性叙事（图片）</span><span class="tag live-tag">在投 3 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 3 条</span><span class="tag">同创意累计在投 21</span><span class="tag">首见 08-08</span><span class="tag">老创意加投</span><span class="tag">→ /api</span></div>
+  <p>本周起投 <b>3 条、全部在投</b>（9/1、9/2），同创意累计在投 21，此前 41 条。「When audio workflows are business-critical, reliability matters.」落地页 <span class="tag">/api</span>。</p><p><b>Meshy 可以学什么</b>：B 端讲可靠性（合规、可用性、一致性），不讲功能。「批量 1,000 个资产风格一致」比「生成很快」更像 B 端语言。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1760101651694686" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1760101651694686" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/3141b19fca87a040ce06dadea4ea2f60ac5c70b0c455b72b91681769774959ed.png" loading="lazy" alt=""></a></div><figcaption><b>ElevenLabs 本周 #5</b>·本周起投 3 条·在投 3 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">6</span><span class="t5t">「Give Your Code a Voice」— 一句话 API 素材（图片）</span><span class="tag live-tag">在投 3 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">08-31 起 · 本周 3 条</span><span class="tag">同创意累计在投 19</span><span class="tag">首见 07-31</span><span class="tag">老创意加投</span><span class="tag">→ join.elevenlabs.io/api/developer-api</span></div>
+  <p>本周起投 <b>3 条、全部在投</b>（8/31、9/2），同创意累计在投 19，此前 7 条。<b>「Convert text to lifelike speech with a single API call. 32 languages, low latency, built for production.」</b>落地页 <span class="tag">join.elevenlabs.io/api/developer-api</span>。</p><p><b>Meshy 可以学什么</b>：开发者素材的公式：一个动词 + 一个数字 + 一个"production"。Meshy API 版：「一次调用拿到可导入引擎的 GLB。N 种格式，低延迟，为生产环境而建。」</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=2559797771203017" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=2559797771203017" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/59c21d2e9d290cdbbfab5bacde7d851b745c232cceace8f129caa20c3cae4cc5.jpg" loading="lazy" alt=""></a></div><figcaption><b>ElevenLabs 本周 #6</b>·本周起投 3 条·在投 3 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">7</span><span class="t5t">「Start Every Call Ahead」— 售前场景（59s）</span><span class="tag live-tag">在投 3 条</span><span class="tag">视频 59s</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 3 条</span><span class="tag">同创意累计在投 14</span><span class="tag">首见 07-28</span><span class="tag">老创意加投</span><span class="tag">→ /agents</span></div>
+  <p>本周起投 <b>3 条、全部在投</b>（9/1、9/4），同创意累计在投 14，此前 6 条。「What if your team never had to start a call cold again? AI voice agents qualify leads, capture context, and prepare your team before they even pick up.」落地页 /agents。</p><p><b>Meshy 可以学什么</b>：同一产品（Agents）本周至少四条不同场景（客服 / 售前 / 模板 / 定价），每条一个场景一句话。Meshy 可以按人群拆：打印玩家 / indie 开发者 / 电商卖家各一条。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=994720686912440" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/8f66434e1cf6a6c5520cabfae9f4b5840e788ffc618a8cc8f36e6d490f9d62d4.mp4" poster="https://r2.foreplay.co/e88e45af9fd466a77cfeb92067121f33bbde151c2819a2496e7d42fdc391c12d.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>ElevenLabs 本周 #7</b>·本周起投 3 条·在投 3 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">8</span><span class="t5t">App 安装：「Create everything in one place — voice, music, video & image」（58s）</span><span class="tag live-tag">在投 3 条</span><span class="tag">视频 58s</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 3 条</span><span class="tag">同创意累计在投 13</span><span class="tag">首见 07-27</span><span class="tag">老创意加投</span><span class="tag">→ App Store（应用安装）</span></div>
+  <p>本周起投 <b>3 条、全部在投</b>（9/1、9/4），同创意累计在投 13，此前 48 条，落地页 App Store。上周它 17 条，本周 3 条——应用安装线也在收量。</p><p><b>Meshy 可以学什么</b>：与 Meshy 关系不大；记录它"创作者一站式编辑器"的定位仍在，但预算在收。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=2302607870549609" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/5a1ea09a007fe2876d71e3589f8eaefaf23323cb8acb03d020f2ea8f61e4d1f2.mp4" poster="https://r2.foreplay.co/a5b7d0046984d84760b2507f1fa3fc0ff0d5dc5b1de92a5851c849edb424fe96.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>ElevenLabs 本周 #8</b>·本周起投 3 条·在投 3 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">9</span><span class="t5t">「Developer-First Audio AI」→ docs（图片）— 文档页素材仍只零星补量</span><span class="tag live-tag">在投 2 条</span><span class="tag">图片</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 2 条</span><span class="tag">同创意累计在投 46</span><span class="tag">首见 08-20</span><span class="tag">老创意加投</span><span class="tag">→ /docs/overview/intro</span></div>
+  <p>本周起投 <b>2 条、全部在投</b>（9/1、9/2），同创意累计在投 <b>46</b>（本周前十里最高），此前 5 条。「Clean APIs, low latency, and enterprise reliability… for developers who want control—not complexity.」落地页 <span class="tag">/docs/overview/intro</span>。</p><p><b>Meshy 可以学什么</b>：docs 直投素材连续第二周处于维持期（本周 docs 落地页仅 3 条）。做开发者素材参考它的形式，但别指望它是增量。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=4636941559858972" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=4636941559858972" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/9c5f93c7eb9b5882d8096090cc5a5cff15d10b21cd9914148cd64512767efd4d.jpg" loading="lazy" alt=""></a></div><figcaption><b>ElevenLabs 本周 #9</b>·本周起投 2 条·在投 2 条</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">10</span><span class="t5t">「Add Voice to Your App」— 6 秒极短视频，导 /api</span><span class="tag live-tag">在投 2 条</span><span class="tag">视频 6s</span><span class="tag">英语</span><span class="tag">09-01 起 · 本周 2 条</span><span class="tag">同创意累计在投 22</span><span class="tag">首见 08-02</span><span class="tag">老创意加投</span><span class="tag">→ /api</span></div>
+  <p>本周起投 <b>2 条、全部在投</b>（9/1），同创意累计在投 22，此前 17 条。全片 6 秒。<b>本周另两条 2 条新文案值得记</b>：「$0.08/min, no hidden fees」（/agents，明码标价的图片）、「Claim Your Copy Now」（9/2 新文案，企业语音指南下载页，2 条）。</p><p><b>Meshy 可以学什么</b>：6 秒版继续测极短完播；<b>把单价写进标题</b>（$0.08/min）是它本周新试的定价素材——Meshy 的按次 / 按积分价格同样可以直接做标题。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1782482802772434" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/2c8f3776aff3ebc03dbba96abf09a80fcc36644e8167ec6c078c7477b3075244.mp4" poster="https://r2.foreplay.co/119aac620208758290c9cdeab977f15033b14a35f1cd99598687beedb2c9cdf0.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>ElevenLabs 本周 #10</b>·本周起投 2 条·在投 2 条</figcaption></figure></div>
+</div>
+<div class="callout" style="margin-top:14px"><b>基线对照：ElevenLabs 全库累计在投最高的常青素材（不参与本周排名）</b><br>仍是那批 docs 文档页素材：「Voice, Text, and Agents — Unified」「Programmatic Music Creation」「Unbelievably Fast STT」（同创意累计在投 47）、「Developer-First Audio AI」（46，本周 2 条即上表 #9）、「One API. Endless Audio Use Cases.」（44，本周 1 条）、「Build Smarter AI Agents」（44，本周 0 条）。<b>本周 docs 落地页总共只有 3 条新广告</b>，连续第二周确认：文档页素材靠存量、新预算去了 Agents 场景、美网活动页、/creative 与 Seedance。</div>
+</div>
+<!--REF_END-->
+</div>
+</div>
+
+<div class="view" id="view-printer"><div class="article"><div class="callout"><b>历史分析 · 数据截至 2026-09-07</b><p>本次未完成该栏目的全量刷新。下文“本周”均指旧分析周期，不能当作 9/15 的当前结论。<a href="creative-report.html">查看 9/15 已核实的新内容 →</a></p></div></div>
+<div class="article">
+<!--PRINTER_START-->
+<p style="color:var(--sub);font-size:13px;">打印机厂商 ｜ Bambu Lab ＋ ELEGOO ＋ Creality <b>三家混合排行榜</b>，按<b>在投广告数</b>（创意组内 live 广告的同创意计数最大值）从高到低取 Top 15。它们不是 Meshy 的直接竞品，但面对同一批 3D 打印人群，素材语言最值得抄。数据采集 2026-09-07。<b>本周前三仍是 Creality SPARKX i8 众筹，图片版一周新增 207 条。</b></p>
+<div class="callout"><b>三家打法差异，一眼看懂</b><br>
+<b>Creality</b>（本次 45 页只回溯到 <b>8/27</b>，即近 12 天起投 <b>≥450 条</b>、367 条在投；本周起投 361 条、297 在投）：格式图片 199 / 视频 132 / DCO 27，纯英语。<b>331 条导 crowdfundingfdm.creality.com</b>——i8 众筹仍是唯一重心；另有 7 条导「Creality Creator Awards 2026」博客、4 条导 Pika AI 扫描仪预售、2 条劳动节闪购。IFA 2026 发布的 K3 <b>本周只作为奖品出现</b>——「Creator Awards 2026」活动广告写「Create for a chance to win the new Creality K3…」（9 条，8/29–9/1 起投，已全部停投），没有 K3 产品投放。<br>
+<b>Bambu Lab</b>（448 条 / 152 在投，7/13–9/5）：本周起投 <b>64 条</b>（上周 29 条，翻倍），62 条在投；格式视频 32 / 图片 19 / 轮播 11。新动作：<b>17 条导 PLA 耗材页</b>（pla-pure）、A2L 新机型 UGC（86s）、X2D 家居捆绑折扣（9/3）；语言英 312 / 法 39 / 德 34 / 荷 20，分站投放（美 / 欧 / 法 / 西）。<br>
+<b>ELEGOO</b>（本次抓到 436 条，回溯 7/23；<b>全库仅 25 条在投</b>）：8/24–8/30 一周起投 <b>78 条</b>（Centauri Carbon 2 Combo + Saturn 4 Ultra，英 / 德 / 法三语分站），<b>本周只有 5 条且全部已停</b>——campaign 制：打一周、停一周。<span style="color:var(--sub)">注：上期只抓到 94 条、最新起投 7/24，本次 436 条——差异可能来自 Foreplay 补录或上期抓取提前终止，本期以本次数据为准，上期"连续三周冻结"的判断需按本次数据修正为"7/23–8/30 间断投放"。</span><br>
+→ 三家：<b>一家用一个众筹页吃掉全部预算、一家开始卖耗材和新机型、一家打一周停一周</b>。</div>
+<div class="callout"><b>本周厂商侧行业动态（8/31–9/7，来自 9/7 情报底稿，每条已逐页核实）</b><br>
+<b>Creality</b>：IFA 2026（PR Newswire，September 6, 2026）发布 <b>K3</b>——<i>"Powered by the built-in KliTek™ multi-channel system, it enables nozzle swaps in just 4.8 seconds"</i>、<i>"The system cuts total print time by up to 80%* and material waste by up to 85%*"</i>；同场 SPARKX i8、Ender-3 V3 Mega、HALOT-X1 Max、Pika 便携扫描仪。价格与上市日未给；活动页 <i>"Coming Q3 2026"</i>。<br>
+<b>Prusa</b>：9/1 <b>PrusaSlicer 3.0 首个公开预览版</b>（<i>"It's the biggest upgrade in PrusaSlicer's history"</i>、<i>"Plugins run in a sandbox by default"</i>）；<b>INDX 零售开卖 14 个 SKU</b>（All3DP：<i>"a color change is a docking move, not a purge"</i>，Core One+ Gen 2 四头整机 <i>"$1,999"</i>）。<br>
+<b>Bambu Lab</b>：R1 激光雕刻机 9 月未如期发布，官方仅 <i>"Coming September"</i>；论坛用户 9/4：<i>"That last 1% is reserved for it being a dumpsterfire first and foremost."</i><br>
+→ <b>对 Meshy 的含义</b>：多色 / 多材料从"多色打印"升级到"换喷嘴 / 换工具头"，模型供给方顺势接"多材质多部件"的内容需求；K3 只作为活动奖品出现、尚无产品投放，Creality 预算仍在 i8 众筹——打印人群的竞价环境本周比上周更贵。<br>
+<span style="color:var(--sub);font-size:12.5px;"><b>本周未找到</b>：ELEGOO / Anycubic 窗口内官方动态 ｜ Bambu R1 价格、规格、发布日 ｜ Bambu 窗口内固件 ｜ MakerWorld 积分改版公告日期 ｜ Thingiverse 窗口内规则变化。<br>
+来源：<a href="https://www.prnewswire.com/news-releases/creality-unveils-k3-sparkx-i8-and-expanded-creative-ecosystem-at-ifa-2026-302870785.html" target="_blank" rel="noopener">PR Newswire · Creality IFA</a> ｜ <a href="https://www.creality.com/campaigns/creality-nozzle-changing-3d-printer-2026" target="_blank" rel="noopener">Creality K3 活动页</a> ｜ <a href="https://blog.prusa3d.com/prusaslicer-3-0-preview-built-for-the-future-of-3d-printing_137672/" target="_blank" rel="noopener">Prusa 博客</a> ｜ <a href="https://all3dp.com/4/prusa-launches-indx-with-14-different-skus-each-one-explained/" target="_blank" rel="noopener">All3DP · INDX</a> ｜ <a href="https://forum.bambulab.com/t/bambu-lab-r1-a-new-ray-of-making-coming-september/258057?page=8" target="_blank" rel="noopener">Bambu 论坛 · R1</a></span></div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">1</span><span class="t5t">SPARKX i8 众筹片：「🗑️ Tired of wasting filament and money」— 全库在投第一，连续第二周</span><span class="brand creality">Creality</span><span class="tag live-tag">在投 65 条</span><span class="tag">视频 28s</span><span class="tag">08-27 起 · 11 天</span><span class="tag">→ crowdfundingfdm.creality.com</span></div>
+  <p><b>好在哪里</b>：开场垃圾桶 emoji + 痛点，再给方案（「Powered by QuarTeks™, engineered for maximum filament efficiency」）。8/27 起投，组内 91 条广告、85 条在投，本周又加 82 条。</p><p><b>Meshy 可以学什么</b>：先量化用户在浪费什么（料、钱、小时），再说省掉什么。Meshy 版：「你在重做拓扑上浪费了多少小时」。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1681662286268554" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/83a29e6e4d599d0bf5dca79c0462cec4c9c057a8edefc552a2deea47585435a6.mp4" poster="https://r2.foreplay.co/8a7c2fcaf144871a5038a1dda3d5e207b49439c6be06691f8454d66f65591742.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#1</b>·在投 65 条·08-27 起·91 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">2</span><span class="t5t">i8 众筹图片版：252 条广告、216 条在投，全库最大铺量组</span><span class="brand creality">Creality</span><span class="tag live-tag">在投 52 条</span><span class="tag">图片</span><span class="tag">08-27 起 · 11 天</span><span class="tag">→ crowdfundingfdm.creality.com</span></div>
+  <p><b>好在哪里</b>：与 #1 同一活动、同一卖点的图片版，<b>本周新增 207 条</b>——视频说服、图片铺量，打同一个众筹页。本次抓取 45 页只回溯到 8/27，Creality 近 12 天起投 ≥450 条，331 条导众筹页。</p><p><b>Meshy 可以学什么</b>：一个主推点必须同时有视频版和图片版；铺量靠图片版复制，不靠新创意。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1052419447553698" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1052419447553698" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/2d39e3182daa17080312dc7acea86ef81be033c486e97b7527c7f9a8f8f0a3ae.jpg" loading="lazy" alt=""></a></div><figcaption><b>#2</b>·在投 52 条·08-27 起·252 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">3</span><span class="t5t">i8 第三版：「Tired of slow multi-color 3D prints that compromise on quality?」</span><span class="brand creality">Creality</span><span class="tag live-tag">在投 38 条</span><span class="tag">图片</span><span class="tag">08-27 起 · 11 天</span><span class="tag">→ crowdfundingfdm.creality.com</span></div>
+  <p><b>好在哪里</b>：同一产品第三个痛点入口（浪费 / 慢 / 质量妥协），落点同一页。本周加 15 条。</p><p><b>Meshy 可以学什么</b>：轮换痛点不轮换卖点。Meshy 准备三个开头：拓扑要返工 / 尺寸不准 / 进引擎报错，落点同一个能力。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1085020040948376" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1085020040948376" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/2a7b71a318814ad8cfd9b6ea95372fe1307154df720acacfd93ae1ad6bbd9609.jpg" loading="lazy" alt=""></a></div><figcaption><b>#3</b>·在投 38 条·08-27 起·20 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">4</span><span class="t5t">Creality UGC：「Top 3D Printed Stuff that are oddly satisfying」（143s）→ K2 Pro 英国站</span><span class="brand creality">Creality</span><span class="tag live-tag">在投 28 条</span><span class="tag">视频 143s</span><span class="tag">09-03 起 · 4 天</span><span class="tag">→ store.creality.com/uk/products/k2-pro-combo-3d</span></div>
+  <p><b>好在哪里</b>：9/3 起投，同创意计数 28 但只有 1 条广告——是达人原帖被授权投放（「Link in bio @creality3d」）。143 秒长视频，内容是"打出来很治愈的东西"合集，机器只是背景。</p><p><b>Meshy 可以学什么</b>：授权达人原帖直接投（白名单），内容是"做出来的东西"而不是工具。Tripo 的 Tripoai 白名单页已连续 8 周 0 上新，这个位现在没人竞争。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1469089978659418" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/6a2282f1022fab3ff63950f9b51f7be9372cfa983348e0bb9f0216a75a716ed6.mp4" poster="https://r2.foreplay.co/a261e70516fc619993a8dee64c819734bebd10a468eca1aab4cbc0d61d45d9c9.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#4</b>·在投 28 条·09-03 起·1 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">5</span><span class="t5t">Bambu 周年庆「Last Chance - Ends Soon」— 7/13 起投的倒计时图仍有 1 条在投</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 22 条</span><span class="tag">图片</span><span class="tag">07-13 起 · 56 天</span><span class="tag">→ uk.store.bambulab.com/pages/anniversary-sale</span></div>
+  <p><b>值得注意</b>：「⏰ Final hours — Starting from £139. Our 4th Anniversary Sale ends soon.」组内 16 条（7/13 起），一条 7/14 起投的至今仍在投（同创意计数 22），已挂 55 天。</p><p><b>Meshy 可以学什么</b>：反面教材——"最后几小时"挂 55 天，和 Tripo 的「Last Call」挂 35 天是同一个病。Meshy 的倒计时素材必须真的到点下线。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=27629203530051456" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=27629203530051456" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/f668af51a3e4246d4c7dee19c02479ddf00ca63488f23c72a52602a951557183.jpg" loading="lazy" alt=""></a></div><figcaption><b>#5</b>·在投 22 条·07-13 起·16 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">6</span><span class="t5t">ELEGOO 法语 Saturn 4 Ultra 16K（56s）— ELEGOO 在投里最高的一条</span><span class="brand elegoo">ELEGOO</span><span class="tag live-tag">在投 14 条</span><span class="tag">视频 56s</span><span class="tag">07-28 起 · 41 天</span><span class="tag">→ fr.elegoo.com/products/saturn-4-ultra-16k</span></div>
+  <p><b>好在哪里</b>：法语文案配法语站 fr.elegoo.com，「imprimez jusqu'à 150 mm/h」给一个具体速度数字。7/28 起投，组内 17 条、2 条在投。</p><p><b>Meshy 可以学什么</b>：语言与落地页一致 + 一个具体数字。ELEGOO 本期数据见下方「ELEGOO 回来了，但只活了一周」。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=975428098835787" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/27590571c16a04c4f8381a1acfb7e0d607df31b3ee77e13ea31ca2c6ddb04255.mp4" poster="https://r2.foreplay.co/c0078960201d38923ae7e66852a5e278e0123be119e615812a96190e2ffe7ab0.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#6</b>·在投 14 条·07-28 起·17 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">7</span><span class="t5t">ELEGOO「🛠️ Upgrade to 4-Color CoreXY—Zero Hassle 🛠️」→ Centauri Carbon 2 Combo 英国站</span><span class="brand elegoo">ELEGOO</span><span class="tag live-tag">在投 12 条</span><span class="tag">图片</span><span class="tag">07-28 起 · 41 天</span><span class="tag">→ uk.elegoo.com/products/centauri-carbon-2-combo</span></div>
+  <p><b>好在哪里</b>：卖点写成参数串：「4-color CANVAS printing, 350 °C nozzle, 45 dB silent CoreXY—auto calibrates while you chill」。分站投放（uk / eu / us 三个落地页各有在投）。</p><p><b>Meshy 可以学什么</b>：一句话塞四个可核对参数 + 一个情绪词（while you chill）。Meshy 版：面数 / 格式 / 秒数 / 商用授权 + 一句放松的话。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1808443790521246" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1808443790521246" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/ed7e81cf0a4e48a8d82a1776c34d01bb22e5828fc9346a7feb192425d6c3f3ba.png" loading="lazy" alt=""></a></div><figcaption><b>#7</b>·在投 12 条·07-28 起·20 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">8</span><span class="t5t">Bambu X2D：「Stop struggling with messy supports!」（连投 21 天）</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 11 条</span><span class="tag">图片</span><span class="tag">08-17 起 · 21 天</span><span class="tag">→ eu.store.bambulab.com/products/x2d</span></div>
+  <p><b>好在哪里</b>：祈使句锁定一个具体手工痛苦（拆支撑），落地页直接是欧洲站 X2D 产品页，10 条全部在投。</p><p><b>Meshy 可以学什么</b>：「Stop ×× 」句式 + 一个具体动作。Tripo 已在用「Stop fixing messy AI topology」，我们换一个它没占的：「Stop re-UVing every asset」。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1796770737982853" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=1796770737982853" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/a01a8fc6e599f98b9bfd2befb8748c294f79bcebd02a192ab6db9dd9caff3eb4.png" loading="lazy" alt=""></a></div><figcaption><b>#8</b>·在投 11 条·08-17 起·10 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">9</span><span class="t5t">Bambu X2D UGC：「that one awkward corner you stare at for months」（27s）</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 10 条</span><span class="tag">视频 27s</span><span class="tag">08-24 起 · 14 天</span><span class="tag">→ us.store.bambulab.com/products/x2d</span></div>
+  <p><b>好在哪里</b>：8/24 起投、10 条全部在投。达人从"家里那个尴尬角落"讲起，「Instead of dropping a ridiculous amount of money on custom furniture」——打印机是解决家居问题的手段。</p><p><b>Meshy 可以学什么</b>：从一个具体生活困扰开场，产品在第二句才出现。Meshy 的家居 / 装饰向素材可以照这个结构。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1518626056969456" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/65137bfa08c7d347dd9f0633c6331093c27b20e47c077da6db05b6091cea9c4a.mp4" poster="https://r2.foreplay.co/a8759385116a1dfca812ac46a369d7e3cbfa1b52b3b5fd4e8714dac01febfebc.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#9</b>·在投 10 条·08-24 起·10 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">10</span><span class="t5t">Bambu X2D：「print anything you imagine 🤯」（18s）</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 9 条</span><span class="tag">视频 18s</span><span class="tag">08-16 起 · 22 天</span><span class="tag">→ us.store.bambulab.com/products/x2d</span></div>
+  <p><b>好在哪里</b>：情绪词 + emoji 的惊叹路线，9 条全部在投、连投 22 天。同一产品在美 / 欧 / 法三站分别投。</p><p><b>Meshy 可以学什么</b>：分站投放——同一素材配不同地区落地页。Meshy 与 Tripo 的小语种素材都还导英文主页。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1054766544062681" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/aa02dafc6e5d7d5b8c17991cd4ba71b03dba8d85602dc573f955f757f55d0103.mp4" poster="https://r2.foreplay.co/dc4b7eb1d7cbda94fa869904f6cd2e2da5b3020032022e5840211ada84763243.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#10</b>·在投 9 条·08-16 起·9 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">11</span><span class="t5t">Bambu A1：Bloodhound 爪子（40s，连投 48 天）</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 9 条</span><span class="tag">视频 40s</span><span class="tag">07-21 起 · 48 天</span><span class="tag">→ store.bambulab.com/products/a1</span></div>
+  <p><b>好在哪里</b>：做一个有名字的东西（Bloodhound 爪子），AMS 多色作为手段被自然带出。9 条全部在投。</p><p><b>Meshy 可以学什么</b>：素材里的产出物要有名字。"一个角色"不如"这只 Bloodhound 的爪子"。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1589860792710836" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/489aa0394081502f2fc46847bb013ad2e3ab3e2b32d56a230667ed4488fb9255.mp4" poster="https://r2.foreplay.co/6eee5d2e517f9d94b65db7e8d37c7039b22bf3cac14b90c5eb4455de3d9fbaa9.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#11</b>·在投 9 条·07-21 起·9 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">12</span><span class="t5t">Bambu X2D UGC：给信封做印章的 froggy（20s）</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 8 条</span><span class="tag">视频 20s</span><span class="tag">08-25 起 · 13 天</span><span class="tag">→ eu.store.bambulab.com/products/x2d</span></div>
+  <p><b>好在哪里</b>：「I've been obsessed with my 3D printer, so I thought I would try to make a stamp to personalize my envelopes」——一个极小的日常用途，8 条全部在投。</p><p><b>Meshy 可以学什么</b>：小用途比大承诺可信。Meshy 可以做"给信封做个印章 / 给钥匙做个牌"这种微型用例。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1964700994377698" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/e92584364e0b5b30c21d19257fd172d7e8ef32ad36baad7cac67bc8b1e25e86d.mp4" poster="https://r2.foreplay.co/b872bb23ce10e07086088a88ee06a47840bcca83f4ed8ac1051d6921ea2845f4.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#12</b>·在投 8 条·08-25 起·8 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">13</span><span class="t5t">Bambu X2D：「Now with Home decor Bundle Discount」（9/3 新上，图片）</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 8 条</span><span class="tag">图片</span><span class="tag">09-03 起 · 4 天</span><span class="tag">→ us.store.bambulab.com/products/x2d</span></div>
+  <p><b>好在哪里</b>：本周新素材，把 X2D 与家居装饰捆绑打折：「The secret to a curated home? Exclusive 3D printed pieces!」6 条全部在投。Bambu 本周起投 64 条（上周 29 条），其中 17 条导 <span class="tag">pla-pure</span> 耗材页。</p><p><b>Meshy 可以学什么</b>：新品期用"场景捆绑"而不是裸折扣。Meshy 的付费素材可以按人群捆绑（打印玩家包 / 游戏开发者包）。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=2565817723857022" target="_blank" rel="noopener">广告库 ↗</a><a class="medialink" href="https://www.facebook.com/ads/library/?id=2565817723857022" target="_blank" rel="noopener"><img src="https://r2.foreplay.co/83cee1e56325e178c366fa4cd3958a932495875d543985215def058a348dace3.jpg" loading="lazy" alt=""></a></div><figcaption><b>#13</b>·在投 8 条·09-03 起·6 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">14</span><span class="t5t">Bambu A1：打印桌游工具与微缩模型（57s，连投 48 天）</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 8 条</span><span class="tag">视频 57s</span><span class="tag">07-21 起 · 48 天</span><span class="tag">→ store.bambulab.com/products/a1</span></div>
+  <p><b>好在哪里</b>：「Printing up some hobby tools and miniatures」——桌游 / 微缩人群的具体用例，6 条在投。A1 两条长视频（40s / 57s）连投 48 天。</p><p><b>Meshy 可以学什么</b>：一个卖点做多条长视频轮播覆盖不同兴趣人群；微缩 / 桌游是 Meshy 打印线可以直接接的具体人群。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=1242241378978302" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/9bdcea89e5c0e3da871f34d47d07909cdb27dc13786583c593403bfb99708913.mp4" poster="https://r2.foreplay.co/077ce63c9396ba1691199b2e0f1a75262c03eb2ebe44dd59bebc0f5629d8ed66.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#14</b>·在投 8 条·07-21 起·6 条广告</figcaption></figure></div>
+</div>
+<div class="top5item">
+  <div class="t5h"><span class="t5n">15</span><span class="t5t">Bambu A2L UGC：「mini Hana jo, made with the Bambu A2L」（86s，8/31 新上）</span><span class="brand bambu">Bambu Lab</span><span class="tag live-tag">在投 7 条</span><span class="tag">视频 86s</span><span class="tag">08-31 起 · 7 天</span><span class="tag">→ us.store.bambulab.com/products/a2l</span></div>
+  <p><b>好在哪里</b>：本周新素材，7 条全部在投，落地页是 A2L 新机型页。达人做一个手办级微缩人物，86 秒全程过程。</p><p><b>Meshy 可以学什么</b>：新机型上线用 UGC 过程视频而不是参数图。Meshy 7 / TGS 节点同理。</p>
+  <div class="refs"><figure><div class="rm"><a class="adsbtn" href="https://www.facebook.com/ads/library/?id=3376872392497340" target="_blank" rel="noopener">广告库 ↗</a><video src="https://r2.foreplay.co/f79f9dd74c5053917f4ab139803928b32e196557c351289671c192ebc7160273.mp4" poster="https://r2.foreplay.co/592b1bceb5b1803e1025718123c4d7b97721c10d06c3af76dd764250d5cadeba.jpg" controls muted loop playsinline preload="none"></video></div><figcaption><b>#15</b>·在投 7 条·08-31 起·7 条广告</figcaption></figure></div>
+</div>
+<h2>ELEGOO 回来了，但只活了一周</h2>
+<p>本次抓到 <b>436 条</b>（回溯 7/23），其中 8/24–8/30 起投 <b>78 条</b>，覆盖 Centauri Carbon 2 Combo（uk / eu / us / fr / de 分站）与 Saturn 4 Ultra 16K（法语），英 279 / 德 99 / 法 55。但截至 9/7 <b>全库只有 25 条在投</b>，本周起投的 5 条全部已停。它的节奏是 campaign 制：一周集中上、下一周就停。本期两条进榜（#6 法语 Saturn、#7 英国站 Centauri）都是 7/28 起投的老素材。</p>
+<p><b>对 Meshy 的含义</b>：ELEGOO 的停投周（现在）仍是打印人群相对便宜的竞价窗口；但 Creality 本周把 i8 众筹又加了 361 条，整体环境比上周更贵。若投打印人群，避开 crowdfunding 相关兴趣词，落在"打什么"而不是"买什么"。</p>
+<h2>汇总：Meshy 最该抄的 6 条</h2>
+<ol>
+<li><b>先量化用户正在浪费什么。</b>i8 三条开头都是痛点（浪费 / 慢 / 质量妥协），连续两周全库前三。Meshy 版：「重做拓扑花掉的小时数」。</li>
+<li><b>授权达人原帖直接投。</b>Creality 9/3 把一条 143 秒达人合集授权投放到 K2 Pro 页；Tripo 的白名单页连续 8 周 0 上新，这个位现在没人竞争。</li>
+<li><b>新机型用 UGC 过程视频，不用参数图。</b>Bambu A2L（86s）与 X2D「very special project」（60s）都是 8/31 起投的达人过程片。</li>
+<li><b>场景捆绑代替裸折扣。</b>Bambu X2D「Home decor Bundle Discount」；Meshy 可按人群捆绑（打印玩家包 / 开发者包）。</li>
+<li><b>倒计时素材到点必须下线。</b>Bambu「Final hours」挂 55 天、Tripo「Last Call」挂 35 天，紧迫感都已失真。</li>
+<li><b>小语种素材配小语种落地页。</b>Bambu 法 / 西站、ELEGOO uk / eu / us / fr / de 分站都做到了；Tripo 本周三语素材全部导英文主页——这是 Meshy 可以直接拉开的差距。</li>
+</ol>
+<!--PRINTER_END-->
+</div>
+</div>
+<script>
+const R2 = 'https://r2.foreplay.co/';
+const FP = {
+  'Tripoai': 'https://app.foreplay.co/discovery/brands/j36CDWGTnin1cO9WCouE',
+  'Tripo 3D': 'https://app.foreplay.co/discovery/brands/VcPyFobqOqSrd6V4KRQG'
+};
+// 每周一任务只需替换 ADS_START 与 ADS_END 之间的数组内容，以及上方 UPDATED/STATS 注释标记之间的文字
+/*ADS_START*/
+const ADS = [
+ {brand:'Tripo 3D',pub:'Tripo3D',v:37,days:7,live:true,started:'2026-08-31',video:null,thumb:'97a5f5262de2cfce4e457b5d3fe34eaf1f00b5573739532968892cc489f203fd.jpg',hook:'Make Game Mods in Minutes — 8/31 重启后一条老素材铺 72 条、36 条在投，近 14 天最大铺量组；6 条导 /mod',fb:'860053277073613'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:29,days:7,live:true,started:'2026-08-31',video:null,thumb:'71f58d752194dc74a9429a812e70f380a5c81f51fe17ad37420d92f49725940a.jpg',hook:'Build MODs from Photos — 6 月起投的 /mod 老文案复投，8 条全部改指主页',fb:'1078884557942782'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:27,days:2,live:true,started:'2026-09-05',video:null,thumb:'4549c25fabb18ff7ec4bb8d6edcd24c75963eaca65d9c3cb86cc48bdf6b6a12f.jpg',hook:'Generate with Tripo AI —「Warning: No 3D modeling skills required!」同创意累计在投 27，9/5 仅新起 2 条',fb:'1597078388672452'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:24,days:7,live:true,started:'2026-08-31',video:'c2931ecead910c4553010cc8d8f0ac495f6f0381c2a0a6aef53a57010bf51da0.mp4',thumb:'bb045b1384ea61bc8d630cb5fccbaae088eafa62047dfc97826440f3b2e8b949.jpg',hook:'Clean Topology Automatically（20s）— 拓扑老文案 8/31 换新视频复投，12 条里 2 条导 /discover/3dprinting',fb:'1844855306868293'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:23,days:7,live:true,started:'2026-08-31',video:'d2d6abe144940d22b14a0840f4edf8d408504f44afbd18bc11579e63b192d459.mp4',thumb:'76a00dfd9b1fb29fa73320ff1b2ea8c82903c19ecec2b3f7b037997986b5d7bf.jpg',hook:'Ultra Detailed 3D AI（20s）— 高面数叙事，8/11 以来累计 158 条广告的大组，本周 7 条',fb:'3188029108074646'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:20,days:7,live:true,started:'2026-08-31',video:'a7ea0043017d0ddf9fa26f32bcab9fe807f539b99628f93c210e0ddfdf512109.mp4',thumb:'a53498d8e73fbded659f10b1436a4fab429f41b96e4fe65a78321ab0fc6b19d4.jpg',hook:'Smart Mesh for Game Assets（23s）— Smart Mesh 线英文主力，8/31 复投 6 条全部在投',fb:'3285353751669385'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:12,days:3,live:true,started:'2026-09-04',video:'39af79f01efa861dafe8c5948998515d494a450f55616befbfcc4e4c364e89b6.mp4',thumb:'3028710a0f858e00656a728ad7b68e5e4b38bdc1ef45afdf1afcef5ed45c2dfc.jpg',hook:'AI Makes 3D Creation Easy（19s）—「更快做出可打印模型」打印线本周 21 条、7 条在投，9/4 又追一批',fb:'2582714872165137'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:12,days:6,live:true,started:'2026-09-01',video:null,thumb:'60659bfce5062feb46e1ae9ad73f4e9e09667c4b050a68b8902641dc88846ff1.jpg',hook:'【韩语】AI로 만드는 고품질 3D 모델 — 韩语图片主力，9/1 复投 14 条',fb:'1569442548057871'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:9,days:7,live:true,started:'2026-08-31',video:'0c07b3b4b2533bc374bf6818c922fec2c5db65cf958a223ea4c99036d163ca89.mp4',thumb:'ea357f3e6e14761c4dc0258a85058db457579769e096e591ad229a1f7467d4b5.jpg',hook:'Simplify 3D Product Creation（15s）— 电商/产品向，8/31 复投 6 条、5 条在投',fb:'898986939679082'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:9,days:7,live:true,started:'2026-08-31',video:'b6210009e62b8515cff11d5bd154306c16edf6940a2e4be2ab3fa30ea256f977.mp4',thumb:'a4f0650f37bf04f8ff22e0fe8a0c477ba4b3fbb5bb7f3c2207fd12cafda67667.jpg',hook:'From AI Design to 3D Print（21s）—「想法/图片→可打印模型」链路叙事，本周 9 条',fb:'1774557257177986'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:7,days:5,live:true,started:'2026-09-02',video:'2c1e6ce30d52edc376892433cc06be6c2791717d81686e58939f3a87ef5dedd2.mp4',thumb:'ca1ee08e35d3fd37626e3785b88fd45bd54bca961e2a6b6cd0ddeb230fe837fc.jpg',hook:'【韩语】✨ AI로 쉽고 빠르게 3D 제작（27s）— 文本或图片两条入口都写进文案',fb:'1059428613160195'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:6,days:6,live:true,started:'2026-09-01',video:null,thumb:'c4f677fae73860dd6803848be073e7d4b401c3c412ed1e6300ea73f5434dcff1.jpg',hook:'【韩语·反问钩子】아직도 밤새워 모델링 하시나요？（还在通宵建模吗？）— 9/1 复投 6 条',fb:'2270079423794978'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:6,days:5,live:true,started:'2026-09-02',video:null,thumb:'37da96a353660548d95808f0ad1dee81c9e4e157d0adbf764ef3fcc2cb34ad23.png',hook:'【韩语·本周唯一带折扣】🎊 최대 75% 할인 진행 중 — 342 条新广告里唯一写折扣的一条',fb:'1582015116804216'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:6,days:5,live:true,started:'2026-09-02',video:null,thumb:'23d54a34f3966ea390f3b1972636726bb907fedf246c7a98c4a741f97bc6d50e.png',hook:'【韩语】특별한 기술 없이도 몇 초 만에 3D 리소스 — 卖点写成三件事：图生3D精度、结构复原、预处理工作流',fb:'1401119431955060'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:4,days:7,live:true,started:'2026-08-31',video:'75450ae11a933155a4a45c8038d93737c831ccf494a101c8efe6532336054669.mp4',thumb:'2d8db865a0fb917be4570c78fa90f8d2c27d6762ed42d4af00fffd1dc442520d.jpg',hook:'Smart Mesh for Game Assets（15s）— 同标题的第二套正文：characters, props, and environments',fb:'3642015682642118'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:3,days:5,live:true,started:'2026-09-02',video:'a208397bb81c450d4e6017847ca86083fd01811c0b6bd985a93aec6cb7610762.mp4',thumb:'b23f70c38e5a5860e33c40df0f68262de35964abb6242afdb51db93f30bbc2cf.jpg',hook:'【韩语·9/2 三语批次】AI로 고품질 3D 모델 제작（29s）— ✓ Smart Mesh / HD Model / 8K Texture / Segment V2 四点清单，14 条 10 在投',fb:'1094252523125099'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:3,days:5,live:true,started:'2026-09-02',video:'54444d91a3efaf8bcca3bfab3bb936e70182013bb9ba63a8605a0ab9dd2a3c3d.mp4',thumb:'a67021a918f8f5a79234d8a566565d1071782b36ee52a81688e4b77d71fb37f3.jpg',hook:'【法语·9/2 三语批次】Créez des modèles 3D avec l’IA（39s）— 与韩语版同一套清单模板，9 条 8 在投',fb:'1589361972642917'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:3,days:6,live:true,started:'2026-09-01',video:null,thumb:'7388aeaee90c47a356f8b5b9d33dd72fba376e73c080f27b706b21215803938a.png',hook:'【日语·本周唯一日语组】ゲーム装備をリアルに —「高精細な3Dモデルを…リアルなフィギュアとして形に」3 条',fb:'1108052338447572'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:3,days:7,live:true,started:'2026-08-31',video:'ecdac26a63f31f44cf19952d9621e05f7333b4059f897764a8a815b3e315d1b8.mp4',thumb:'75411e8744c2e5b1343b944448c590540b6f6b934830e37265ae25d732322543.jpg',hook:'AI-Powered 3D Creation（20s）— 本周仅有的 2 条导 /home 之一',fb:'1236167328661069'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:3,days:7,live:true,started:'2026-08-31',video:'0b010cef70047ce2f0d6983c00714ad065022541f9c51737e5b60e7fcbcb065e.mp4',thumb:'946e4259da3c8cb2bb333c385dbeb7bc67a3f9ec316d4168135a898f2a1e3f07.jpg',hook:'AI Makes 3D Modeling Simple（20s）— 与上一条同正文「Explore AI-powered 3D creation」换标题',fb:'1106613618706709'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:2,days:5,live:true,started:'2026-09-02',video:null,thumb:'7dbf8f004f2221d3b47eac08a365ca15e04355aecc3e39da0b8a8c951fc99936.png',hook:'【德语·9/2 三语批次】Dein KI-Partner für 3D-Design —「把 AI 当创意搭档」✓ 清单图，9 条全部在投',fb:'2180081462941895'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:2,days:7,live:true,started:'2026-08-31',video:'77e97da980f5387a236e86bf04bb169248626731527537efd66e9db098eaa239.mp4',thumb:'b92ecd15edb9852b52b0359894643fb9491cb4bd9a000e46abd3976591f2bb3c.jpg',hook:'Auto-Rig Your 3D Characters（18s）— 绑骨卖点连续两周在投；8/14 首见、8/24 起放量（上期误标为新文案，已更正）',fb:'1052399917775702'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:2,days:7,live:true,started:'2026-08-31',video:'2a7432b499d38dbfbd89c2319e3ca4ab5abea0780b270c461486e9aeb7c06258.mp4',thumb:'4ed0124f69fc893826b8ce987cbd2a88cd63f8f46aa9b791a749328df7cdd5af.jpg',hook:'Create Game Characters in 2 Seconds（19s）— 把承诺压成「2 秒」一个数字',fb:'1596171258869415'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:2,days:6,live:true,started:'2026-09-01',video:null,thumb:'d261e0bd710f2dfa833a931c75ea1e908b3a9995aec6c34137565e101b68e852.png',hook:'Create high-quality product visuals for your online store — 电商人群探针延续，9/1 复投 8 条、4 在投',fb:'1434628611895948'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:2,days:7,live:true,started:'2026-08-31',video:'dcd2f5b7d86b1b21b45c6289e9e68db1f0cb1d3515d7b2cc4cc8f03f01c42750.mp4',thumb:'a6545bd2583e5e4beff97166a12166fa2ae886018d80fe757d338f2d24a48f63.jpg',hook:'Turn Ideas Into 3D Prints（27s）—「split them into print-ready parts」直接讲分件打印',fb:'1046543638020593'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:2,days:7,live:true,started:'2026-08-31',video:'beaaff7054d1a6ee48d035b47776425db20f9fe9385e3ceabd1419c5e5717d6e.mp4',thumb:'b8ba7eb485be9afdefc66b525b6b749c7fc0f56e486d496ac30219acaaa5cffc.jpg',hook:'Explore 3D modeling with AI.（26s）—「New to 3D modeling?」面向零基础新手',fb:'2155414381703277'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:1,days:2,live:true,started:'2026-09-05',video:null,thumb:'b90ed9e17af78549d06924aeede8d845353b5df2885f3886bad8bb901ea9b1c4.png',hook:'【韩语·新文案】고정밀 3D 모델, AI로 완성 — HD Model 的韩语版，9/5 起 3 条',fb:'934690673024060'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:1,days:4,live:true,started:'2026-09-03',video:null,thumb:'9fc4e506ea570c47c050d65dfe46a53773f536772cad0afcb6c0faaabf619e48.jpg',hook:'【新文案·导打印页】See Every Detail in 3D. — HD Model 讲给打印人群，落地 /discover/3dprinting',fb:'1455699689730273'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:1,days:4,live:true,started:'2026-09-03',video:'f5923cefcfdf272f026f4b5c10e6e3f4e6093736f33aa94806c2917927568dc4.mp4',thumb:'0dcd255539bc167569df856e61ed3a2b7f3b215def4c99f51cdfabad52ed1ed8.jpg',hook:'【新文案】Smart Mesh for Game Assets（18s）— 老标题 + 新正文 + 新视频的 A/B',fb:'1578634560372986'},
+ {brand:'Tripo 3D',pub:'Tripo3D',v:1,days:4,live:true,started:'2026-09-03',video:'08be4097257de16e7a7cea36a0373710c0e12435bf5c850def4c4c385a522bc1.mp4',thumb:'ee215b40334f2efb41f3ae2196b5a208b76bd022a096c28380ebd8de5dbc0c30.jpg',hook:'【新文案·亲子】Turn Pictures into 3D Models in Seconds!（17s）—「Help your child develop spatial thinking」第一次写进亲子教育',fb:'1067832199058998'},
+ {brand:'Tripoai',pub:'taka_company',v:1,days:58,live:true,started:'2026-07-11',video:'6f901d26f5595a10051253cc68bc96010b9e7daf2e09e77b11c1175bf03b6653.mp4',thumb:'35b133c71767937f0bad352a49ccbc18d9e281fd33f7c39c3dbaa91050cd68cb.jpg',hook:'【日语·长跑 58 天】理想のキャラを3D立体化✨ 美杜莎手办：AI 生图→Tripo，麻烦的分件与断面补洞由工具处理（50s）',fb:'28363806069886790'},
+ {brand:'Tripoai',pub:'sweebk',v:1,days:62,live:true,started:'2026-07-07',video:'b0a43557b7dbd5ac2a8451e12ae5d2c03dc33878465864641f537a9b5ce0ce8e.mp4',thumb:'db9867618aaf5e556b4951af69d8c73569111d3860c5236122cb9152ea087495.jpg',hook:'【韩语·长跑 62 天】프레디 컬러 미니토이 제작 — 白名单页最久在投素材，带邀请码送 500 积分（58s）',fb:'27430793769906764'}
+];
+/*ADS_END*/
+
+let brandFilter = 'all', sortBy = 'variants';
+function render(){
+  const grid = document.getElementById('grid');
+  let list = ADS.filter(a => brandFilter==='all' || a.brand===brandFilter);
+  if(sortBy==='variants') list.sort((a,b)=>b.v-a.v);
+  else if(sortBy==='days') list.sort((a,b)=>b.days-a.days);
+  else list.sort((a,b)=>b.started.localeCompare(a.started));
+  document.getElementById('count').textContent = list.length + ' 组创意';
+  grid.innerHTML = '';
+  list.forEach(a=>{
+    const card = document.createElement('div'); card.className='card';
+    const bc = a.brand==='Tripoai' ? 'tripoai' : 'tripo3d';
+    const AL = a.fb ? `https://www.facebook.com/ads/library/?id=${a.fb}` : null;
+    // 图片素材：整块可点直接跳广告库；视频：保留点画面播放，用左上角按钮跳转
+    const media = a.video
+      ? `<video src="${R2+a.video}" poster="${R2+a.thumb}" controls muted loop playsinline preload="none"></video>`
+      : (AL
+          ? `<a class="medialink" href="${AL}" target="_blank" rel="noopener" title="在 Meta 广告库中查看文案与版本"><img src="${R2+a.thumb}" loading="lazy" alt=""></a><div class="imgtag">图片素材 · 点击看广告库</div>`
+          : `<img src="${R2+a.thumb}" loading="lazy" alt=""><div class="imgtag">图片素材</div>`);
+    const adsBtn = AL ? `<a class="adsbtn" href="${AL}" target="_blank" rel="noopener" title="在 Meta 广告库中查看文案与版本">广告库 ↗</a>` : '';
+    card.innerHTML = `
+      <div class="media">
+        <div class="vbadge">${a.v}<span>变体</span></div>
+        ${adsBtn}
+        ${media}
+      </div>
+      <div class="body">
+        <div class="row1"><span class="brand ${bc}">${a.brand}</span><span class="pub">${a.pub}</span></div>
+        <div class="row2">
+          <span class="chip ${a.live?'live':'dead'}">${a.live?'● Still Running':'已停投'}</span>
+          <span class="chip">投放 ${a.days} 天</span>
+          <span class="chip">起投 ${a.started.slice(5)}</span>
+          <span class="chip">FB·IG·Threads</span>
+        </div>
+        <div class="hook">${a.hook}</div>
+        <div class="links">
+          <a href="${FP[a.brand]}" target="_blank" rel="noopener">在 Foreplay 中打开 ↗</a>
+          <a href="https://www.facebook.com/ads/library/?id=${a.fb}" target="_blank" rel="noopener">Meta 广告库 ↗</a>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+document.getElementById('mainTabs').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  const v = e.target.dataset.view;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));
+  document.querySelectorAll('.view').forEach(el=>el.classList.toggle('on', el.id==='view-'+v));
+  // 切走时暂停非当前 tab 的所有视频
+  document.querySelectorAll('.view:not(.on) video').forEach(vd=>vd.pause());
+});
+function revealReportAnchor(){
+ const id=location.hash.slice(1), target=document.getElementById(id);
+ if(!target || !target.closest('#view-latest')) return;
+ document.querySelector('#mainTabs [data-view="latest"]').click();
+ const detail=target.closest('details'); if(detail) detail.open=true;
+ requestAnimationFrame(()=>target.scrollIntoView());
+}
+window.addEventListener('hashchange',revealReportAnchor);
+document.addEventListener('click',e=>{if(e.target.closest('a[href^="#"]'))setTimeout(revealReportAnchor,0);});
+revealReportAnchor();
+// 横向参考：竞品子 tab 切换（以后加竞品只需加 button + refgroup，无需改 JS）
+const refBrand = document.getElementById('refBrand');
+if(refBrand) refBrand.addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  const v = e.target.dataset.v;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));
+  document.querySelectorAll('#view-ref .refgroup').forEach(el=>el.classList.toggle('on', el.id==='ref-'+v));
+  document.querySelectorAll('#view-ref .refgroup:not(.on) video').forEach(vd=>vd.pause());
+});
+document.getElementById('fBrand').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  brandFilter = e.target.dataset.v;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));
+  render();
+});
+document.getElementById('fSort').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  sortBy = e.target.dataset.v;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===e.target));
+  render();
+});
+render();
+// 同一时间只播一个视频，避免对素材域名的并发连接耗尽导致全部加载卡死
+document.addEventListener('play', e => {
+  if(e.target.tagName !== 'VIDEO') return;
+  document.querySelectorAll('video').forEach(v => { if(v !== e.target && !v.paused) v.pause(); });
+}, true);
+</script>
+</body>
+</html>
