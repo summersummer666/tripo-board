@@ -22,3 +22,10 @@
 - 每周必须逐项核查 Suno、ElevenLabs、Bambu Lab、ELEGOO、Creality，更新 view-ref 与 view-printer，不能只更新 Tripo。
 - 每条保留来源链接、简短引用、发布日期或活动周期、实际核查日期、建议动作和下次复查日期。无发布日期则明确标注，不把核查日当作发布日期；旧活动标记仍在进行。
 - 资讯核查日期与广告采集时间分开。广告全库未采集则保留原日期及历史归档，不用新闻替代广告排名。来源保存为 cross-brand-news-日期.json。
+
+## 用户明确更正：两栏以 Foreplay 广告 Case 为主
+
+- 横向参考与打印机厂商必须从 Foreplay 抓取真实广告 Case，新闻只作补充。覆盖 Suno、ElevenLabs、Bambu Lab 3D、ELEGOO、Creality。
+- 每条核实 ID、真实起止时间与当前状态、素材格式、媒体、广告文案、Foreplay 品牌来源、Meta 广告库链接及落地页；显示可预览案例与 Meshy 参考分析。
+- 先查 Newest，顶部无近期上新则另查 Still Running，存量在投和新起投分开。不得把卡片的 2D/3D 时长当成最近起投，也不得仅刷新日期。
+- 不用新闻替代广告案例。不做无数据支持的全库或效果排名；保持新闻补充与历史归档入口。
