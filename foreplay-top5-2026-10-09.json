@@ -1,0 +1,206 @@
+{
+  "checked_at": "2026-10-09 17:12（北京时间）",
+  "window": "2026-10-03–2026-10-09",
+  "method": "Foreplay Newest; verified each shortlisted Status start date; deduped by media; Creative Duplicates descending",
+  "brands": {
+    "Suno": {
+      "source": "https://app.foreplay.co/discovery/brands/oPvAH6CW7CEKiBLDuT4O",
+      "items": [
+        {
+          "ad_id": "1678505087017103",
+          "creative_duplicates": 29,
+          "start_date": "2026-10-06",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/ed25c19b7d70d993ab6adaf78ebae608f98c6007ec6996c7e0d975eef2b6b473.jpg",
+          "title_zh": "Pro 权益清单：歌曲数、商用权、音频上传与优先队列",
+          "quote": "Unlock Suno’s best features with the Pro Plan",
+          "landing_page": "https://suno.com/go/paid"
+        },
+        {
+          "ad_id": "4362193960579508",
+          "creative_duplicates": 4,
+          "start_date": "2026-10-06",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/66e601ed91ce403c21aae7687ad189d643054dc4c5e956119ea444875e36afe8.jpg",
+          "title_zh": "Pro 权益清单的另一视频媒体",
+          "quote": "Make Any Song You Can Imagine",
+          "landing_page": "https://suno.com/go/paid"
+        },
+        {
+          "ad_id": "1480430640805754",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-07",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/6e5a839dbd2a7ed4a62a8bcab751a315aa5efbcd753746aeab395fdf711c1af5.jpg",
+          "title_zh": "西语 Pro 权益版本",
+          "quote": "Crea cualquier canción que puedas imaginar",
+          "landing_page": "https://suno.com/go/paid"
+        },
+        {
+          "ad_id": "1068109189387596",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-06",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/d11a40573517394b5c34440a5079842442f8c347d20c6c07c48da6502b195650.jpg",
+          "title_zh": "日语共创：多段录音合成为歌曲",
+          "quote": "Sunoで一緒に曲づくり",
+          "landing_page": "https://suno.com/ja"
+        },
+        {
+          "ad_id": "1081672444498655",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-06",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/f9d950af83222fa2355e0e46753d06156dba6d6c2b3ff8407afab14e607302be.png",
+          "title_zh": "日语半成品素材再创作",
+          "quote": "Sunoを無料で試してみよう",
+          "landing_page": "https://suno.com/ja"
+        }
+      ]
+    },
+    "ElevenLabs": {
+      "source": "https://app.foreplay.co/discovery/brands/9Z7CseeEuZYSx2YRDbtg",
+      "items": [
+        {
+          "ad_id": "1679408323570915",
+          "creative_duplicates": 20,
+          "start_date": "2026-10-08",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/ef2d827e27f9442a47e05504b528f1f3bae11f5d63747c5aae6116768245aa77.jpg",
+          "title_zh": "Eleven v4 免费额度与多模态能力",
+          "quote": "Ranked #1 by Artificial Analysis",
+          "landing_page": "https://join.elevenlabs.io/v4-offer"
+        },
+        {
+          "ad_id": "1740733457230921",
+          "creative_duplicates": 19,
+          "start_date": "2026-10-08",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/88fda292db36ec368c16018b2d4a519cc15b25fc954f4ab3af8fc5e58cff4619.jpg",
+          "title_zh": "1 美元 Starter 计划",
+          "quote": "Get the Starter plan for $1",
+          "landing_page": "https://elevenlabs.io/pricing"
+        },
+        {
+          "ad_id": "1155371710387248",
+          "creative_duplicates": 18,
+          "start_date": "2026-10-08",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/bf54a1581d546fd83a2e418c8d41ef64cce8aff39786431dbc92a90edb8237ef.jpg",
+          "title_zh": "夜间来电由 ElevenAgents 承接",
+          "quote": "Never miss a call again",
+          "landing_page": "https://join.elevenlabs.io/agents/v6"
+        },
+        {
+          "ad_id": "1629936708575832",
+          "creative_duplicates": 10,
+          "start_date": "2026-10-08",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/9d5ac651b45fa2edcc5bbfa7e200118d56bd1c31b5a25f58645ff20f134d12ed.jpg",
+          "title_zh": "低延迟与表现力并列",
+          "quote": "Eleven v4 now on ElevenAgents",
+          "landing_page": "https://elevenlabs.io/v4"
+        },
+        {
+          "ad_id": "1809443150251429",
+          "creative_duplicates": 9,
+          "start_date": "2026-10-08",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/abcd77d9175f2e29a3917fec1e772f7649ff8447d655e1f62e47ffa083b820f7.jpg",
+          "title_zh": "用自然语言搭建语音代理",
+          "quote": "Meet ElevenAgents Architect",
+          "landing_page": "https://elevenlabs.io/app/agents/architect"
+        }
+      ]
+    },
+    "Bambu Lab 3D": {
+      "source": "https://app.foreplay.co/discovery/brands/LiRME2YDApIGvg3zpOAp",
+      "items": [
+        {
+          "ad_id": "2897547593961688",
+          "creative_duplicates": 18,
+          "start_date": "2026-10-03",
+          "status": "Ended 2026-10-08",
+          "media": "https://r2.foreplay.co/c23c534f40eee666a3ac0357532384f445a9d0edf4aa5c1ce3294dd4775064e3.jpg",
+          "title_zh": "用 P2S 制作饼干工具",
+          "quote": "I used a 3D printer to help me cook",
+          "landing_page": "https://us.store.bambulab.com/products/pla-pure"
+        },
+        {
+          "ad_id": "1792151515161949",
+          "creative_duplicates": 13,
+          "start_date": "2026-10-04",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/b872bb23ce10e07086088a88ee06a47840bcca83f4ed8ac1051d6921ea2845f4.jpg",
+          "title_zh": "小商家定制青蛙印章",
+          "quote": "make a stamp to personalize my envelopes",
+          "landing_page": "https://us.store.bambulab.com/collections/printers-for-home-decor"
+        },
+        {
+          "ad_id": "1646381293904650",
+          "creative_duplicates": 10,
+          "start_date": "2026-10-06",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/6eee5d2e517f9d94b65db7e8d37c7039b22bf3cac14b90c5eb4455de3d9fbaa9.jpg",
+          "title_zh": "A1 彩色打印游戏角色爪件",
+          "quote": "printing in color",
+          "landing_page": "http://store.bambulab.com/products/a1"
+        },
+        {
+          "ad_id": "1325519212861867",
+          "creative_duplicates": 9,
+          "start_date": "2026-10-03",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/077ce63c9396ba1691199b2e0f1a75262c03eb2ebe44dd59bebc0f5629d8ed66.jpg",
+          "title_zh": "桌游工具与微缩模型",
+          "quote": "hobby tools and miniatures",
+          "landing_page": "http://store.bambulab.com/products/a1"
+        },
+        {
+          "ad_id": "28981377954886150",
+          "creative_duplicates": 6,
+          "start_date": "2026-10-03",
+          "status": "Ended 2026-10-08",
+          "media": "https://r2.foreplay.co/cd481f338e5539026780178554dcae581f7593257f29134626d844238435ff03.jpg",
+          "title_zh": "桌游玩家套件与 token",
+          "quote": "player’s kit or token sets",
+          "landing_page": "http://store.bambulab.com/products/a1"
+        }
+      ]
+    },
+    "ELEGOO": {
+      "source": "https://app.foreplay.co/discovery/brands/LgKtxP1bqsgM6QWZXZ4N",
+      "items": []
+    },
+    "Creality": {
+      "source": "https://app.foreplay.co/discovery/brands/VxqhJPGt4z7mY0ipRIQZ",
+      "items": [
+        {
+          "ad_id": "1739238420701257",
+          "creative_duplicates": 20,
+          "start_date": "2026-10-07",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/d1bea56a9350a500032a3886eb81fad7aac2ce1c9d1b1e5095c65c7295128c2d.jpg",
+          "title_zh": "SPARKX i8 Benchy 速度与废料对比",
+          "quote": "Same Benchy. Different generation.",
+          "landing_page": "https://www.indiegogo.com/projects/creality-sparkx/creality-sparkx-i8-the-fastest-most-filament-efficient-four-color-3d-printer"
+        },
+        {
+          "ad_id": "1775113037110960",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-07",
+          "status": "Still Running",
+          "media": "https://r2.foreplay.co/2afe4fb733108d9ebf84826581e5ad3db94b972649d120fe1b4ed3db2b950f7a.jpg",
+          "title_zh": "K2 Pro 小生意开箱套装",
+          "quote": "start printing sellable inventory in 24 hours",
+          "landing_page": "https://store.creality.com/products/k2-pro-combo-spacepi-x4-1-hyper-pla-3"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Dynamic visible range, not Meta full library",
+    "ELEGOO: 8 visible details checked, all started before window",
+    "Creative Duplicates is a capture-time reuse count, not spend or performance"
+  ]
+}
