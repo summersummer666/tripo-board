@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" role="img" aria-labelledby="title desc">
+  <title id="title">素材预览暂不可用</title>
+  <desc id="desc">Foreplay 缩略图链接在核查后失效，请打开品牌页查看广告。</desc>
+  <rect width="1080" height="1080" fill="#171421"/>
+  <rect x="90" y="90" width="900" height="900" rx="48" fill="#221d31" stroke="#8b72ff" stroke-width="8"/>
+  <text x="540" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-size="54" fill="#f4f0ff">素材预览暂不可用</text>
+  <text x="540" y="590" text-anchor="middle" font-family="system-ui, sans-serif" font-size="32" fill="#b8acd9">Foreplay 缩略图已失效</text>
+  <text x="540" y="650" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" fill="#b8acd9">请打开品牌页核查广告 ID</text>
+</svg>
