@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D打印 & 游戏 素材灵感周报 · 2026-10-18</title>
+<style>
+  :root{
+    --bg:#f7f6f3; --card:#ffffff; --ink:#1a1a1a; --ink2:#555; --ink3:#8a8a8a;
+    --accent:#4f46e5; --accent-soft:#eef2ff; --line:#e8e6e1;
+    --tag-us:#0e7490; --tag-jp:#be123c; --tag-eu:#7c3aed; --tag-game:#b45309;
+    --warn:#b91c1c; --warn-soft:#fef2f2; --ok:#15803d; --ok-soft:#f0fdf4;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.7; font-size:15px;}
+  .wrap{max-width:960px; margin:0 auto; padding:40px 24px 80px;}
+  header.hero{margin-bottom:28px;}
+  .hero .kicker{color:var(--accent); font-weight:700; letter-spacing:.12em; font-size:12px; text-transform:uppercase;}
+  .hero h1{font-size:30px; line-height:1.3; margin:8px 0 10px; font-weight:800;}
+  .hero .meta{color:var(--ink2); font-size:13.5px;}
+  .hero .positioning{margin-top:14px; background:var(--accent-soft); border-left:4px solid var(--accent); padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; color:#333;}
+  .verdict{background:#111; color:#f5f5f5; border-radius:14px; padding:20px 24px; margin-bottom:8px;}
+  .verdict .vh{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#a5b4fc; font-weight:700; margin-bottom:8px;}
+  .verdict p{font-size:15px; line-height:1.8;}
+  .verdict b{color:#fff;}
+  .verdict .hl{color:#fbbf24; font-weight:700;}
+  h2.sec{font-size:20px; font-weight:800; margin:46px 0 6px; display:flex; align-items:center; gap:10px;}
+  h2.sec .num{background:var(--ink); color:#fff; width:28px; height:28px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-size:14px; flex:none;}
+  p.secsub{color:var(--ink2); font-size:13.5px; margin-bottom:18px;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:720px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.04); display:flex; flex-direction:column;}
+  .card img{width:100%; height:200px; object-fit:cover; display:block; background:#eee;}
+  .card .quotebox{height:200px; background:linear-gradient(135deg,#1f1f22,#3b3b45); color:#fff; display:flex; align-items:center; padding:22px; font-size:16px; font-style:italic; line-height:1.6;}
+  .card .body{padding:14px 16px 16px; display:flex; flex-direction:column; flex:1;}
+  .card .title{font-weight:700; font-size:15px; line-height:1.5; margin-bottom:6px;}
+  .card .desc{color:var(--ink2); font-size:13.5px; margin-bottom:10px; flex:1;}
+  .card a.src{color:var(--accent); font-size:13px; text-decoration:none; font-weight:600;}
+  .card a.src:hover{text-decoration:underline;}
+  .tag{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:99px; color:#fff; margin-bottom:8px; margin-right:4px;}
+  .t-us{background:var(--tag-us);} .t-jp{background:var(--tag-jp);} .t-eu{background:var(--tag-eu);} .t-game{background:var(--tag-game);} .t-comp{background:#111;}
+  table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; font-size:13.5px;}
+  th{background:#111; color:#fff; text-align:left; padding:10px 12px; font-size:12.5px; font-weight:700;}
+  td{padding:11px 12px; border-top:1px solid var(--line); vertical-align:top;}
+  tr:nth-child(even) td{background:#fafaf8;}
+  td a{color:var(--accent); text-decoration:none;}
+  td a:hover{text-decoration:underline;}
+  .idea{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-bottom:14px;}
+  .idea.star{border:1px solid #c7d2fe; box-shadow:0 0 0 3px rgba(79,70,229,.06);}
+  .idea .head{display:flex; align-items:baseline; gap:10px; margin-bottom:6px; flex-wrap:wrap;}
+  .idea .idx{color:var(--accent); font-weight:800; font-size:16px;}
+  .idea .name{font-weight:700; font-size:15.5px;}
+  .idea .hook{background:#111; color:#fff; padding:10px 14px; border-radius:8px; font-size:14px; margin:8px 0 10px; font-style:italic;}
+  .idea .row{font-size:13.5px; color:var(--ink2); margin-top:3px;}
+  .idea .row b{color:var(--ink);}
+  .idea a{color:var(--accent); text-decoration:none;}
+  .prio{background:#fef3c7; color:#92400e; font-size:11px; font-weight:800; padding:2px 8px; border-radius:99px;}
+  .insight{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin-bottom:12px;}
+  .insight .mkt{font-weight:800; margin-bottom:4px;}
+  .callout{background:#fff8eb; border:1px solid #f3ddb0; border-radius:12px; padding:14px 18px; margin-bottom:12px; font-size:14px;}
+  .callout b{color:#92400e;}
+  .callout a{color:var(--accent); text-decoration:none;}
+  .redline{background:var(--warn-soft); border:1px solid #fecaca; border-radius:14px; padding:16px 20px; margin-top:14px;}
+  .redline .rh{font-weight:800; color:var(--warn); margin-bottom:8px;}
+  .redline ul{list-style:none; font-size:14px;}
+  .redline li{padding:3px 0; color:#444;}
+  .greenline{background:var(--ok-soft); border:1px solid #bbf7d0; border-radius:10px; padding:10px 14px; margin-top:10px; font-size:14px; color:#166534;}
+  .vids{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;}
+  @media(max-width:720px){.vids{grid-template-columns:1fr;}}
+  .vid .cap{font-size:12px; color:var(--ink3); margin-top:5px; line-height:1.5;}
+  .vid .cap b{color:var(--ink2);}
+  .vidlabel{font-size:12.5px; font-weight:700; color:var(--accent); margin-top:12px;}
+  .ytfacade{position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; cursor:pointer; background:#000;}
+  .ytfacade img{width:100%; height:100%; object-fit:cover; display:block; opacity:.92;}
+  .ytfacade .playbtn{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:58px; height:40px; background:rgba(20,20,20,.82); border-radius:10px; display:flex; align-items:center; justify-content:center; transition:background .15s;}
+  .ytfacade .playbtn::after{content:''; border-left:16px solid #fff; border-top:9px solid transparent; border-bottom:9px solid transparent; margin-left:3px;}
+  .ytfacade:hover .playbtn{background:#f00;}
+  .ytlink{color:var(--accent); text-decoration:none; font-weight:600; white-space:nowrap;}
+  .refimg{width:100%; border-radius:10px; display:block; border:1px solid var(--line); background:#fff;}
+  h3.subsec{font-size:16px; font-weight:800; margin:34px 0 4px; display:flex; align-items:center; gap:8px;}
+  h3.subsec .chip{background:var(--accent-soft); color:var(--accent); font-size:11px; padding:2px 10px; border-radius:99px;}
+  p.subsecsub{color:var(--ink2); font-size:13px; margin-bottom:14px;}
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:720px){.twocol{grid-template-columns:1fr;}}
+  .colbox{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px;}
+  .colbox .ch{font-weight:800; margin-bottom:10px; font-size:14.5px;}
+  .colbox ul{list-style:none; font-size:13.5px; color:var(--ink2);}
+  .colbox li{padding:6px 0; border-top:1px solid var(--line);}
+  .colbox li:first-child{border-top:0;}
+  .colbox a{color:var(--accent); text-decoration:none;}
+  footer{margin-top:56px; color:var(--ink3); font-size:12.5px; border-top:1px solid var(--line); padding-top:16px;}
+  footer a{color:var(--ink2);}
+  .method{background:#fafaf8; border:1px solid var(--line); border-radius:12px; padding:14px 18px; font-size:13px; color:var(--ink2); margin-top:20px;}
+  .method b{color:var(--ink);}
+  .method a{color:var(--accent); text-decoration:none;}
+  code{background:#f0efea; padding:1px 5px; border-radius:4px; font-size:12.5px; word-break:break-all;}
+  .tablewrap{width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  @media(max-width:720px){
+    table{min-width:620px;}
+    .hero h1{font-size:23px;}
+    .wrap{padding:28px 16px 60px;}
+  }
+</style>
+</head><body><div class="wrap">
+<header class="hero">
+<div class="kicker">Meshy Growth · Weekly Creative Intelligence</div>
+<h1>3D打印 &amp; 游戏 信息流素材灵感周报 · 2026-10-18</h1>
+<div class="meta">数据窗口 <b>2026-10-12 – 10-18</b> ｜ 外部情报由本次任务逐页核实（检索 136 次 / 打开页面 185 次 / 失败 20 次）｜ Foreplay 投放数据为 2026-10-18 本机实抓七品牌 ｜ 配套看板：<a href="index.html">Tripo 广告素材看板</a></div>
+<div class="positioning"><b>怎么读这份报告</b>：第 2 节每条都带来源链接与源语言原文片段；查不到的一律进第 7 节「未找到」。<b>本期没有参考视频</b>——YouTube oEmbed 验证请求本次全部被拦截，按铁律不放未验证的视频（候选清单见第 7 节，上线前需人工点开确认）。</div>
+</header>
+<h2 class="sec"><span class="num">1</span>本期一句话结论</h2>
+<div class="verdict">
+<div class="vh">本期一句话结论</div>
+<p><b>这一周，"AI 做 3D"这件事在三个不同的地方同时被重新定价：平台开始把它当成要管的现象，创作者开始把它当成要防的风险，硬件厂商开始把它当成要卖的卖点。</b></p>
+<p>平台侧：微软 10/13 成立 Xbox Labs 回应"AI 驱动的 MOD 与移植潮"（<span class="hl">"games rapidly decompiled and rebuilt to run on hardware"</span>）；Steam 截至 10/16 的年发行量已超过 2025 全年。创作者侧：VRChat 社区 10/12 抵制 AI 内容涌入，日本开发者 10/17–10/18 连续两天因为"怕被 AI 一夜克隆"而选择<b>不公开创意、不公开试玩版</b>。硬件侧：Creality 10/13 以 $849 开启 K3 四喷嘴预售，日本 10/15 出现 63.5 万日元的桌面全彩机 CJ270，而 Foreplay 实抓显示 Creality 正用日语素材打"<b>AIで写真を数秒スキャン、そのままフィギュアに</b>"——一家打印机厂商在替整个品类教育"照片→手办"。</p>
+<p><b>对 Meshy 最直接的一条</b>：我们自己 10/16 发布了 Meshy Edit（<span class="hl">"Each edit costs 20 credits."</span>），这是本周窗口内整个 AI 3D 赛道唯一的新模型发布——Tripo 本周只出教程、Hi3D 只出 SEO 文、Rodin 与 Hunyuan3D 零更新。<b>素材上应该把"改"而不是"生成"推到最前面</b>：这一周所有的创作者焦虑都指向"AI 一次成型的东西不可控"，而"圈选一个部位、打字说它该变成什么"正好是这个焦虑的反面。</p>
+</div>
+<h2 class="sec"><span class="num">2</span>本期热点（10 条，全部窗口内）</h2>
+<p class="secsub">每条带来源链接 + 源语言原文片段 + 日期。口径分三类：官方口径 / 媒体口径 / 社区·SNS 口径，逐条标注。</p>
+<div class="grid">
+<div class="card"><div class="body"><div><span class="tag t-game">游戏 · 10/12 · 媒体口径（含匿名信源）</span></div><div class="title">Epic 被报道把迪士尼射击新作转为「AI-first」生产</div><div class="desc">Kotaku 10/12 报道 Epic 的迪士尼合作射击游戏改为 AI 优先流程。Epic 官方声明只确认 <i>"We&#39;re embracing AI-accelerated development, led by Epic developers"</i>；「禁止手写代码、美术全部 AI 生成、项目延期」出自 Bloomberg 匿名信源，Kotaku 页面说明未独立核实。日媒 AUTOMATON 同日跟进：<i>「アートワークについてもすべてAIを活用した工程で生成」</i>。<br><br><b>含义：</b>大厂公开站队 AI 美术流程，会把"AI 做资产"的讨论度推到年内最高，正负面都会放大。</div><a class="src" href="https://kotaku.com/epic-games-forces-shocked-developers-into-ai-first-mode-for-delayed-shooter-featuring-marvel-and-star-wars-characters-2000744620" target="_blank" rel="noopener">Kotaku · 2026-10-12 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-us">平台 · 10/13 · 官方内部信经媒体转述</span></div><div class="title">微软成立 Xbox Labs，回应 AI 驱动的 MOD 与移植潮</div><div class="desc">VGC 10/13 报道 Asha Sharma 周二致员工内部信，称要研究 <i>"games rapidly decompiled and rebuilt to run on hardware"</i> 这一现象，同时强调 <i>"Our priorities aren&#39;t changing."</i><br><br><b>含义：</b>第一方平台已经把 AI 改造游戏当成需要设立专门团队的事。平台态度从"观望"转向"建制"。</div><a class="src" href="https://www.videogameschronicle.com/news/asha-sharma-forms-xbox-labs-in-response-to-explosion-of-ai-powered-mods-and-ports/" target="_blank" rel="noopener">VGC · 2026-10-13 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-us">UGC 平台 · 10/12 · 社区口径 + 官方回应</span></div><div class="title">VRChat 社区抵制「AI slop」，志愿者出走、官方称处于「不舒服的十字路口」</div><div class="desc">Kotaku 10/12：志愿者 Patroll 称 AI 内容为 <i>"rampant plague"</i> 并退出；VRChat 官方自称处于 <i>"uncomfortable crossroads"</i>。日媒 GameBusiness.jp 10/07 补充其 AI 标注机制 <i>「現時点では具体的な導入には至っていません」</i>（窗口外，背景）。<br><br><b>含义：</b>UGC 平台的 AI 争议已升级到"创作者出走 + 停止消费"。做 UGC 向素材时，"可控、可改、可署名"比"一键生成"更安全。</div><a class="src" href="https://kotaku.com/vr-chat-community-protests-an-influx-of-ai-slop-onto-platform-hurting-discoverability-2000742109" target="_blank" rel="noopener">Kotaku · 2026-10-12 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-us">平台 · 10/16 · 媒体口径</span></div><div class="title">Steam 2026 年发行量截至 10/16 已超过 2025 全年</div><div class="desc">Kotaku 10/16：<i>"2026 is going to smash that record again, and we know this because it already has, and it&#39;s only mid-October."</i> 页面称截至 10-16 为 21,388 款、2025 全年 21,248 款（数字为页面抽取结果，未逐字比对）。<br><br><b>含义：</b>供给端爆炸意味着"做得出来"不再稀缺，"做得对、改得动"才稀缺——这是 Meshy Edit 的素材立论点。</div><a class="src" href="https://kotaku.com/steam-valve-slop-ai-genai-vibe-coding-pc-game-releases-2000746749" target="_blank" rel="noopener">Kotaku · 2026-10-16 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-game">引擎 · 10/15 · 媒体访谈口径</span></div><div class="title">「vibe-coding」反编译移植潮，Godot 执行董事与前 Take-Two AI 负责人同时表态</div><div class="desc">Kotaku 10/15：Godot 的 Coppola 称 <i>"coding is rarely the roadblock in making a successful game"</i>；前 Take-Two AI 负责人 Dicken 称 <i>"AI can clone a game"</i>。页面提到 Mega Crit 10/07 向 GitHub 发 DMCA 通知（事件日，窗口外）。<br><br><b>含义：</b>"被克隆"成为开发者本周最具体的恐惧。对应的素材语言是"你的资产是你的"，而不是"几秒做一个"。</div><a class="src" href="https://kotaku.com/ai-vibe-coding-just-hit-the-video-game-industry-like-an-avalanche-2000746366" target="_blank" rel="noopener">Kotaku · 2026-10-15 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-jp">日本 · 10/17 · 媒体口径（引用 SNS 发言）</span></div><div class="title">日本：爆款创意次日即出现 AI 辅助克隆品，出现「不该公开创意」之声</div><div class="desc">GameBusiness.jp 10/17 08:45：<i>「アイデア公開すべきではない」との声も</i>（也有声音认为不应该公开创意）。<br><br><b>含义：</b>日本独立开发者已经把"公开即被抄"当成现实问题。这是本周最新鲜的痛点，且尚无任何 AI 3D 工具在素材里回应它。</div><a class="src" href="https://www.gamebusiness.jp/article/2026/10/17/28355.html" target="_blank" rel="noopener">GameBusiness.jp · 2026-10-17 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-jp">日本 · 10/18 · 媒体口径（转述开发方公告）</span></div><div class="title">日本：某游戏体验版因「AI 模仿担忧」取消公开，改为封闭形式</div><div class="desc">GameBusiness.jp 10/18 06:00：<i>「AI技術による模倣作品の懸念より」</i>（出于对 AI 技术做出模仿作品的担忧）。开发方同时提到运营体制不足是另一原因。<br><br><b>含义：</b>与上一条连成一周之内的两起同类事件——这不是孤例，是正在形成的行为模式。</div><a class="src" href="https://www.gamebusiness.jp/article/2026/10/18/28361.html" target="_blank" rel="noopener">GameBusiness.jp · 2026-10-18 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-jp">日本 · 10/15 · 媒体转述企业发布</span></div><div class="title">日本出现 63.5 万日元的桌面全彩 3D 打印机 CJ270，12 月下旬到货</div><div class="desc">MONOist 10/15 09:00 报道 APPLE TREE 于 10/13 公布预售，Flashforge 制造：<i>「1万色以上の色表現に対応する」</i>、<i>「同年12月下旬以降の入荷を予定する」</i>。机身 635,000 日元（不含税运），全彩 UV 树脂套装（100g×10）15,000 日元。文中把 <i>「模型やフィギュア、デザイン検証、試作など」</i> 列为适用场景。<br><br><b>含义：</b>全彩打印正在下沉到桌面级，而且日媒直接把"フィギュア"写进用途。"AI 出模型 → 全彩打印手办"在日本有了硬件前提。</div><a class="src" href="https://monoist.itmedia.co.jp/mn/articles/2610/15/news013.html" target="_blank" rel="noopener">ITmedia MONOist · 2026-10-15 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-eu">打印机 · 10/13 · 官方新闻稿</span></div><div class="title">Creality K3 四喷嘴机 $849 开启美国预售，欧洲 12 月</div><div class="desc">Creality 经 PR Newswire 发布：<i>"has officially opened pre-orders"</i>、<i>"In Europe, the K3 is expected to become available in December 2026."</i> 预售促销期 10/12–11/30。此前 9/30 官方博客只写 <i>"expected to launch below $900"</i> / <i>"Pre-orders open in mid-October"</i>。<br><br><b>含义：</b>与 Foreplay 实抓对得上：Creality 本周起投 180 条广告、110 条在投，K3 占 8 个创意组。多色机是 Q4 桌面打印最大叙事。</div><a class="src" href="https://www.prnewswire.com/news-releases/creality-k3-opens-for-pre-order-at-849-advancing-multi-color-3d-printing-302906901.html" target="_blank" rel="noopener">PR Newswire（Creality 官方稿）· 2026-10-13 ↗</a></div></div>
+<div class="card"><div class="body"><div><span class="tag t-game">厂商态度 · 10/16 · 财报口径经媒体转述</span></div><div class="title">Konami 社长：不认为市场会因为 AI 发生大幅变化</div><div class="desc">Kotaku 10/16：<i>"However, I do not believe the market will shift significantly."</i> 同页称 Konami 仍把 AI 视为 <i>"notable opportunity"</i>。<br><br><b>含义：</b>日系大厂的公开姿态是"谨慎研究、不押注颠覆"。对日本市场的素材，激进的"替代人力"叙事会反噬。</div><a class="src" href="https://kotaku.com/silent-hill-and-metal-gear-publisher-konami-does-not-believe-the-market-will-shift-significantly-because-of-ai-2000746506" target="_blank" rel="noopener">Kotaku · 2026-10-16 ↗</a></div></div>
+</div>
+<h2 class="sec"><span class="num">3</span>痛点雷达（10 条）</h2>
+<p class="secsub">格式：<b>信号 → 人群 → 素材钩子方向</b>。每条都指回第 2 节某条已核实热点，或指回 2026-10-18 的 Foreplay 实抓数据。</p>
+<div class="grid">
+<div class="card"><div class="body"><div class="title">01 · "一次生成的东西改不动"</div><div class="desc"><b>人群：</b>用 AI 出过模型、但要交付给团队的独立开发者 / 外包方<br><br><b>素材钩子方向：</b>「不用重做，只改这一块」——圈选部位 + 一句话修改。<b>依据</b>：热点 ④⑤（供给爆炸、怕被克隆，焦点从"生成"转向"可控"）+ Meshy Edit 10/16 发布（第 6 节）。</div></div></div>
+<div class="card"><div class="body"><div class="title">02 · "公开创意就会被 AI 一夜克隆"</div><div class="desc"><b>人群：</b>日本独立开发者、小团队主创<br><br><b>素材钩子方向：</b>「あなたのアセットは、あなたのもの」/「你的资产是你的」——强调私有工程、可追溯版本、不入公共训练池。<b>依据</b>：热点 ⑥⑦（10/17 与 10/18 连续两起）。</div></div></div>
+<div class="card"><div class="body"><div class="title">03 · "AI 内容涌入把真正的作品淹没了"</div><div class="desc"><b>人群：</b>UGC 平台创作者（VRChat / MakerWorld / Printables 类）<br><br><b>素材钩子方向：</b>素材里显式出现"人在改"的镜头：手在圈选、在调参数、在对比前后。<b>反例</b>：纯"打字出图"的一键演示本周风险最高。<b>依据</b>：热点 ③。</div></div></div>
+<div class="card"><div class="body"><div class="title">04 · "做得出来，但跑不进引擎"</div><div class="desc"><b>人群：</b>Unity / Unreal / Godot 使用者<br><br><b>素材钩子方向：</b>「从生成到可玩，只隔一次导入」——演示资产直接进引擎跑起来。<b>依据</b>：热点 ②⑤（平台与引擎都在谈反编译 / 移植）+ Tripo 本周新开 /lp/game-development 专页（10 条广告，第 6 节）。</div></div></div>
+<div class="card"><div class="body"><div class="title">05 · "拍照可以，但出不了能打印的彩色实物"</div><div class="desc"><b>人群：</b>日本手办 / 造形圈、3D 打印爱好者<br><br><b>素材钩子方向：</b>「写真 → 3D → フルカラー出力」整链路演示。<b>依据</b>：热点 ⑧（CJ270 桌面全彩机，日媒把フィギュア列为用途）+ Foreplay 实抓：Creality 日语素材 <i>「AIで写真を数秒スキャン、そのままフィギュアに」</i>。</div></div></div>
+<div class="card"><div class="body"><div class="title">06 · "多色打印换料太慢、废料太多"</div><div class="desc"><b>人群：</b>刚下单 K3 / SPARKX / 四色机的新机用户<br><br><b>素材钩子方向：</b>「模型本来就该是分色的」——演示生成时就按材质/部件分好色块，省掉手涂与换料。<b>依据</b>：热点 ⑨ + Foreplay 实抓 Creality 本周文案 <i>"No more hand-painting your 3D models!"</i>（在投率 100%，7/7）。</div></div></div>
+<div class="card"><div class="body"><div class="title">07 · "不想被当成 AI slop"</div><div class="desc"><b>人群：</b>所有公开发布作品的创作者<br><br><b>素材钩子方向：</b>把 AI 放在流程中段而不是终点：<b>AI 出毛坯 → 人改 → 成品</b>。文案避免"全自动""零人工"。<b>依据</b>：热点 ③⑤ + 日本媒体已开始在文末标注 <i>「制作段階で生成系AIを利用していますが」</i>（MONOist 10/16）。</div></div></div>
+<div class="card"><div class="body"><div class="title">08 · "专业软件里用不上"</div><div class="desc"><b>人群：</b>Blender / Maya / C4D / SketchUp 用户<br><br><b>素材钩子方向：</b>「不用换工具，在你的软件里出模型」——插件 / MCP 桥接向。<b>依据</b>：CGWORLD 10/16 报道 Maxon Cinema 4D MCP Server <i>「MCPサーバ自体の追加インストールや追加料金は不要」</i> + Tripo 本周连发 SketchUp DCC Bridge 与 4 篇室内建模教程（第 6 节）。</div></div></div>
+<div class="card"><div class="body"><div class="title">09 · "电商商品图做 3D 要请摄影棚"</div><div class="desc"><b>人群：</b>独立站 / 电商卖家<br><br><b>素材钩子方向：</b>「不用摄影棚，也能有可旋转的商品 3D」。<b>依据</b>：Foreplay 实抓——Tripo 本周新开电商线，英 + 韩两语共 10 条，核心句 <i>"Create realistic 3D previews without expensive photoshoots"</i>（第 6 节）。<b>这条目前 Meshy 完全没有素材。</b></div></div></div>
+<div class="card"><div class="body"><div class="title">10 · "不知道通用大模型和专用 3D 工具该怎么分工"</div><div class="desc"><b>人群：</b>已经在用 ChatGPT / Claude 做前期的创作者<br><br><b>素材钩子方向：</b>「通用模型出想法，专用模型出能用的模型」——明确分工，而不是比谁更强。<b>依据</b>：Foreplay 实抓——Tripo 本周 Astra 对比线换成 <i>"Graduate from Astra 🚀"</i>，KOL 侧拍 <i>"GPT-6 ASTRA BUILDS FULL 3D Fantasy Game"</i>（10 条，本周 KOL 第二名）。</div></div></div>
+</div><h2 class="sec"><span class="num">4</span>素材 Idea：7 条视频 + 3 条图片</h2>
+<p class="secsub">每条给出名称、人群标签、钩子原句（英/日文照写）、形式与依据（指回上面的热点 ①–⑩ 或痛点 01–10）。<b>本期不配参考视频</b>：oEmbed 验证请求本次全部被拦截（22 次全部 PROVENANCE_REQUIRED），按铁律不放未验证的 YouTube 嵌入，候选 ID 见第 7 节。</p>
+<div class="idea star"><div class="head"><span class="idx">01</span><span class="name">「只改这一块」— Meshy Edit 局部改模实录</span><span class="prio">优先</span></div><div class="row">🎮 游戏开发者 / 外包方 · 🇺🇸🇯🇵</div><div class="hook">“Don&#39;t regenerate. Just fix this part.”</div><div class="row"><b>形式：</b>30–45 秒竖版。镜头只拍一件事：一个已经做好的角色，圈选头盔 → 打字「make it a wizard hood」→ 新版本出来，其余部分一模一样。结尾打出 "20 credits"。</div><div class="row"><b>依据：</b>痛点 01 + 热点 ④⑤；Meshy Edit 10/16 官方稿 <i>"Each edit costs 20 credits."</i></div></div>
+<div class="idea star"><div class="head"><span class="idx">02</span><span class="name">「写真 → 3D → フルカラー出力」整链路（日语）</span><span class="prio">优先</span></div><div class="row">🇯🇵 日本手办 / 造形圈</div><div class="hook">“写真1枚から、そのままフィギュアに。”</div><div class="row"><b>形式：</b>45–60 秒。一张宠物或人像照片 → 生成 → 分色 → 全彩打印机出件 → 手里拿着成品。全程不剪掉"等待"，但压到 3 秒。</div><div class="row"><b>依据：</b>热点 ⑧（CJ270 桌面全彩机、日媒把フィギュア列为用途）+ 痛点 05；Foreplay 实抓：Creality 日语素材已在打同一条线。</div></div>
+<div class="idea"><div class="head"><span class="idx">03</span><span class="name">「从生成到可玩，只隔一次导入」</span></div><div class="row">🎮 Unity / Unreal / Godot 用户 · 🇺🇸🇪🇺</div><div class="hook">“Generated at 0:00. Playable at 0:40.”</div><div class="row"><b>形式：</b>40 秒横版，屏幕录制。左边生成，右边引擎，中间只有一次拖拽。结尾是能走动的 demo。</div><div class="row"><b>依据：</b>痛点 04 + 热点 ②⑤；Tripo 本周新开 /lp/game-development 专页（10 条广告）。</div></div>
+<div class="idea"><div class="head"><span class="idx">04</span><span class="name">「AI 出毛坯，人来定稿」— 反 AI slop 的流程片</span></div><div class="row">🎮 专业创作者 · 🇺🇸🇪🇺</div><div class="hook">“AI gets you to the blockout. You do the rest.”</div><div class="row"><b>形式：</b>45 秒。三段式：AI 生成的粗模 → 在 Blender 里手工改 → 成片。明确展示"人改了什么"。文案避免"全自动""零人工"。</div><div class="row"><b>依据：</b>痛点 03 + 07 + 热点 ③；日本媒体已开始主动标注 AI 使用（MONOist 10/16）。</div></div>
+<div class="idea"><div class="head"><span class="idx">05</span><span class="name">「模型本来就该是分色的」— 多色打印向</span></div><div class="row">🖨 新机用户（K3 / SPARKX / 四色机）· 🇺🇸🇪🇺🇯🇵</div><div class="hook">“No more hand-painting your 3D models.”</div><div class="row"><b>形式：</b>30 秒。左：单色打印后手涂 2 小时；右：生成时就分好色块，直接出件。结尾对比两个成品。</div><div class="row"><b>依据：</b>热点 ⑨ + 痛点 06；Foreplay 实抓：Creality 同句文案本周在投率 100%（7/7），说明这句话在同一人群里已被验证。</div></div>
+<div class="idea"><div class="head"><span class="idx">06</span><span class="name">「不用换工具」— 插件 / MCP 桥接向</span></div><div class="row">🎮 Blender / C4D / SketchUp 用户 · 🇺🇸🇯🇵</div><div class="hook">“Stay in your software. Get the model anyway.”</div><div class="row"><b>形式：</b>35 秒屏幕录制，全程不离开宿主软件。</div><div class="row"><b>依据：</b>痛点 08；CGWORLD 10/16 报道 Maxon C4D MCP Server；Tripo 本周连发 SketchUp DCC Bridge + 4 篇室内建模教程。</div></div>
+<div class="idea"><div class="head"><span class="idx">07</span><span class="name">「あなたのアセットは、あなたのもの」— 日本市场的"防克隆"向</span></div><div class="row">🇯🇵 日本独立开发者</div><div class="hook">“アイデアを出す前に、アセットを自分のものにしておく。”</div><div class="row"><b>形式：</b>30 秒，纯文字 + 工作区画面，不做夸张演出。重点讲私有工程、版本留痕。<b>这条必须先过法务 / 产品口径</b>，不要承诺训练数据政策之外的内容。</div><div class="row"><b>依据：</b>热点 ⑥⑦（10/17、10/18 连续两起"怕被克隆"事件）+ 痛点 02。</div></div>
+<h3 class="subsec">图片类 Idea<span class="chip">3 条</span></h3>
+<p class="subsecsub">对应 Foreplay 本周观察到的格式反转：Tripo 官方页本周图片 33 / 视频 14，一周内主力素材类型完全调了个个儿。</p>
+<div class="idea"><div class="head"><span class="idx">A</span><span class="name">「Before / After，只改了一处」对比图</span></div><div class="row">一张图切两半，左右差异只有一个部件，角标写改动用的那句 prompt。<b>依据</b>：Idea 01 的静态版；Tripo 本周图片素材占 70%。</div></div>
+<div class="idea"><div class="head"><span class="idx">B</span><span class="name">「三步清单」图（英 / 韩 / 日三语同天出）</span></div><div class="row">✓ 一张照片 ✓ 自动分件 ✓ 可打印全彩。<b>依据</b>：Tripo 的三语清单模板累计在投 58+40+35 条，是它最长寿的素材结构；且它本周已做到"新主张上线当天就出三语"。</div></div>
+<div class="idea"><div class="head"><span class="idx">C</span><span class="name">「不用摄影棚」电商向商品图</span></div><div class="row">左：拍摄棚布光器材；右：手机照片 + 生成的可旋转 3D。<b>依据</b>：痛点 09；Tripo 本周新开电商线共 10 条，Meshy 目前零素材。</div></div>
+<h2 class="sec"><span class="num">5</span>风格洞察</h2>
+<p class="secsub">每段结论都挂到本周的具体事件上。</p>
+<div class="insight"><div class="mkt">🇺🇸 美国 / 英语</div><div><b>"做得出来"已经不值钱了。</b>Steam 截至 10/16 的年发行量已超过 2025 全年（热点 ④），Epic 公开拥抱 AI 加速开发（热点 ①）。在这种供给密度下，"几秒生成一个模型"是人人都能说的话。<b>本周有效的角度是"可控"与"可改"</b>——Meshy Edit 的局部修改、分件、拓扑，全都属于这一类。另外 ElevenLabs 本周的做法值得照抄：1,062 条新广告全英语、两次爆投（10/12 共 531、10/16 共 322），发布当天不换创意，只把已有素材池整体切到新落地页。</div></div>
+<div class="insight"><div class="mkt">🇯🇵 日本</div><div><b>本周日本的主情绪是"防"，不是"用"。</b>10/17 有开发者说"不该公开创意"，10/18 有团队因为怕被 AI 模仿而取消公开试玩版（热点 ⑥⑦）。同时 Konami 社长表态"不认为市场会大幅变化"（热点 ⑩）。<b>所以对日素材要降速、降调门</b>：不要讲"颠覆""取代""几秒搞定一切"，讲"你自己的资产""在你自己的工具里"。硬件侧是好消息：CJ270 把全彩打印拉到桌面（热点 ⑧），"写真 → フィギュア"这条线在日本有了完整链路。另外日本媒体已在文末主动标注 <i>「制作段階で生成系AIを利用していますが」</i>（MONOist 10/16）——<b>主动披露在日本是加分项，不是减分项</b>。</div></div>
+<div class="insight"><div class="mkt">🇪🇺 欧洲</div><div><b>本周欧洲侧的确定性事件是硬件与社区赛事。</b>Creality K3 欧洲上市定在 2026 年 12 月（热点 ⑨，官方只给到月份）；Printables 一周内有五个品牌联名赛在跑，最近的三个截止日是 10/18、10/19、10/22（见时效节点）。GodotFest 2026 在 11/03–11/04 慕尼黑。<b>欧洲素材的抓手是"赛事 + 打印"，不是"AI 能力"。</b></div></div>
+<div class="insight"><div class="mkt">🎮 游戏 / MOD 圈</div><div><b>这一周，MOD 圈的议题从"AI 做得好不好"变成了"AI 会不会把我的东西偷走"。</b>微软为此成立 Xbox Labs（热点 ②），Godot 执行董事公开说 <i>"coding is rarely the roadblock"</i>（热点 ⑤），VRChat 社区在抵制（热点 ③）。<b>对这个人群，"速度"是负面词。</b>安全的说法是：AI 负责你本来就不想做的那一步（毛坯、重拓扑、分件、绑定），你的设计仍然是你的。</div></div>
+<div class="redline"><div class="rh">⛔ 本周绝对不要出现的表达</div><ul>
+<li><b>"几秒生成一整个游戏 / 一整个世界"</b> — 理由：热点 ⑤，开发者把这类表述直接等同于"克隆"；Mega Crit 已对反编译项目发 DMCA。</li>
+<li><b>"不需要美术 / 不需要建模师"</b> — 理由：热点 ①，Epic 的 AI-first 报道本周已触发创作者反弹；Ubisoft 10/14 刚宣布裁员（RedLynx 关闭、新加坡 70 人），在这个时间点谈"不需要人"风险极高。</li>
+<li><b>"全自动 / 零人工 / 一键成片"</b> — 理由：热点 ③，VRChat 的抵制正是针对"一键产出的东西"；日媒反而在主动标注"本文使用了生成 AI"。</li>
+<li><b>"比 ChatGPT / Astra 更强"这类直接贬低</b> — 理由：Foreplay 实抓显示 Tripo 本周已把对标文案从 "Stop wasting time with Astra" 改成 "Graduate from Astra 🚀"，并在 KOL 侧把 Astra 拍成工作流的一环。</li>
+<li><b>对日素材使用"革命 / 颠覆 / 取代"</b> — 理由：热点 ⑩（Konami 社长的保守表态）+ 热点 ⑥⑦（本周日本的主情绪是防御）。</li>
+<li><b>承诺训练数据 / 版权政策</b>（如"绝不用于训练""完全无版权风险"）— 理由：本期<b>未核实</b>任何平台或法规的最新政策（第 7 节"未找到"已列出），不得在素材里替公司做承诺。</li>
+</ul>
+<div class="greenline">✅ <b>安全方向</b>：圈选局部改 · 自动分件与重拓扑 · 直接进引擎 · 照片到全彩打印 · 在你已有的软件里用 · "AI 出毛坯、人来定稿"。</div>
+</div><h2 class="sec"><span class="num">6</span>竞品对位</h2>
+<p class="secsub">投放数据来自 2026-10-18 本机 Foreplay Discovery 接口实抓（七品牌，窗口 10/12–10/18）；发版与媒体报道来自本次竞品线逐页核实。完整投放分析见<a href="index.html">看板的「竞对分析 / 横向参考 / 打印机厂商」三个 tab</a>。</p>
+<div class="callout"><b>本周窗口内，整个 AI 3D 赛道只有一个新模型发布，而且是 Meshy 自己的。</b>
+Tripo 本周官网只出教程与工作流文章（SketchUp 桥接、P2.0 游戏角色流程、与 Opus 5.5 / Astra 联动的建游戏教程），没有新版本公告；Hi3D 官方博客本周三篇全是自排榜单的 SEO 比较文；Rodin / Hyper3D 官方博客最新一篇停在 9/29，<code>docs.hyper3d.ai/changelog</code> 本次仍打不开；Hunyuan3D 的 GitHub News 仍停在 2025-07-26。</div>
+<div class="insight"><div class="mkt">Meshy（自家）· 窗口内有发布</div>
+<div><b>10/16 发布 Meshy Edit</b>（自研新模型，按文字改 3D 模型的选定部位）。官方稿原文：<i>"Meshy Edit is available now to all registered Meshy users."</i> / <i>"Each edit costs 20 credits."</i>（<a href="https://www.prnewswire.com/news-releases/meshy-debuts-new-in-house-ai-model-with-meshy-edit-letting-users-change-selected-parts-of-a-3d-model-with-one-prompt-302911259.html" target="_blank" rel="noopener">PR Newswire</a>）。第三方 <a href="https://www.voxelmatters.com/meshy-edit-for-part-level-changes-to-ai-generated-3d-models-launched/" target="_blank" rel="noopener">VoxelMatters</a> 同日跟进：<i>"runs on a new model built in-house by Meshy"</i>。
+<br><b>日本已有报道</b>：<a href="https://cginterest.com/2026/10/18/meshy%E3%80%813d%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E4%B8%80%E9%83%A8%E3%81%A0%E3%81%91%E3%82%92%E6%96%87%E7%AB%A0%E3%81%A7%E4%BD%9C%E3%82%8A%E7%9B%B4%E3%81%9B%E3%82%8B%E3%80%8Cmeshy-edit%E3%80%8D/" target="_blank" rel="noopener">CGinterest 10/18</a>：<i>「無料プランで毎月付与される100クレジットでも、月5回まで試すことができます。」</i>——切入点是"免费版每月也能试 5 次"。
+<br><b>API changelog 窗口内 3 条</b>（<a href="https://docs.meshy.ai/zh/api/changelog" target="_blank" rel="noopener">docs.meshy.ai</a>）：10/15 新增 <code>meshy-t2.5</code>（「最新的 Smart Topology 模型，为游戏资产提供更清晰的细节」）、10/14 URL 文件上限提到 400 MB、10/12 USDZ 改用米为单位。
+<br><b>素材含义</b>：Meshy Edit + meshy-t2.5 正好对上本周两个最强的外部信号——"改得动"（热点 ④⑤）与"进得了引擎"（热点 ②）。<b>这是本周唯一一个我们有、竞品没有的发布窗口，应该立刻排素材。</b></div></div>
+<div class="insight"><div class="mkt">Tripo · 投放仍在高位，内容侧只出教程</div>
+<div><b>投放（Foreplay 实抓）</b>：官方页本周起投 <b>47 条</b>（41 在投），连续三周递减（114 → 76 → 47）；KOL 白名单页起投 <b>222 条、全部在投</b>，139 组创意、109 个投放主页其中 <b>81 个本周首次出现</b>。
+<br><b>三个结构性变化</b>：① 官方页格式反转（本周图片 33 / 视频 14，上周视频 42 / 图片 13）；② 第一次把 38% 的广告导向专页——<b>/lp/game-development 10 条、/lp/smart-mesh 3 条（均为本期首现）</b>、/lp/astra-tripo 4 条；③ KOL 页新增专属落地页 <b>/lp/meta-creators</b>（45 条）。
+<br><b>新人群</b>：电商 / 商品 3D 预览，一周内英 + 韩两语、图片 + 视频共 10 条，核心句 <i>"Create realistic 3D previews without expensive photoshoots"</i>。<b>Meshy 在这条线上零素材。</b>
+<br><b>内容侧（官网博客索引页日期）</b>：10/13 Rigging &amp; Animation（<i>"auto-rig your character, generate motion, combine actions, and export without remapping"</i>，页面写 20 credits/character、20 credits/animation）、10/14 P2.0 游戏角色与道具工作流（<i>"P2.0 produces a low-poly quad topology with clean edge flow"</i>）、10/15 <a href="https://www.tripo3d.ai/blog/tripo-dcc-bridge-for-sketchup" target="_blank" rel="noopener">SketchUp DCC Bridge</a> + 4 篇室内建模 Masterclass、10/16 <i>"How to Build a 3D Game with Opus 5.5, Astra, and Tripo"</i>。<b>没有新模型发布。</b>
+<br><b>背景（窗口外）</b>：9 月更新汇总写 <i>"Demo Day events run from October 5 to 20 across seven cities"</i>，Tripothon S1 获奖者 10/25 公布。</div></div>
+<div class="insight"><div class="mkt">Hi3D（原 Hitem3D）· 不投 Meta 广告，本周只有 SEO 内容</div>
+<div>官方博客窗口内三篇全是自排榜单：10/16《8 Best Free AI 3D Model Creators in 2026》（<i>"It keeps generation, inspection, texturing, export, and print preparation in one browser workspace."</i>，文中把 Rodin 列为被评工具）、10/16《6 Best Free 3D Miniature Creator Tools》、10/13《6 Best AI 3D Model Generators for 3D Printed Toys for Kids》。同页自报价格 <i>"Pro is $19.90/month or $119.40/year"</i>、<i>"Free is $0 with 100 lifetime credits and up to 10 asset generations"</i>（核价日写作 October 5, 2026）。
+<br>官方 Updates 页（<code>hitem3d.ai/blog/en-Hi3D-Updates/</code>）最新条目仍是 <b>2026-04-17</b>，与上期记录一致。
+<br><b>含义</b>：Hi3D 的获客重心是 SEO 比较文 + 3D 打印 / 儿童玩具 / 微缩模型这些长尾词，而不是投放。<b>这正好是 Meshy 在搜索侧的空白。</b></div></div>
+<div class="insight"><div class="mkt">Rodin / Hyper3D、Hunyuan3D · 窗口内无更新</div>
+<div><b>Rodin / Hyper3D</b>：官方博客最新一篇为 2026-09-29（Cambridge × Arcade AI 黑客松，活动日 10/03–10/04，均在窗口前）；<code>docs.hyper3d.ai/changelog</code> 本次打不开（PROVENANCE_REQUIRED），连续第五期未核实。
+<br><b>Hunyuan3D</b>：GitHub <code>Hunyuan3D-2.1</code> 与 <code>Hunyuan3D-2</code> 的 News 都停在 <i>"Jul 26, 2025"</i>；<code>Hunyuan3D-WorldClaw</code> 只有 2026.08.07 一条。腾讯云更新历史本期未覆盖。</div></div>
+<div class="insight"><div class="mkt">横向参考（非 3D 赛道）· 本周最该抄的两条</div>
+<div><b>ElevenLabs</b>（本周起投 1,062 条 / 921 在投，上周 671 / 263）：发布日即最大投放日——10/12 ElevenAgents 上 MCP（/mcp 落地页 403 条）、10/15 Eleven v4（/v4 落地页 150 条）。<b>做法是：发布当天不换创意，把已有 DCO 素材池整体切到新落地页。</b>文案结构也值得抄：<i>"Ask your LLM which agents dropped calls this week. Fix the prompt in the same chat."</i>——技术能力用"你会在哪一刻用到它"来写。
+<br><b>Suno</b>（本周 99 条 / 92 在投，上周 152）：74% 是没有文案的 DCO / 轮播；日语新图用"减一"结构 <i>「外注先がひとつ減る 👉 請求書が一枚減る 👉 すり合わせの往復が一回減る」</i>。<b>Meshy 同构版</b>：少一个外包建模方 👉 少一轮返修 👉 少一次版本延期。
+<br><b>Creality（打印机）</b>：本周起投 180 条、110 在投；日语素材 <i>「AIで写真を数秒スキャン、そのままフィギュアに」</i> 导日本站 SPARKX i7 Color 产品页与万圣节促销页。<b>一家打印机厂商在用"照片→3D→实物"这条我们的核心叙事卖硬件。</b></div></div>
+<h3 class="subsec">时效节点日历<span class="chip">只填官方页面给出的日期</span></h3>
+<p class="subsecsub">来源非官方的日期在备注里标注；官方没给日期的活动一律不填，列在表格下方。</p>
+<div class="tablewrap"><table><tr><th>日期</th><th>市场</th><th>事件</th><th>来源与备注</th></tr>
+<tr><td><b>2026-10-18 23:59 UTC</b></td><td>全球</td><td>Printables「ColorMix Models」截止</td><td><a href="https://www.printables.com/contest" target="_blank" rel="noopener">来源 ↗</a> · 官方页面</td></tr>
+<tr><td><b>2026-10-19 23:59 UTC</b></td><td>全球</td><td>Printables「Logitech MX Keyboard Adaptive Add-ons」截止</td><td><a href="https://www.printables.com/contest" target="_blank" rel="noopener">来源 ↗</a> · 官方页面</td></tr>
+<tr><td><b>2026-10-20</b></td><td>全球（7 城）</td><td>Tripo Demo Day 系列结束</td><td><a href="https://www.tripo3d.ai/blog/tripo-september-update" target="_blank" rel="noopener">来源 ↗</a> · Tripo 官方博客：<i>"Demo Day events run from October 5 to 20 across seven cities"</i></td></tr>
+<tr><td><b>2026-10-22 23:59 UTC</b></td><td>全球</td><td>Printables「Designer Challenge: Pegboard Wall Organizers」截止</td><td><a href="https://www.printables.com/contest" target="_blank" rel="noopener">来源 ↗</a> · 官方页面</td></tr>
+<tr><td><b>2026-10-25</b></td><td>全球</td><td>Tripothon S1 获奖者公布</td><td><a href="https://www.tripo3d.ai/blog/tripo-september-update" target="_blank" rel="noopener">来源 ↗</a> · Tripo 官方博客</td></tr>
+<tr><td><b>2026-11-01 23:59 UTC</b></td><td>全球</td><td>Printables「Halloween 2026: Make It Move」截止（一等奖含 Original Prusa MK4S 套件）</td><td><a href="https://www.printables.com/contest" target="_blank" rel="noopener">来源 ↗</a> · 官方页面</td></tr>
+<tr><td><b>2026-11-03 – 11-04</b></td><td>🇯🇵 东京 Big Sight</td><td>Unreal Fest Tokyo 2026</td><td><a href="https://www.unrealengine.com/events/unreal-fest-tokyo-2026" target="_blank" rel="noopener">来源 ↗</a> · 官方页面：<i>"November 3 (Tue) – November 4 (Wed), 2026"</i></td></tr>
+<tr><td><b>2026-11-03 – 11-04</b></td><td>🇩🇪 慕尼黑</td><td>GodotFest 2026</td><td><a href="https://godotengine.org/article/godotfest-2026/" target="_blank" rel="noopener">来源 ↗</a> · 官方文章（发布日 2026-08-12）</td></tr>
+<tr><td><b>2026-11-04 23:59 UTC</b></td><td>全球</td><td>Printables「Thrustmaster Custom Shifter Knob」截止</td><td><a href="https://www.printables.com/contest" target="_blank" rel="noopener">来源 ↗</a> · 官方页面</td></tr>
+<tr><td><b>2026-11-07</b></td><td>🇯🇵 东京</td><td>AIフェスティバル 2026（含 AI Creators Market）</td><td><a href="https://forest.watch.impress.co.jp/docs/news/2097661.html" target="_blank" rel="noopener">来源 ↗</a> · <b>媒体页</b>，非主办方官网</td></tr>
+<tr><td><b>2026-11-14 – 11-15</b></td><td>🇯🇵 东京 Big Sight</td><td>デザインフェスタ vol.64（票务销售至 11-13 23:59）</td><td><a href="https://eplus.jp/sf/detail/3403700001" target="_blank" rel="noopener">来源 ↗</a> · <b>票务页</b>，官网抓取被拦</td></tr>
+<tr><td><b>2026-11-30</b></td><td>🇺🇸</td><td>Creality K3 预售促销期结束（$849 赠 4 卷 Hyper PLA）</td><td><a href="https://www.prnewswire.com/news-releases/creality-k3-opens-for-pre-order-at-849-advancing-multi-color-3d-printing-302906901.html" target="_blank" rel="noopener">来源 ↗</a> · 官方新闻稿</td></tr>
+<tr><td><b>2026-12（仅到月）</b></td><td>🇪🇺</td><td>Creality K3 欧洲上市</td><td><a href="https://www.prnewswire.com/news-releases/creality-k3-opens-for-pre-order-at-849-advancing-multi-color-3d-printing-302906901.html" target="_blank" rel="noopener">来源 ↗</a> · 官方只给到月份</td></tr>
+<tr><td><b>2026-12 下旬以降</b></td><td>🇯🇵</td><td>全彩桌面机 CJ270 到货</td><td><a href="https://monoist.itmedia.co.jp/mn/articles/2610/15/news013.html" target="_blank" rel="noopener">来源 ↗</a> · <b>媒体页</b>转述企业发布</td></tr>
+<tr><td><b>2027-02-13 – 02-14</b></td><td>🇯🇵</td><td>ワンダーフェスティバル 2027[冬]</td><td><a href="https://wonfes.jp/specialsite/" target="_blank" rel="noopener">来源 ↗</a> · 官方页面</td></tr>
+<tr><td><b>2027-03-01 – 03-05</b></td><td>🇺🇸 旧金山</td><td>GDC 2027</td><td><a href="https://gdconf.com/" target="_blank" rel="noopener">来源 ↗</a> · 官方页面：<i>"March 1-5, 2027"</i></td></tr>
+<tr><td><b>2027-07-25</b></td><td>🇯🇵 幕张メッセ</td><td>ワンダーフェスティバル 2027[夏]（含 Sunrise 50 周年「サンライズワンフェス」）</td><td><a href="https://wonfes.jp/info/" target="_blank" rel="noopener">来源 ↗</a> · 官方页面</td></tr>
+</table></div>
+<div class="callout"><b>未能从官方确认，因此不填日期：</b>
+SPARKX i8 众筹截止日（仅第三方 Makers101 写 10-31，Creality 新闻稿未写）｜ K3 美国发货日 ｜ Bambu R1 发货日（官方写 "October"，ToolGuyd 写 11 月，两者不一致）｜ MakerWorld「Make for Good」截止日（仅媒体写 11-15）｜ G-STAR 2026 日期（官方站两次抓取失败）｜ Unity AI Game Jam 日期（仅 Inven Global 媒体稿）｜ VRChat AI 政策征询截止 ｜ ELEGOO 新树脂机与"神秘新品"发布日 ｜ Bambu H3C（官方未宣布，仅专利解读）。</div><h2 class="sec"><span class="num">7</span>核查台账与未找到的方向</h2>
+<p class="secsub">本节是这份报告能不能被信任的唯一依据。宁可交半份，不许补满。</p>
+<div class="tablewrap"><table><tr><th>调研线</th><th>检索次数</th><th>打开页面</th><th>成功</th><th>失败</th><th>失败原因</th></tr>
+<tr><td>桌面 3D 打印线</td><td>28</td><td>40</td><td>36</td><td>4</td><td>权限请求未获回应 3（MakerWorld 竞赛页、Fabbaloo 新闻索引、All3DP 新闻索引）、抓取报错 1（Thingiverse 挑战赛页）</td></tr>
+<tr><td>游戏 / MOD 线</td><td>36</td><td>37</td><td>33</td><td>4</td><td>权限请求超时 2、站点禁止抓取 2（gstar.or.kr、capitalbrief.com）</td></tr>
+<tr><td>日本市场线</td><td>33</td><td>51</td><td>48</td><td>3</td><td>权限请求未获回应 2（designfesta.com、comiket.co.jp）、robots 拒绝 1</td></tr>
+<tr><td>AI 3D 竞品线</td><td>39</td><td>57</td><td>48</td><td>9</td><td>PROVENANCE_REQUIRED 7（直接使用提示词里的 URL）、robots 拒绝 1、页面空 1</td></tr>
+<tr><td>YouTube 参考视频验证</td><td>15</td><td>22（oEmbed）</td><td><b>0</b></td><td><b>22</b></td><td>全部 PROVENANCE_REQUIRED，请求未发出</td></tr>
+<tr><td><b>合计</b></td><td><b>151</b></td><td><b>207</b></td><td><b>165</b></td><td><b>42</b></td><td>—</td></tr>
+</table></div>
+<h3 class="subsec">来源质量提示<span class="chip">读结论前必看</span></h3>
+<div class="callout">
+<b>① WebFetch 返回的是模型对页面的抽取结果，不是原始 HTML。</b>本报告引号里的片段取自抽取结果中标为原文引用的内容，未与原始 HTML 逐字比对。做对外物料时请人工复核要引用的那一句。<br>
+<b>② Epic「AI-first」的核心指控出自 Bloomberg 匿名信源</b>，Epic 官方只确认"拥抱 AI 加速开发"。不要在素材或对外沟通中当作已确认事实。<br>
+<b>③ Steam 发行量数字（21,388 / 21,248）</b>来自 Kotaku 页面抽取结果，未逐字比对，且 24,000 的年底预测出自第三方 SteamPageAnalyzer。<br>
+<b>④ Creality K3 的价格与预售日来自 Creality 经 PR Newswire 发布的新闻稿</b>（官方口径），<b>不是官方产品页</b>——本次未能打开 Creality 官网 K3 产品页。<br>
+<b>⑤ 日本的"忌避感弱 / 防克隆情绪"均为媒体编辑判断或对 SNS 发言的转述</b>，不是调查数据；本次工具无法访问 X 等社交平台，没有任何情绪聚合统计。<br>
+<b>⑥ Hi3D 的价格与"全流程在一个浏览器工作区"是它自己页面上的口径</b>，非第三方评测。<br>
+<b>⑦ Foreplay 投放数据的翻页上限</b>：七个品牌均到达本次设定的翻页上限（接口仍有下一页），但本周窗口 10/12 起的广告已完整覆盖。Foreplay 对最近 1–2 天有补录延迟，10/17–10/18 的低值未作结论。
+</div>
+<h3 class="subsec">本期「未找到」全列<span class="chip">不补写</span></h3>
+<div class="twocol">
+<div class="colbox"><div class="ch">桌面 3D 打印</div><ul>
+<li>Creality K3 <b>官方产品页 / 商店页</b>未打开，价格与预售日无法与官方页核对</li>
+<li>SPARKX i8 窗口内最新筹款额（最新数字是第三方 09-24 快照）</li>
+<li>Bambu H3C 官方信息（仅第三方专利解读，官方未宣布）</li>
+<li>ELEGOO 官网与新树脂机 / "神秘新品"的型号、价格、发售日</li>
+<li>Prusa 与 Anycubic 窗口内动态（搜索只返回旧内容）</li>
+<li>MakerWorld 官方竞赛页（权限请求未获回应）</li>
+<li>Thingiverse 挑战赛页与其 AI 规则（抓取报错）</li>
+<li>Printables 对 AI 模型的官方态度</li>
+<li>创作者分成 / 激励政策变化（未做专门检索）</li>
+<li>加州 3D 打印机阻断法案最新状态</li>
+<li>Fabbaloo / All3DP 新闻索引页（均被权限拦截，两家窗口内报道未系统检查）</li>
+</ul></div>
+<div class="colbox"><div class="ch">游戏 / MOD</div><ul>
+<li>窗口内 Nexus Mods 的 AI 新规则或公告（只有 7–8 月旧规）</li>
+<li>窗口内 Steam Workshop 的 AI 政策专项</li>
+<li>窗口内 Godot / Unreal 官方新政策原文（Epic 调岗仅见转述报道）</li>
+<li>窗口内"被指认使用 AI 素材"的<b>新</b>游戏争议（已知案例均在窗口前）</li>
+<li>窗口内罢工 / 集会 / 工会行动</li>
+<li>游戏行业裁员汇总数据（窗口内只核实了 Ubisoft 一例）</li>
+<li>一手原文：Bloomberg 的 Epic 报道、Xbox Wire 原文、Unity 英文博客原文、Google Playground 官方页、GamesIndustry.biz 的 Ubisoft 原文</li>
+<li>VRChat AI 政策征询的结果</li>
+<li>G-STAR 2026 官方日期（官方站两次抓取失败）</li>
+</ul></div>
+</div>
+<div class="twocol" style="margin-top:16px">
+<div class="colbox"><div class="ch">日本市场</div><ul>
+<li><b>窗口内没有任何日语媒体报道 Meshy / Tripo / Hunyuan3D / Rodin / Hi3D</b>（已打开 MONOist 3D 打印标签页、CGWORLD flashnews、AUTOMATON、GameBusiness.jp、GAME Watch 首页逐一确认）</li>
+<li>同人展（ワンフェス / デザインフェスタ）的 AI 规则：已打开的官方页面均未提及；《参加マニュアル》《版権の手引き》PDF 未打开，不能断言"没有规则"</li>
+<li>CGinterest 站内检索未返回结果（竞品线另行打开过其单篇文章）</li>
+<li>note.com 窗口内无相关新帖</li>
+<li>日语 KOL 的 AI 3D 投放动向</li>
+<li>SNS 情绪聚合（工具无法访问 X）</li>
+</ul></div>
+<div class="colbox"><div class="ch">竞品与视频</div><ul>
+<li><code>docs.hyper3d.ai/changelog</code> 仍打不开（连续多期）</li>
+<li>Tripo 独立 changelog 页（只看到博客里的月度汇总）</li>
+<li>各家官方 X / 社媒（全部未覆盖）</li>
+<li>腾讯云 Hunyuan3D 更新历史</li>
+<li><b>全部 7 条视频 idea 的参考视频</b>：22 次 oEmbed 请求全部被拦截（PROVENANCE_REQUIRED），0 个拿到状态码，按铁律本期不放任何 YouTube 嵌入</li>
+</ul></div>
+</div>
+<h3 class="subsec">参考视频候选（<b>未验证</b>，上线前必须人工点开确认）<span class="chip">不要直接嵌入</span></h3>
+<p class="subsecsub">下列 ID 均来自 WebSearch 结果（限定 youtube.com），<b>不是凭记忆写的</b>；但 oEmbed 验证本次全部被拦截，因此<b>既未确认存在、也未确认允许外站嵌入</b>。标题是搜索结果里的标题，不是 oEmbed 返回值。直接放进页面有白屏风险。</p>
+<div class="tablewrap"><table><tr><th>对应 Idea</th><th>候选 ID</th><th>搜索结果标题（未经 oEmbed 核对）</th></tr>
+<tr><td>01 局部改模</td><td colspan="2"><b>无候选</b>——3 次检索只返回 Meshy 通用评测与教程，没有演示"圈选部位、打字改"的视频；Meshy Edit 目前只有文字报道。</td></tr>
+<tr><td rowspan="3">02 照片→全彩手办</td><td><code>zum4KhH4jWc</code></td><td>From Image to Full-Color 3D Printed Figure</td></tr>
+<tr><td><code>J1jWqaNK8TM</code></td><td>I 3D Printed an AI Model in Full Color From One Image (Hi3D)</td></tr>
+<tr><td><code>0OdiV3VZ8dc</code></td><td>Create a Full-Color 3D Pet Model for Printing: Photogrammetry, AI, and Blender Tutorial</td></tr>
+<tr><td rowspan="2">03 进引擎</td><td><code>9xMGFxGt6VU</code></td><td>I Built a Unity Game With Meshy 7 AI — Image to 3D Is INSANE!</td></tr>
+<tr><td><code>e0pEu26pi4g</code></td><td>Meshy + Unity: We Built an FPS in Days Using Only AI-Generated 3D Assets</td></tr>
+<tr><td rowspan="2">04 绑定与动画</td><td><code>S-W59sS1nOY</code></td><td>How to use AI to Create, Texture, Rig and Animate 3d Characters (Meshy)</td></tr>
+<tr><td><code>xcJljUhgvS4</code></td><td>Easy 3D Quadruped Animation with Meshy - It&#39;s time to walk the pet!</td></tr>
+<tr><td>05 多色打印机</td><td><code>MyiGT9QkeBU</code></td><td>Snapmaker U1 Multi-Color 3D Printer Review!（<b>注</b>：检索未返回 K3 / SPARKX 实拍视频）</td></tr>
+<tr><td rowspan="2">06 Blender 混合流程</td><td><code>ztN0RKBjT7M</code></td><td>How to Use Tripo AI for Characters &amp; Creatures, Then Fix Them in Blender</td></tr>
+<tr><td><code>qOq12hfNhFk</code></td><td>Generate 3D Character &amp; Animation with AI (Meshy AI to Blender 5.1 Full Workflow)</td></tr>
+<tr><td rowspan="2">07 微缩模型</td><td><code>u3d5KtSsSSI</code></td><td>AI designed this Mini (and you can print it at home!)</td></tr>
+<tr><td><code>FZRxsCZIZNo</code></td><td>I 3D Printed Custom Wargaming Minis Using AI!</td></tr>
+</table></div>
+<div class="method"><b>方法与口径</b>：外部情报由四个并行子任务于 2026-10-18 逐页核实，每条要求「来源链接 + 源语言原文片段 + 日期」，查不到即写"未找到"。投放数据为同日本机 Chrome 内通过 Foreplay Discovery 接口翻页实抓（Tripo 3D 847 条 / 85 页、Tripoai 810 / 81、Suno 1,999 / 200、ElevenLabs 1,997 / 200、Creality 600 / 60、Bambu Lab 498 / 50、ELEGOO 491 / 50）。数据窗口 2026-10-12 – 10-18，窗口外内容均已显式标注"背景"。<br>
+<b>与上一期（2026-10-12）的口径衔接</b>：10/12 期窗口为 10/05–10/12，本期 10/12–10/18 与之首尾相接、不重叠。项目内《任务提示词_补跑_2026-10-18.md》建议的 10/06–10/18 窗口会与上期重复计数，未采用。<br>
+<b>上一期被纠正的结论</b>：① "Tripo 官方页本周 55 条全部导主页" → 本周 38% 导三个专页，其中两个为本期首现；② "P2.0 需要一个可记忆的名字" → Tripo 已自己兑现，P2.0 有了独立落地页；③ "官方页以视频为主" → 本周完全反转为图片为主；④ "KOL 页无专属落地页" → 本周新增 /lp/meta-creators。</div>
+<footer>Meshy Growth · 竞品追踪 ｜ 本期生成于 2026-10-18（北京时间）｜ 配套看板：<a href="index.html">Tripo 广告素材看板</a> ｜ 历史归档：<a href="creative-report-2026-09-07.html">2026-09-07</a> · <a href="creative-report-2026-08-31.html">2026-08-31</a></footer>
+</div></body></html>

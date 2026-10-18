@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>周报与热点归档 · 2026-10-12</title><style>
+  :root{--bg:#0e0f13;--card:#171922;--card2:#1d2030;--txt:#e8eaf2;--sub:#9aa0b4;--acc:#7c5cff;--green:#2ecc71;--red:#e74c3c;--border:#262a3a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;padding:24px;}
+  header{max-width:1400px;margin:0 auto 20px;}
+  h1{font-size:22px;font-weight:700;letter-spacing:.3px;}
+  .meta{color:var(--sub);font-size:13px;margin-top:6px;line-height:1.6;}
+  .meta b{color:var(--txt);}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center;}
+  .seg{display:inline-flex;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .seg button{background:none;border:none;color:var(--sub);padding:8px 16px;font-size:13px;cursor:pointer;transition:.15s;}
+  .seg button.on{background:var(--acc);color:#fff;}
+  .count{color:var(--sub);font-size:13px;margin-left:auto;}
+  .grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;position:relative;}
+  .media{position:relative;background:#000;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .media video,.media img{width:100%;height:100%;object-fit:contain;display:block;cursor:pointer;}
+  .vbadge{position:absolute;top:10px;right:10px;background:rgba(124,92,255,.92);color:#fff;font-size:15px;font-weight:800;padding:4px 12px;border-radius:999px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .vbadge span{font-size:10px;font-weight:500;opacity:.85;display:block;margin-top:-2px;text-align:center;}
+  .imgtag{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.6);color:#cfd3e4;font-size:11px;padding:2px 8px;border-radius:6px;z-index:2;}
+  .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .row1{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .brand{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;}
+  .brand.tripoai{background:#3a2f14;color:#f4c542;}
+  .brand.tripo3d{background:#14293a;color:#4aa8f0;}
+  .brand.bambu{background:#123023;color:#4fd48a;}
+  .brand.elegoo{background:#2e1a34;color:#c98af0;}
+  .brand.creality{background:#33220f;color:#f0a552;}
+  .article .brand{margin-right:2px;}
+  .pub{font-size:13px;font-weight:600;}
+  .row2{display:flex;gap:6px;flex-wrap:wrap;font-size:11px;color:var(--sub);}
+  .chip{background:var(--card2);border:1px solid var(--border);padding:2px 8px;border-radius:6px;}
+  .chip.live{color:var(--green);border-color:rgba(46,204,113,.4);}
+  .chip.dead{color:var(--sub);}
+  .hook{font-size:13px;line-height:1.55;color:#cfd3e4;flex:1;}
+  .links{display:flex;gap:12px;font-size:11.5px;border-top:1px solid var(--border);padding-top:9px;}
+  .links a{color:var(--sub);text-decoration:none;}
+  .links a:hover{color:var(--acc);}
+  .note{max-width:1400px;margin:14px auto 0;color:#6c7288;font-size:12px;line-height:1.6;}
+  /* ===== 主 tab ===== */
+  .tabs{max-width:1400px;margin:18px auto 0;display:flex;gap:8px;border-bottom:1px solid var(--border);}
+  .tabs button{background:none;border:none;color:var(--sub);font-size:15px;font-weight:600;padding:10px 18px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s;}
+  .tabs button.on{color:var(--txt);border-bottom-color:var(--acc);}
+  .tabs button:hover{color:var(--txt);}
+  .view{display:none;}
+  .view.on{display:block;}
+  #view-board .controls{max-width:1400px;margin:16px auto;}
+  /* ===== 分析文章 ===== */
+  .article{max-width:920px;margin:20px auto 40px;font-size:14.5px;line-height:1.85;color:#cfd3e4;}
+  .article h2{font-size:19px;color:var(--txt);margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .article h2:first-child{margin-top:8px;}
+  .article h3{font-size:15.5px;color:var(--txt);margin:20px 0 8px;}
+  .article p{margin:10px 0;}
+  .article b,.article strong{color:var(--txt);}
+  .article ul,.article ol{margin:10px 0 10px 22px;}
+  .article li{margin:7px 0;}
+  .article table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  .article th,.article td{border:1px solid var(--border);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6;}
+  .article th{background:var(--card2);color:var(--txt);white-space:nowrap;}
+  .article tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+  .article .tag{display:inline-block;background:var(--card2);border:1px solid var(--border);color:var(--sub);font-size:11px;padding:1px 8px;border-radius:6px;margin-right:4px;}
+  .article .live-tag{color:var(--green);border-color:rgba(46,204,113,.4);}
+  .article .callout{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--acc);border-radius:8px;padding:12px 16px;margin:14px 0;}
+  .article .src{color:#6c7288;font-size:12px;margin-top:28px;border-top:1px solid var(--border);padding-top:12px;}
+  /* 分析内嵌素材卡 */
+  .refs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 6px;}
+  .refs figure{width:172px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .refs .rm{aspect-ratio:4/5;background:#000;position:relative;}
+  .refs .rm video,.refs .rm img{width:100%;height:100%;object-fit:contain;display:block;}
+  .refs figcaption{font-size:10.5px;color:var(--sub);padding:5px 8px 7px;line-height:1.45;}
+  .refs figcaption b{color:#cfd3e4;font-weight:600;}
+  .top5item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:12px 0;}
+  .top5item .t5h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+  .top5item .t5n{color:var(--acc);font-weight:800;font-size:16px;}
+  .top5item .t5t{color:var(--txt);font-weight:600;font-size:14.5px;}
+  .top5item p{margin:6px 0;font-size:13.5px;}
+  /* 横向参考：竞品子 tab */
+  .article .seg{margin:14px 0 4px;}
+  .refgroup{display:none;}
+  .refgroup.on{display:block;}
+  .refmeta{color:var(--sub);font-size:12.5px;line-height:1.7;margin:10px 0 2px;}
+  .refmeta b{color:#cfd3e4;}
+  /* 素材卡 → Meta 广告库 跳转 */
+  .adsbtn{position:absolute;top:10px;left:10px;z-index:3;display:inline-flex;align-items:center;gap:3px;
+    background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.20);color:#e8eaf2;
+    font-size:10.5px;font-weight:600;line-height:1.25;padding:3px 7px;border-radius:6px;
+    text-decoration:none;backdrop-filter:blur(2px);transition:.15s;white-space:nowrap;}
+  .adsbtn:hover{background:var(--acc);border-color:var(--acc);color:#fff;}
+  .refs .adsbtn{top:6px;left:6px;font-size:9.5px;padding:2px 5px;}
+  .medialink{display:block;width:100%;height:100%;}
+  .medialink img{width:100%;height:100%;object-fit:contain;display:block;}
+a{color:#4f46e5} h2{margin:36px 0 12px;font-size:22px} h3{margin:24px 0 8px} p{margin:10px 0} ul{padding-left:22px} li{margin:7px 0} blockquote{border-left:3px solid #a5b4fc;margin:12px 0;padding:8px 14px;background:#eef2ff} .status{display:inline-block;background:#fff1ce;color:#815d13;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700} .samples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0} .sample{border:1px solid #e8e6e1;background:white;border-radius:12px;overflow:hidden;min-width:0} .sample img,.sample video{width:100%;height:240px;object-fit:contain;background:#101117;display:block} .sample .copy{padding:14px} .sample h3{font-size:15px;margin:0 0 8px} .sample p{font-size:13px} .sample small{color:#676767} .sample a{overflow-wrap:anywhere} .table-wrap{overflow-x:auto} .sample .state{font-weight:700;color:#15803d}.sample .ended{color:#a33931} @media(max-width:760px){.samples{grid-template-columns:1fr 1fr}.wrap{padding:24px 16px}.hero h1{font-size:25px}} @media(max-width:480px){.samples{grid-template-columns:1fr}} .tabs{flex-wrap:wrap}.samples{max-width:1400px;margin:20px auto}.sample{background:var(--card);border-color:var(--border)}.sample .copy{color:var(--txt)}.sample small{color:var(--sub)}.sample a{color:#b6a7ff}.sample .state{color:#52da96}.sample .ended{color:#ff9c91}.latest-summary{max-width:1400px;margin:24px auto;color:#cfd3e4;line-height:1.8}.latest-summary a{color:#b6a7ff}.latest-summary h2{margin-top:12px}.sample video,.sample img{height:300px}.article a{color:#b6a7ff}.merged-report{padding:0 20px 35px}.report-nav{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.report-nav a{padding:6px 12px;border:1px solid var(--border);border-radius:8px;text-decoration:none}.hot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.hot-card,.merged-report .insight{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:12px;margin:12px 0}.hot-card h3{margin-top:12px}.hot-card footer{border-top:1px solid var(--border);padding-top:12px;font-size:13px;color:var(--sub)}.merged-report blockquote{background:#252a40;color:#dbe0f4}.merged-report table{width:100%;border-collapse:collapse}.merged-report th,.merged-report td{padding:12px;border:1px solid var(--border);text-align:left}.merged-report details{border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:30px}.merged-report summary{cursor:pointer;font-weight:700}.merged-report section,.merged-report h2,.merged-report h3{scroll-margin-top:20px}@media(max-width:760px){.hot-grid{grid-template-columns:1fr}.merged-report{padding:0 14px 25px}}.vbadge span{font-size:10px}.controls{flex-wrap:wrap}#ad-ledger{padding:18px;border:1px solid var(--border);border-radius:12px}#ad-ledger summary{cursor:pointer;font-weight:700}#ad-ledger table{border-collapse:collapse;width:100%;font-size:12px}#ad-ledger th,#ad-ledger td{padding:10px;border-bottom:1px solid var(--border);text-align:left}#ad-ledger a{color:#b6a7ff}#view-board>.latest-summary{padding:0 20px}#view-board #ad-ledger{padding:18px}.case-samples{grid-template-columns:repeat(2,minmax(0,1fr))}.case-samples .copy p{overflow-wrap:anywhere}.case-samples video,.case-samples img{height:420px}@media(max-width:700px){.case-samples{grid-template-columns:1fr}}
+.top-rank{padding:12px 16px;background:#29243e;color:#c6b5ff;font-weight:700}.top-rank b{font-size:24px;margin-left:16px}
+</style></head><body><div style="max-width:1200px;margin:0 auto;padding:28px 20px 60px"><div class="callout" style="border-color:#e0a33a"><b>这是 2026-10-12 期「周报与热点」的归档副本</b>（窗口 10/05–10/12）。最新一期请看 <a href="creative-report.html">本期素材灵感周报 ↗</a>，投放数据看板见 <a href="index.html">Tripo 广告素材看板 ↗</a>。</div><div class="latest-summary merged-report"><h2 id="weekly-report">本期周报 · 素材与热点追踪</h2><span class="status">2026-10-12 16:40（北京时间）· Foreplay 七个品牌页本机实抓 ｜ 公开动态来自 10/12 10:00 情报底稿（窗口 10/05–10/12，逐页核实）</span>
+<p>本周窗口：10/05–10/12。广告数据为本次实抓：Tripo 3D 1,497 条（150 页，回溯至 8/13）、Tripoai 500 条、Suno / ElevenLabs 各 150 页、Bambu / ELEGOO / Creality 各 45 页；官方页最新起投 10/09、KOL 页最新起投 10/11（Foreplay 对最近 1–2 天有补录延迟）。上一份完整实抓为 9/07，9/14–10/04 的周度数据本期用同一份抓取补齐（见竞对分析第 1 节）。</p>
+<nav class="report-nav"><a href="#health">看板健康</a><a href="#hotspots">热点追踪</a><a href="#news">竞品动态</a><a href="#missing">未找到清单</a><a href="#audit">核查台账</a><a href="#view-analysis">竞对分析</a><a href="#view-ref">横向参考</a><a href="#view-printer">打印机厂商</a><a href="index-2026-10-11.html#weekly-report">10/11 归档</a><a href="index-2026-10-09.html#weekly-report">10/09 归档</a><a href="index-2026-09-07.html">9/07 归档</a></nav>
+<section id="health"><h2>看板健康检查</h2><div class="callout"><b>判定：本期广告数据与公开动态均已刷新（10/12 本机实抓）。</b><p>9/14、9/21、9/28、10/05 四个周一的本机全流程未跑成（10/12 14:00 那次在抓取中途因桥接断开中止，见项目文档《周更中断记录_2026-10-12》），期间看板由云端任务以 Foreplay 详情页抽样 + 公开动态维持（9/15、9/18、9/26、10/09、10/11）。本次 16:40 用接口全量重抓七个品牌，竞对分析 / 横向参考 / 打印机厂商三个 tab 整体重写，广告台账与预览卡片按 14 天窗口重建；<b>ANALYSIS / REF / PRINTER 三处标记已补回</b>，后续周更可按《任务提示词_周更分析》整块替换。</p></div></section>
+<section id="hotspots"><h2>本周一句话结论 + 值得跟进的热点</h2>
+<div class="callout"><b>Tripo 把增量预算从官方页搬到了 KOL 白名单页。</b>Tripoai 连续 8 周零上新之后，10/08 一天起投 189 条、本周 236 条、132 组创意、238 条在投；语言英 102 / 西 56 / 葡 27 / 韩 21 / 日 16 / 土 9，拉美创作者是主力，激励是「前 300 人用邀请码得 500 积分」。同一周官方页只起投 55 条（上一自然周 114），6 月起投的 MOD 常青素材已全部下线，全页在投缩到 165 条。<b>官方页的新文案集中在三条线：Smart Mesh P2.0、人像 / 万圣节、单功能图；Astra 对比在韩 / 日 / 英三语同时在投并配了专页。</b></div>
+<div class="hot-grid">
+<article class="hot-card"><span class="status">新增 · 高优先级</span><h3>创作者白名单：Tripo 一天上 189 条，六种语言，拉美为主</h3><p><b>已核实信号：</b>Foreplay 实抓 Tripoai 页本周 236 条视频、132 组，创作者 Dmain SOS / TecnoPasion / Freddy Designs / Nathalia Montoya 等，内容三类——打印实物（alfajor 托、灯、棋子、博物馆雕塑）、把自己 / 孩子变成 3D 角色、Astra 对比；多条写「Los primeros 300 usuarios que se registren con mi código… 500 créditos」。</p><p><b>跟进价值：</b>它的增量预算在创作者内容上，官方页反而在收。</p><p><b>建议动作：</b>创作者计划优先西语 / 葡语 / 韩语，形式照抄"打印实物 + 把自己变成角色"，激励用邀请码不用折扣。</p><p><b>复查指标：</b>Tripoai 页每周起投条数、在投条数、语种构成；Meshy 侧创作者视频的完播与注册码使用数。</p><footer>下次复查：2026-10-16 · <a href="#view-analysis">竞对分析第 5 节</a></footer></article>
+<article class="hot-card"><span class="status">新增 · 高优先级</span><h3>Astra 对比已是三语同投的常设线，Meshy 自家有现成论据</h3><p><b>已核实信号：</b>Tripo 韩语「GPT-6 Astra 워크플로우를 3D로 확장하세요」9/09 起 27 条、导专页 tripo3d.ai/lp/astra-tripo；日语「まだ Astra の生成待ちで時間を無駄にしてる？」6 条；KOL 页「OpenAI's Astra can build 3D models on its own… so is this the end of traditional 3D workflows?」。Meshy 10/04 开发者文章已做 Astra 单独 vs Astra+Meshy 对比（<i>"only the Meshy run looked like the concept art"</i>）。</p><p><b>建议动作：</b>把开发者文章做成广告素材：同一概念图，Astra 直出 vs Meshy 精修，配专属落地页。</p><p><b>复查指标：</b>Tripo Astra 专页在投条数；Meshy 对比素材的 3 秒停留与点击。</p><footer>下次复查：2026-10-16 · <a href="https://www.meshy.ai/developers/blog/astra-with-and-without-meshy/">Meshy 开发者文章 ↗</a></footer></article>
+<article class="hot-card"><span class="status">新增 · 产品叙事</span><h3>P2.0 命名：把"干净拓扑、面数可控"包装成代际</h3><p><b>已核实信号：</b>官方页 10/08 新文案「Tripo Smart Mesh P2.0 delivers clean, game-ready 3D models from just one image」（6 条）+ 日语版（3 条）；10/10 博客《What's New on Tripo | September》原文 <i>"P2.0 generates native quad meshes with 500 to 25,000 faces."</i></p><p><b>建议动作：</b>Meshy 7.1 的几何细节优势用一个可记忆的代号进标题，而不是"更准"。</p><p><b>复查指标：</b>带代号标题素材的 CTR 对比。</p><footer>下次复查：2026-10-19 · <a href="https://www.tripo3d.ai/blog/tripo-september-update">Tripo 九月汇总 ↗</a></footer></article>
+<article class="hot-card"><span class="status">时效窗口</span><h3>桌游 + 万圣节：两周内两个确定性节点</h3><p><b>已核实信号：</b>ELEGOO 官方博文 <i>"SPIEL Essen 2026… taking place from October 22–25 at Messe Essen, Germany"</i>（展位 H5L125，带 Jupiter 2）；Tripo 官方页 10/09 新文案「Make Your Own Chess Set with AI」、10/03 与 10/09 两波万圣节文案各 3–6 条；MakerWorld #166 详情页 <i>"Ends on October 21 UTC"</i>；Steam 官方日历 Scream V 10/26–11/02。</p><p><b>建议动作：</b>棋子 / token / 地形的"一个输入→一个可打印用途"短视频 10/20 前上线；万圣节素材不晚于 10/19。</p><p><b>复查指标：</b>生成→打印点击、保存率。</p><footer>下次复查：2026-10-19 · <a href="https://www.elegoo.com/blogs/news/join-elegoo-at-spiel-essen-2026-bring-your-games-to-3d">ELEGOO 官方博文 ↗</a> · <a href="https://makerworld.com/en/contests/166">MakerWorld #166 ↗</a></footer></article>
+<article class="hot-card"><span class="status">继续跟进</span><h3>日区三连：外包混入 AI、AI×IP 议题、ワンフェス×SUNRISE</h3><p><b>已核实信号：</b>GameBusiness.jp 10/08：Jagex 承认 PV 有 AI 痕迹（Mod Sween「6本目の指があります」）并删片道歉；AUTOMATON 10/06 把生成 AI 驱动的 IP 二创 Mod 与权利方出手框成议题；ワンフェス官网 10/08 公告「2027[夏]の特別企画「サンライズワンフェス」決定」。同时 Tripo KOL 页本周日语 16 条全部带 #pr 标注。</p><p><b>建议动作：</b>日语内容继续"创作者主导 + 原创 IP + 流程透明"，KOL 视频明确标注 PR。</p><footer>下次复查：2026-10-19 · <a href="https://www.gamebusiness.jp/article/2026/10/08/28252.html">GameBusiness.jp ↗</a> · <a href="https://automaton-media.com/articles/newsjp/20261006-472053/">AUTOMATON ↗</a></footer></article>
+<article class="hot-card"><span class="status">继续跟进</span><h3>AI 舆情两极化同周加深：Google / Unity 官宣 vs AION 2 被围攻、Nexus"必须人类创作"</h3><p><b>已核实信号：</b>Game Developer 10/06–10/07：Google Playground（<i>"no coding experience required"</i>）、Unity Spark（Bromberg：<i>"We made Unity Spark for the gamers who have spent a thousand hours inside a genre and know exactly what's missing."</i>）；gaminghq.eu 10/09 AION 2 承认用 AI、称 99.9% 人工（小型聚合站）；Nexus 10/05 巫师 3 Modathon 原文 <i>"All entries must be created by humans."</i></p><p><b>建议动作：</b>面向开发者的话术收窄到"工具服务于懂行的创作者"；MOD 相关内容只走辅助框架。</p><footer>下次复查：2026-10-19 · <a href="https://www.nexusmods.com/news/15621">Nexus 公告 ↗</a></footer></article>
+</div></section>
+<section id="news"><h2>竞品动态（10/05–10/12，底稿逐页核实）</h2>
+<div class="insight"><b>Tripo（投放侧，本次实抓）：</b>官方页本周 55 条、KOL 页 236 条；新落地页 /lp/astra-tripo 与韩语 /ko；MOD / Build MODs / Last Call / Auto-Rig 老素材全部下线。<b>内容侧：</b>10/10《What's New on Tripo | September》（P2.0 Official、Smart Mesh P1.0 重拓扑、Smart UV、重写人形绑定）与《Build Your Game with Tripo's End-to-End 3D Pipeline》（<i>"From one concept to an animated, engine-ready character, build everything with Tripo."</i>）、10/08《Workflow: Game - Scene》；Tripothon S1 巴塞罗那站 10/17（Luma 官方页）；3dnchu 首页侧栏挂「Tripo AI」PR 展示广告。<a href="https://www.tripo3d.ai/blog/tripo-september-update">九月汇总 ↗</a> · <a href="https://www.tripo3d.ai/blog/3d-game-pipeline">管线文 ↗</a></div>
+<div class="insight"><b>Meshy（自家）：</b>API changelog 窗口内 4 条（Oct 10 `meshy-5` 停用、`.webp` 输入、Balance 返回 `monthly_credits` / `permanent_credits`；Oct 6 可打印性分析按打印尺寸检查壁厚）；官方博客无新文；a16z 消费级 AI 应用月收入榜（量子位 10/07：<i>"Meshy 位列第 31 名，是榜单上唯一一家 AI 3D 公司"</i>，a16z 官网原文页未打开）。<b>日语 / 中文 webapp changelog 缺口已闭环</b>：ja / zh / en 三页均到 September 2026 并含 7.1。<a href="https://docs.meshy.ai/zh/api/changelog">API changelog ↗</a></div>
+<div class="insight"><b>Hi3D：</b>官方博客一周 8 篇（10/06、10/10 各四篇），七篇是 SEO 比较文（"8 Best AI STL Generators" 等），一篇是新能力 Embroidery（<i>"converts images into embroidery previews and exports DST embroidery files"</i>）；官方 Updates 页仍停在 2026-04-17（上期记录为 05-21，两期矛盾照实记录）；Creator Rewards（9/21–10/21）Trustpilot / note / PR TIMES 零新增反响。<a href="https://www.hi3d.ai/blog">Hi3D 博客 ↗</a></div>
+<div class="insight"><b>Rodin / Hunyuan3D：</b>hyper3d.ai/blog 本期可打开，窗口内无新文（最新 9/29 Cambridge × Arcade 黑客松，窗口外）；docs.hyper3d.ai/changelog 连续第四期打不开。Hunyuan3D-2.1 仓库 News 仍为 "Jul 26, 2025"，腾讯云更新历史最新 8/07，窗口内无更新。</div>
+<div class="insight"><b>打印机 / 平台：</b>All3DP 10/07 Bambu 在 PTAB 赢四项专利裁决但不抵销 $27.6M 判赔，第一案判后动议 10/16（媒体口径）；Fabbaloo 10/07 评 AB 2047 <i>"the bill is effectively neutered"</i>；Creality K3 官方 <i>"Pre-orders open in mid-October"</i>、<i>"expected to launch below $900"</i>（9/30 页，截至 10/12 预售未开）；MakerWorld × Nothing 联名赛 10/19 开赛，Printables 同期跑 Thrustmaster / Logitech 联名赛。<a href="https://all3dp.com/4/bambu-lab-wins-four-patent-office-rulings-weeks-after-losing-27-6-million-verdict/">All3DP ↗</a> · <a href="https://www.creality.com/blog/k3-questions-answered">Creality K3 ↗</a></div>
+</section>
+<section id="missing"><h2>未找到清单（节选，全列见底稿第 6.3 节）</h2><ul><li><b>Bambu R1：</b>官方商店 ETD 原文三次抓取失败，仅第三方 bambuhub 称 ≈11/20——引用须标"第三方说法，官方未确认"。</li><li><b>Creality K3：</b>预售精确开启日与定价，官方只到 "mid-October" / "below $900"。</li><li><b>Rodin：</b>changelog 连续第四期打不开；Hunyuan3D 窗口内无任何更新。</li><li><b>日语媒体：</b>CGinterest / 4Gamer / MoguraVR / CGWORLD / 3dnchu / 窓の杜 窗口内零 Meshy / Tripo / Hi3D 报道（仅 3dnchu 的 Tripo 展示广告位）。</li><li><b>a16z 榜单官网原文页</b>未打开，仅媒体转述。</li><li><b>Foreplay 补录：</b>10/10–10/12 官方页起投为 0，不作停投结论。</li></ul></section>
+<details id="audit"><summary>核查台账与限制</summary><ul><li><b>采集时间：</b>2026-10-12 15:50–16:40（北京时间）本机 Chrome 内通过 Foreplay Discovery 接口翻页；起投日为接口 startedRunning，在投为接口 live 字段。</li><li><b>Foreplay：</b>Tripo 3D 1,497 条 / 150 页（回溯 8/13）；Tripoai 500 条 / 50 页（回溯 7/04）；Suno 1,499 条 / 150 页（回溯 9/02）；ElevenLabs 1,493 条 / 150 页（回溯 9/11）；Bambu 450 条 / 45 页（回溯 7/22）、ELEGOO 444 条 / 45 页（回溯 8/11）、Creality 450 条 / 45 页（仅回溯至 9/26）。创意组按文案前 90 字符 + 标题前 40 字符归并。</li><li><b>公开动态：</b>全部来自 10/12 10:00 云端情报底稿（WebSearch 104 次、WebFetch 163 次，成功 151、失败 12；37 条视频候选 oEmbed 全部验证通过）。本机未新增外部抓取。</li><li><b>限制：</b>Foreplay 接口非 Meta 全库；"同创意累计在投"是 Foreplay same-creative 计数，不代表花费或效果；Creality 45 页只回溯到窗口内，其更早存量未计。</li><li><b>与 10/09–10/11 云端版本的差异：</b>那两版的横向 / 打印机 Top 5 来自 Foreplay 详情页人工抽样（五品牌入榜 17 条），本版来自接口全量翻页，口径不同，不可直接对比条数。</li></ul></details></div></div></body></html>
