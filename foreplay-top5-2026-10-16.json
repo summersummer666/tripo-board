@@ -1,0 +1,256 @@
+{
+  "checked_at": "2026-10-16 17:00（北京时间）",
+  "window": "2026-10-10–2026-10-16",
+  "method": "Foreplay Newest; ELEGOO and Tripoai also checked Still Running; verified Status start date; media dedupe; Creative Duplicates desc; ties by newer start then ad ID asc",
+  "brands": {
+    "Suno": {
+      "source": "https://app.foreplay.co/discovery/brands/oPvAH6CW7CEKiBLDuT4O",
+      "items": [
+        {
+          "ad_id": "2959260737772544",
+          "creative_duplicates": 63,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/e598e9a1ab0a0d72003d90f0f5df04c3e2900a377a0054d39b24814e061c2152.jpg",
+          "title_zh": "v6 发布主张",
+          "quote": "Welcome to the v6 era.",
+          "landing_page": "http://suno.com/go/paid"
+        },
+        {
+          "ad_id": "945415831585149",
+          "creative_duplicates": 2,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "Image",
+          "media": "https://r2.foreplay.co/09c992a4c72a28fdfb40f67cc197dd3b94426f032d720628ba2d51d1720999a9.png",
+          "title_zh": "日语外包替代场景另一版",
+          "quote": "外注先がひとつ減る",
+          "landing_page": "https://suno.com/ja"
+        },
+        {
+          "ad_id": "1247918537539172",
+          "creative_duplicates": 2,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "Image",
+          "media": "https://r2.foreplay.co/f961facaf2ff36ebbcd8ed64c7a29d469d2644e60c082c4170c214a8715fceb2.png",
+          "title_zh": "日语外包替代场景",
+          "quote": "外注先がひとつ減る",
+          "landing_page": "https://suno.com/ja"
+        },
+        {
+          "ad_id": "1768943870822199",
+          "creative_duplicates": 2,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/977fa5087fcd09a78b2259d861785095195338f86e098abbf25a661b58eb5a10.jpg",
+          "title_zh": "创作者歌曲共创",
+          "quote": "Listen and remix on @sunomusic",
+          "landing_page": "http://suno.com/collab/polina"
+        },
+        {
+          "ad_id": "1403075184839503",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-15",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/362d4ef6ee7a450d696040ab9b36c1c87f5711d29367c1d6a37c01426303e38f.jpg",
+          "title_zh": "韩语玩具乐器变成歌曲",
+          "quote": "오타마톤도 음악이 된다",
+          "landing_page": "https://suno.com/ko"
+        }
+      ]
+    },
+    "ElevenLabs": {
+      "source": "https://app.foreplay.co/discovery/brands/9Z7CseeEuZYSx2YRDbtg",
+      "items": [
+        {
+          "ad_id": "1384692373646615",
+          "creative_duplicates": 37,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "DCO",
+          "media": "https://r2.foreplay.co/11cac36db2478d2c7e31a43c3317b4e8f6581cbf6708e958cb025c658f756637.jpg",
+          "title_zh": "全能型移动订阅",
+          "quote": "Finally, a subscription that covers it all",
+          "landing_page": "http://itunes.apple.com/app/id6743162587"
+        },
+        {
+          "ad_id": "1828126851949324",
+          "creative_duplicates": 30,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/05e2a098e3a16f0e1f617bf32838808cb6e2bbf7be237b94a85c4b3eedd5c4e1.jpg",
+          "title_zh": "v4 声音表现力",
+          "quote": "Expressive, ultra-realistic voices",
+          "landing_page": "https://elevenlabs.io/v4"
+        },
+        {
+          "ad_id": "2218095645777896",
+          "creative_duplicates": 22,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "DCO",
+          "media": "https://r2.foreplay.co/f599230ddf6d3034777182311770c8a63a6efbeaeaa8d3ec26f7a5752d9c2374.jpg",
+          "title_zh": "全能型移动订阅另一版",
+          "quote": "Finally, a subscription that covers it all",
+          "landing_page": "http://itunes.apple.com/app/id6743162587"
+        },
+        {
+          "ad_id": "1420105192924658",
+          "creative_duplicates": 18,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "DCO",
+          "media": "https://r2.foreplay.co/f2dc2083c8d4f9c407f7d5b666f3b8a9bdcbb6de3d8e16136431dbd3d4635f14.jpg",
+          "title_zh": "MCP 配置成本预估",
+          "quote": "Check what a config change will cost before it ships.",
+          "landing_page": "https://elevenlabs.io/mcp"
+        },
+        {
+          "ad_id": "2170566447224337",
+          "creative_duplicates": 18,
+          "start_date": "2026-10-14",
+          "status": "Still Running",
+          "format": "DCO",
+          "media": "https://r2.foreplay.co/1b1d5ccab6946f477663a4147ec83c7b90eb8397d3c8f322d2f10ede5fccd5c9.jpg",
+          "title_zh": "MCP 配置成本预估另一版",
+          "quote": "Check what a config change will cost before it ships.",
+          "landing_page": "https://elevenlabs.io/mcp"
+        }
+      ]
+    },
+    "Bambu Lab 3D": {
+      "source": "https://app.foreplay.co/discovery/brands/LiRME2YDApIGvg3zpOAp",
+      "items": [
+        {
+          "ad_id": "939014872291007",
+          "creative_duplicates": 4,
+          "start_date": "2026-10-11",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/76f958fc8cbe9197bd82a0b6de8f54c4cbec72da316c1ba133fc10f7b1f787e0.jpg",
+          "title_zh": "暗黑链锯斧制作过程",
+          "quote": "How I made a Grimdark Chainaxe!",
+          "landing_page": "https://us.store.bambulab.com/products/h2c"
+        },
+        {
+          "ad_id": "1441292714876713",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-15",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/accdc563e6a201957c59e4afbd412f8e4bec743adb95af5abf4400f45a6bc172.jpg",
+          "title_zh": "隐蔽式 3D 打印场景",
+          "quote": "Covert 3D Printing",
+          "landing_page": ""
+        },
+        {
+          "ad_id": "1865611587937074",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-10",
+          "status": "Still Running",
+          "format": "Carousel",
+          "media": "https://r2.foreplay.co/0ce9600db534cd09c077d138ea41c5029b21610131a475f0f8245cee2c244cac.png",
+          "title_zh": "品牌能力轮播",
+          "quote": "A new way to make things.",
+          "landing_page": "http://us.store.bambulab.com/"
+        },
+        {
+          "ad_id": "28587960607520024",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-10",
+          "status": "Still Running",
+          "format": "Carousel",
+          "media": "https://r2.foreplay.co/2df3e398d7d24a438351103cb236334118eb6af3bd6c0378f18bac3eae0717a5.png",
+          "title_zh": "打印质量轮播",
+          "quote": "Print quality. You can see.",
+          "landing_page": "http://us.store.bambulab.com/"
+        },
+        {
+          "ad_id": "977173664730991",
+          "creative_duplicates": 1,
+          "start_date": "2026-10-10",
+          "status": "Still Running",
+          "format": "Carousel",
+          "media": "https://r2.foreplay.co/8ad4d1f9bda4d4f15a13038f417a49d1190396acac4be95fbb6e75464766d280.png",
+          "title_zh": "品牌探索轮播",
+          "quote": "Explore Bambu Lab.",
+          "landing_page": "https://us.store.bambulab.com/"
+        }
+      ]
+    },
+    "ELEGOO": {
+      "source": "https://app.foreplay.co/discovery/brands/LgKtxP1bqsgM6QWZXZ4N",
+      "items": []
+    },
+    "Creality": {
+      "source": "https://app.foreplay.co/discovery/brands/VxqhJPGt4z7mY0ipRIQZ",
+      "items": [
+        {
+          "ad_id": "1822614545325892",
+          "creative_duplicates": 4,
+          "start_date": "2026-10-15",
+          "status": "Ended 2026-10-16",
+          "format": "Image",
+          "media": "https://r2.foreplay.co/f19e5babdc714b176db4272f5eb3d56210e68b5547bb825fb346a0d083e2cf49.jpg",
+          "title_zh": "发布会倒计时",
+          "quote": "Just 1 day to go!",
+          "landing_page": "https://to.store.creality.com/mega_launch_ig"
+        },
+        {
+          "ad_id": "1149454107735764",
+          "creative_duplicates": 2,
+          "start_date": "2026-10-15",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/c27f3484f298aedbcaf780ba34e46fff3df2d499e057c06d0237e49a7a606911.jpg",
+          "title_zh": "3D 打印台球灯",
+          "quote": "Not just a pool table light. It’s 3D printed.",
+          "landing_page": ""
+        },
+        {
+          "ad_id": "1477239467636524",
+          "creative_duplicates": 2,
+          "start_date": "2026-10-15",
+          "status": "Still Running",
+          "format": "Image",
+          "media": "https://r2.foreplay.co/d1515a62620f1d65dcd459c3dd9cf09c1b7b6f62cd92bf6569d7bbd5a7bde8ec.jpg",
+          "title_zh": "Maker Program 招募",
+          "quote": "CREALITY MAKER PROGRAM — CYCLE 2 IS OPEN!",
+          "landing_page": "https://www.creality.com/campaigns/maker-program-2026"
+        },
+        {
+          "ad_id": "1612578539745669",
+          "creative_duplicates": 2,
+          "start_date": "2026-10-15",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/d646a3ab858d0a802805d64a3b237f6ad2725f0775d5847efba3fe579c1a456a.jpg",
+          "title_zh": "K3 多材料换喷嘴",
+          "quote": "Beyond Nozzles. Conquer Materials.",
+          "landing_page": ""
+        },
+        {
+          "ad_id": "2174929043145590",
+          "creative_duplicates": 2,
+          "start_date": "2026-10-15",
+          "status": "Still Running",
+          "format": "Video",
+          "media": "https://r2.foreplay.co/127a0802d79980d0af314a79c45c2f8e4fa37b532a49b467fc4d07be1456f.jpg",
+          "title_zh": "Ender 用户记忆",
+          "quote": "Do you remember your first Ender?",
+          "landing_page": ""
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Dynamic visible range, not Meta full library",
+    "ELEGOO: Newest and Still Running checked; no eligible start date",
+    "Creative Duplicates is a capture-time reuse count, not spend or performance"
+  ]
+}
